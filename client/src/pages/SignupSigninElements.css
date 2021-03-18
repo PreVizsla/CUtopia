@@ -1,0 +1,47 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html { 
+  background: url('bg.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  -o-background-size: cover; /*for opera browser */
+  -moz-background-size: cover; /* for mozila browser*/
+  -webkit-background-size: cover;
+}
+
+.CUtopia{
+margin-top:100px;
+}
+
+
+.logo{
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 300px;
+}
+
+
+.user-input{
+	top: 120px;
+	position: absolute;
+	width: 280px;
+	transition: .5s;
+}
+
+span{
+	color: #777;
+	font-size: 12px;
+	bottom: 68px;
+	position: absolute;
+}
+
+#login{
+	left: 50px;
+}
+
+#register{
+	left: 450px;
+}
