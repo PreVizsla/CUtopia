@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const argon = require("argon2");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
@@ -32,13 +32,13 @@ UserSchema.pre("save", async function (next) {
     next();
   }
 
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  const salt = await argon2.generateSalt();
+  this.password = await argon2.hash(this.password, salt);
   next();
 });
 
 UserSchema.methods.matchPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  return await argon2.verify(this.password, password);
 };
 
 UserSchema.methods.getSignedJwtToken = function () {
