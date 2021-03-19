@@ -17,7 +17,7 @@ Follow the given instructions and you will be here at CUtopia's Brain in no time
    git clone https://github.com/FlyingTwigs/CUtopia.git
 ```
 
-2. Go to the Client directory
+2. Go to the server directory
 ```
    cd CUtopia
 ```
