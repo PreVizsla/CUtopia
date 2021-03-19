@@ -1,0 +1,40 @@
+.Friendlist {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    flex: 0.3;
+    border: 10px whitesmoke;
+ }
+
+ .Friendlist_header {
+     display: flex;
+     justify-content: space-between;
+     padding: 12.5px;
+     background-color: white;
+     border-bottom: 10px gray;
+ }
+
+.Friendlist_header > h1 {
+    font-size: 36px;
+    align-items: center;
+ }
+
+.Friendlist_chats{
+    flex: 1;
+    background-color: white;
+    overflow: scroll;
+    border-bottom: 10px whitesmoke
+}
+
+.Friendlist_footer{
+        display: flex;
+        height: 50px;
+        background-color: white;
+        border-top: 15px whitesmoke;
+}
+
+.button {
+    padding: 20px 10px;
+    background-color: green;
+    font-size: 30px;
+}
