@@ -1,6 +1,6 @@
 # About CUtopia :rocket:
 
-Updated as of March 19 2021 - Initial Code Phase
+Updated as of March 19 2021
 
 In this fast changing world, mentorship has been proven to be of vital
 importance at every stage of our unpredictable lives. At present, there is no

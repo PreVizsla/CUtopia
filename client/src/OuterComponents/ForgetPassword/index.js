@@ -6,7 +6,7 @@ function ForgetPasswordForm() {
     return (
         <form>
             <Form>
-            <Heading>Forget Password</Heading>
+            <Heading>Forgot Password</Heading>
             <Content>Enter your Email Address</Content>
             <Content>(xxxxxxxxxx@link.cuhk.edu.hk)</Content>
             
