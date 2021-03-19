@@ -39,7 +39,7 @@ Back-end:
 
 As of now, we have begun work on both the front-end and the back-end of our application. :smile:
 
-For the front-end, we have finished the landing page, sign-up/log-in page and also clicking on the login button will direct you to a sneak peek of what the inside of CUtopia will look like. For the back-end, we have started work on the components for user authentication. Images of our progress are shown below:
+For the front-end, we have finished the landing page, sign-up/log-in page and also clicking on the login button will direct you to a sneak peek of what the inside of CUtopia will look like. For the back-end, we have started work on the components for user authentication and also have started to play around with the video call feature for the platform. Images of our progress are shown below:
 
 #### Landing Page:
 <p align="center">
@@ -54,6 +54,11 @@ For the front-end, we have finished the landing page, sign-up/log-in page and al
 #### Feed Page:
 <p align="center">
   <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/feedinside.png" alt="feedinside" width="700" >
+</p>
+
+### Video Call feature:
+<p align="center">
+  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/videocall.png" alt="videocall" width="700" >
 </p>
 
 ## Try Out CUtopia :alien:
