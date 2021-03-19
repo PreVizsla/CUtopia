@@ -96,7 +96,7 @@ In this coming month, we will focus on completing the entirety of the project. H
 * [Google Fonts: Montserrat](https://fonts.google.com/)
 * [React Styled Components](https://styled-components.com/)
 * [React Router](https://reactrouter.com/)
-* [React Scroll](https://connoratherton.com/loaders)
+* [React Scroll](https://www.npmjs.com/package/react-scroll)
 * [React Icons](https://react-icons.github.io/react-icons/)
 * [Material UI Icons](https://material-ui.com/)
 * [Freepik](https://www.freepik.com/)
