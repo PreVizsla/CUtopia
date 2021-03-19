@@ -1,0 +1,1 @@
+Defaults files created from using the Redux template, alhough these files are still of no current use for now, these files can be used as a template for later when we use Redux as a form of local data store for our project after connecting to the back-end. Files are used to implement the Redux "store" functionality.
