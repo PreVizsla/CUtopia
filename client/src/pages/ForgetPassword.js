@@ -7,17 +7,23 @@ import NavbarLogin from '../OuterComponents/NavbarLogin'
 import { ContainerBox, CUtopia } from './style';
 
 import './SignupSigninElements.css';
+import { useHistory } from "react-router-dom";
+
 
 function ForgetPassword() {
-
+  const [isSubmitFormForget, ForgetIsSubmitted] = useState(false);
+  function submitFormForget() {
+    ForgetIsSubmitted(true);
+  }
+ 
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => {
       setIsOpen(!isOpen)
   }
+  const history = useHistory();
 
   return (
-    
     <>
     
     <NavbarLogin toggle={toggle}/>
@@ -25,7 +31,12 @@ function ForgetPassword() {
         <img src={logo} width="300px" className="logo" alt="logo"/>       
         <img src={CUTOPIA} width="200px"className="logo" alt="CUTOPIA_word"/>
       <ContainerBox>
-        <ForgetPasswordForm id="Forget"></ForgetPasswordForm>
+        {!isSubmitFormForget ?(
+          <ForgetPasswordForm id="Forget" submitFormForget={submitFormForget}></ForgetPasswordForm>
+        ):(
+          history.push('./next')
+      
+        )}
       </ContainerBox> 
       </CUtopia>
       </>
