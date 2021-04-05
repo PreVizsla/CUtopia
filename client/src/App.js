@@ -6,6 +6,7 @@ import ForgetPassword from './pages/ForgetPassword'
 import './App.css';
 import VerificationSend from './pages/VerificationSend'
 import FeedPage from './pages/FeedPage'
+import SignUp from './pages/SignUpPageDetail'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Forget_Password" component={ForgetPassword} exact />
         <Route path="/next" component={VerificationSend} exact />
         <Route path="/FeedPage" component={FeedPage} exact />
+        <Route path="/Signup" component={SignUp} exact />
       </Switch>
     </Router>
   );

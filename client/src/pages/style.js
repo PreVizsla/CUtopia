@@ -10,12 +10,27 @@ export const Buttons = styled.div`
 
 export const ContainerBox = styled.div`
     width: 380px;
-    height: 450px;
+    height: 530px;
     margin: auto;
     position: relative;
-    background: rgba(117, 15, 109, 0.8);
+    background: rgba(117, 15, 109, 0.9);
     padding: 5px;
     overflow: hidden;
+`
+
+export const BigContainerBox=styled.div`
+width: 40%;
+height: 620px;
+margin: auto;
+position: relative;
+background: rgba(117, 15, 109, 0.9);
+padding: 5px;
+overflow: hidden;
+@media screen and (max-width: 927px) {
+    width: 370px;
+    height: 640px;
+}
+
 `
 
 //just a div with color to create a button illusion

@@ -1,23 +1,37 @@
 import styled from 'styled-components'
 import { Link as LinkR } from 'react-router-dom'
-
-export const InputField = styled.input.attrs({ 
-    type: 'text'
-    })`
-    width: 100%;
-    border: none;       
-    padding: 8px 8px;
-    border-radius: 8px; 
-    margin: 5px 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 1px solid #999;
-    outline: none;
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from "@material-ui/core/styles";
+// export const InputField = styled.input.attrs({ 
+//     type: 'password'
+//     })`
+//     width: 100%;
+//     border: none;       
+//     padding: 8px 8px;
+//     border-radius: 8px; 
+//     margin-bottom: 10px;
+//     border-left: 0;
+//     border-right: 0;
+//     border-top: 0;
+//     border-bottom: 1px solid #999;
+//     outline: none;
+//     &:focus {
+//         outline: none;      
+//         box-shadow: 0 0 0 2px #FF7F50;
+//         background-color: 'white';
+//     }
+//   `
+  export const InputField = styled(TextField)`
+    width: 100% !important;
+    border: none !important;       
+    padding: 2px !important;
+    margin-bottom: 10px !important;
+    margin-top: 5px !important;
+    
     &:focus {
-        outline: none;      
-        box-shadow: 0 0 0 2px #FF7F50;
-        background-color: 'white';
+        outline: none !important;      
+        box-shadow: 0 0 0 2px #FF7F50 !important;
+    background-color: 'white' !important;
     }
   `
 
@@ -28,7 +42,8 @@ export const EmailField = styled.input.attrs({
     border: none;       
     padding: 8px 8px;
     border-radius: 8px; 
-    margin: 5px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-left: 0;
     border-right: 0;
     border-top: 0;
@@ -39,6 +54,12 @@ export const EmailField = styled.input.attrs({
         box-shadow: 0 0 0 2px #FF7F50;
         background-color: 'white';
     }
+`
+
+export const Warning = styled.p`
+    text-decoration: none;
+    color: red;
+    margin-bottom:15px;
 `
 
 export const Form = styled.div`
@@ -54,7 +75,8 @@ export const SubmitBtn = styled.button`
 	padding: 10px 30px;
 	cursor: pointer;
 	display: block;
-	margin-top:10px;
+    margin:auto;
+	margin-top:20px;
 	background: -webkit-linear-gradient(right, #ff105f, #ffad06);
 	background: -moz-linear-gradient(right, #ff105f, #ffad06);
 	background: linear-gradient(to right, #ff105f, #ffad06);
@@ -78,8 +100,7 @@ export const NextBtn = styled(LinkR)`
 
     //pushing to the left because of container align
     margin-right:160px;
-    margin-top:10px;
-    margin-bottom:10px;
+
     color: white; //color: #010606;
     font-size: 14px;
 

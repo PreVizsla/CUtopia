@@ -11,6 +11,9 @@ import CUTOPIA from '../assets/images/CUTOPIA.png'
 
 import NavbarLogin from '../OuterComponents/NavbarLogin'
 
+import { useHistory } from "react-router-dom";
+
+
 function SignupSignin() {
  
   //to move the forms from left to right and so on
@@ -31,14 +34,27 @@ function SignupSignin() {
       setIsOpen(!isOpen)
   }
 
+
+  //check if it is submitted or not
+  const [isSubmittedLogin, setIsSubmitted] = useState(false);
+  function submitForm() {
+    setIsSubmitted(true);
+  }
+
+  const [isSubmittedSignup, SignUpIsSubmitted] = useState(false);
+  function submitFormSignup() {
+    SignUpIsSubmitted(true);
+  }
+  const history = useHistory();
+
   return (
     
     <>
     
     <NavbarLogin toggle={toggle}/>
     <CUtopia>
-        <img src={logo} width="300px" className="logo" alt="logo"/>       
-        <img src={CUTOPIA} width="200px"className="logo"alt="CTUPIA_word"/>
+      <img src={logo} width="300px" className="logo" alt="logo"/>       
+      <img src={CUTOPIA} width="200px"className="logo"alt="CTUPIA_word"/>
         
     <ContainerBox>
 			<Buttons>
@@ -46,10 +62,18 @@ function SignupSignin() {
         <Toggle onClick={login}>Log In</Toggle>
         <Toggle onClick={register}>Sign Up</Toggle>
 			</Buttons>
+      
+      {!isSubmittedLogin ? (
+      <LoginForm id="login" submitForm={submitForm}/>
+      ):(
+        history.push('./FeedPage')
+      )}
 
-      <LoginForm id="login"></LoginForm>
-      <SignUpForm id="register"></SignUpForm>
-
+      {!isSubmittedSignup ?(
+      <SignUpForm id="register" submitFormSignup={submitFormSignup} ></SignUpForm>
+      ) : (
+        history.push('./Signup')
+      )}
       </ContainerBox> 
       </CUtopia>
       </>

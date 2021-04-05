@@ -1,28 +1,71 @@
 import React from 'react'
-import {  Form, NextBtn, InputField, LogInBtn, EmailField} from './LoginElements';
+import {  Form, NextBtn, InputField, LogInBtn, EmailField, SubmitBtn, Warning} from './LoginElements';
 
-function LoginForm() {
+import validate from './ValidateLogin';
+import useForm from './UseFormLogin';
+import TextField from "@material-ui/core/TextField";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .MuiFilledInput-root": {
+      background: "white",
+    }
+  }, TextField: {
+  }
+}));
+
+const LoginForm = ({ submitForm }) => {
+    const classes = useStyles();
+
+    const { handleChange, handleSubmit, values, errors } = useForm(
+      submitForm,
+      validate
+    );
+
     return (
-        <div>   
-            {/* to utilize the submit button functionality */}
-             <form id="login" className="user-input"> 
-                <Form >
-                    <EmailField type="email"  placeholder="Email Id" pattern=".+@link.cuhk.edu.hk"  required />
-                    <InputField type="text"  placeholder="Password" required />
-
-                    <NextBtn to="Forget_Password" type="checkbox" >Forgot password</NextBtn>
+        <div id="login" className="user-input" >  
+        
+            <form onSubmit={handleSubmit} noValidate>
+                <div className='form-inputs' style={{marginBottom:15+"px"}}>
+                    <TextField
+                        id="filled-basic" label="email" variant="filled"
+                        className={classes.root}
+                        fullWidth={true}
+                        type='email'
+                        name='email'
+                        placeholder='Enter your email'
+                        value={values.email}
+                        onChange={handleChange}
+                    />
+                    {errors.email && <Warning>{errors.email}</Warning>}
+                </div>
+                <div className='form-inputs' style={{marginBottom:15+"px"}}>
+                    <TextField
+                        id="filled-basic" label="password" variant="filled"
+                        className={classes.root}
+                        fullWidth={true}
+                        type='password'
+                        name='password'
+                        //placeholder='Enter your password'
+                        value={values.password}
+                        onChange={handleChange}
+                    />
+                    {errors.password && <Warning>{errors.password}</Warning>}
+                </div>
+                {/* <button className='form-input-btn' type='submit'>
+                Sign up
+                </button> */}
+                {/* onClick={routeChange} */}
+                <NextBtn to="Forget_Password" type="checkbox" >Forgot password</NextBtn>
                     
-                    {/* <Submit_btn type="submit" >
-                    <Link_text to='./next' >
-                        next
-                    </Link_text>
-                    </Submit_btn> */}
-
-                    <LogInBtn to='./FeedPage' >Login</LogInBtn>
-                </Form>
+                <SubmitBtn type="submit" >
+                    Login
+                </SubmitBtn> 
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default LoginForm
+export default LoginForm;
