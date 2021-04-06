@@ -20,14 +20,19 @@ export const ContainerBox = styled.div`
 
 export const BigContainerBox=styled.div`
 width: 40%;
-height: 620px;
+height: 640px;
 margin: auto;
 position: relative;
 background: rgba(117, 15, 109, 0.9);
 padding: 5px;
 overflow: hidden;
-@media screen and (max-width: 927px) {
-    width: 370px;
+@media screen and (max-width: 1300px) {
+    width: 520px;
+    height: 640px;
+}
+//retaining 90% width
+@media screen and (max-width: 577px) {
+    width: 90%;
     height: 640px;
 }
 
