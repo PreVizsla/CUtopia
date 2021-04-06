@@ -2,11 +2,12 @@ import React from 'react'
 import {  Form, NextBtn, InputField, LogInBtn, EmailField, SubmitBtn, Warning} from './LoginElements';
 
 import validate from './ValidateLogin';
-import useForm from './UseFormLogin';
+import handleForm from './handleFormLogin';
 import TextField from "@material-ui/core/TextField";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+//for the material ui styling
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiFilledInput-root": {
@@ -16,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LoginForm = ({ submitForm }) => {
+const LoginForm = ({ submitFormLogin }) => {
     const classes = useStyles();
 
-    const { handleChange, handleSubmit, values, errors } = useForm(
-      submitForm,
-      validate
+    const { variables, errors, handleChange, handleSubmit } = handleForm(
+        submitFormLogin,
+        validate
     );
 
     return (
@@ -36,7 +37,7 @@ const LoginForm = ({ submitForm }) => {
                         type='email'
                         name='email'
                         placeholder='Enter your email'
-                        value={values.email}
+                        value={variables.email}
                         onChange={handleChange}
                     />
                     {errors.email && <Warning>{errors.email}</Warning>}
@@ -49,12 +50,13 @@ const LoginForm = ({ submitForm }) => {
                         type='password'
                         name='password'
                         //placeholder='Enter your password'
-                        value={values.password}
+                        value={variables.password}
                         onChange={handleChange}
                     />
                     {errors.password && <Warning>{errors.password}</Warning>}
                 </div>
-                {/* <button className='form-input-btn' type='submit'>
+                {/* old method to directly route when button is pressed 
+                <button className='form-input-btn' type='submit'>
                 Sign up
                 </button> */}
                 {/* onClick={routeChange} */}

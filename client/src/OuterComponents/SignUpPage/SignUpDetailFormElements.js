@@ -103,6 +103,12 @@ export const FormContainer = styled.div`
     //background-color:black;
     width:70%;
     margin:auto;
+    @media screen and (max-width: 1300px) {
+        width:90%;
+    }
+    @media screen and (max-width: 577px) {
+        width:95%;
+    }
 `
 export const Heading = styled.h1`
     margin-top: 18px;

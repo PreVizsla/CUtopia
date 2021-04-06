@@ -2,7 +2,7 @@ import React from 'react'
 import {  FormContainer, Heading, Warning, Content,Questions, SubmitBtn, EmailField} from './SignUpDetailFormElements';
 
 import validate from './ValidateSignup';
-import useForm from './useFormSignup';
+import handleForm from './handleFormSignup';
 import TextField from "@material-ui/core/TextField";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     marginLeft: "15%",
     marginTop: "15px",
-    maxHeight: "90px",
-
+    maxHeight: "60px",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -33,15 +32,19 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     marginLeft: "15%",
     marginTop: "10px",
-    maxHeight: "90px",
-  },
+    maxHeight: "60px",
+  }, inputs:{
+    background: "white",
+    marginTop:"10px",
+    marginLeft:"15%"
+  }
 }));
 
 const SignUpForm = ({submitDetailSignup}) => {
 
 	const classes = useStyles();
 	
-	const { handleChange, handleSubmit, values, errors } = useForm(
+	const { variables, errors, handleChange, handleSubmit } = handleForm(
 		submitDetailSignup,
 		validate
 	);
@@ -51,14 +54,28 @@ const SignUpForm = ({submitDetailSignup}) => {
             <Heading>Welcome!!</Heading>
             <Content>While we are cooking your account</Content>
             <Content>Please tell us more about you!</Content>
-            <br></br>
+            <Questions>Tell us your name</Questions>
+            <div className='form-inputs' >
+                <TextField
+                    id="filled-basic" label="name" variant="filled"
+                    className={classes.inputs}
+                    type='text'
+                    name='name'
+                    placeholder='Enter your name'
+                    value={variables.name}
+                    onChange={handleChange}
+                />
+                {errors.name && <Warning>{errors.name}</Warning>}
+            </div>
+
+
             <Questions>What is your major?</Questions>
 		    <form onSubmit={handleSubmit} noValidate>
                 <FormControl className={classes.formControl} variant="filled">
                 <InputLabel id="demo-simple-select-helper-label">major</InputLabel>
                     <Select
                         id="demo-simple-select"
-                        value={values.major}
+                        value={variables.major}
                         onChange={handleChange}
                         name='major'
                         >
@@ -168,16 +185,14 @@ const SignUpForm = ({submitDetailSignup}) => {
                     </Select>
                 </FormControl>
                 {errors.major && <Warning>{errors.major}</Warning>}
-{/*                   
-                start - end */}
-                <div>
+                <div >
                     
                     <Questions>Starting year - Expected/End year</Questions>
                     <FormControl className={classes.yearControl} variant="filled">
                         <InputLabel id="demo-simple-select-helper-label">Start year</InputLabel>
                         <Select
                             id="demo-simple-select"
-                            value={values.start_year}
+                            value={variables.start_year}
                             onChange={handleChange}
                             name='start_year'
                             >
@@ -221,7 +236,7 @@ const SignUpForm = ({submitDetailSignup}) => {
                         <InputLabel id="demo-simple-select-helper-label">End year</InputLabel>
                         <Select
                             id="demo-simple-select"
-                            value={values.end_year}
+                            value={variables.end_year}
                             onChange={handleChange}
                             name='end_year'
                             >
@@ -272,7 +287,7 @@ const SignUpForm = ({submitDetailSignup}) => {
                     <InputLabel id="demo-simple-select-helper-label">Mentor/Mentee</InputLabel>
                     <Select
                         id="demo-simple-select"
-                        value={values.mentor_mentee}
+                        value={variables.mentor_mentee}
                         onChange={handleChange}
                         name='mentor_mentee'
                         >
@@ -282,13 +297,6 @@ const SignUpForm = ({submitDetailSignup}) => {
                     </Select>
                 </FormControl>
                 {errors.mentor_mentee && <Warning >{errors.mentor_mentee}</Warning>}
-
-                {/* <button className='form-input-btn' type='submit'>
-                Sign up
-                </button> */}
-                {/* onClick={routeChange} */}
-                {/* <NextBtn to="Forget_Password" type="checkbox" >Forgot password</NextBtn>
-                     */}
                 <SubmitBtn type="submit" >
                     Finish
                 </SubmitBtn> 
