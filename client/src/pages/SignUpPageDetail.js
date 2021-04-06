@@ -1,4 +1,3 @@
-
 import './SignupSigninElements.css';
 import React, { useState } from "react";
 import SignUpPageDetail from '../OuterComponents/SignUpPage/SignUpDetailForm.js'
@@ -29,7 +28,7 @@ function VerificationSend() {
   }
   return (
     //background color is buggy so i hard code the height (vh for some reason is the screen height)
-    <div style={{backgroundColor:"rgba(0,0,0,0.4)", height:"100vh"}}>
+    <div style={{backgroundColor:"rgba(0,0,0,0.4)", height:"100%", top:0, left:0 }}>
     
         <CUtopia>
         <img src={logo} width="300px" className="logo" alt="logo"/>       

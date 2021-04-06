@@ -1,17 +1,23 @@
-export default function validate(values) {
-  let errors = {};
-  if (!values.major) {
+export default function validate(variables) {
+  let errors = {};  
+  if (!variables.name) {
+    errors.name = 'Please enter your name';
+  } //optional settings
+  else if (variables.name.length < 2) {
+    errors.name = 'Please enter a valid name';
+  }
+  if (!variables.major) {
     errors.major = 'Please enter your major';
   } //optional settings
-  else if (values.major.length < 2) {
+  else if (variables.major.length < 2) {
     errors.major = 'Please enter a valid major';
   }
-  if (!(values.start_year && values.end_year)) {
+  if (!(variables.start_year && variables.end_year)) {
     errors.year = 'Please enter your study period';
-  } else if (values.end_year <  values.start_year) {
+  } else if (variables.end_year <  variables.start_year) {
     errors.year = 'Please enter a valid study period';
   }
-  if (!values.mentor_mentee) {
+  if (!variables.mentor_mentee) {
     errors.mentor_mentee = 'Please enter your choice';
   } 
   return errors;
