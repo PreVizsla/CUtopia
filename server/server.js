@@ -2,9 +2,12 @@ require('dotenv').config({ path: "./config.env" });
 
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const express = require("express");
 const app = express();
+
+const { io } = require('../server/utils/socket')(server);
 
 const DB = 'mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.yuaqn.mongodb.net/users?retryWrites=true&w=majority'
 
@@ -32,6 +35,8 @@ app.get("/", (req, res, next) => {
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
+
+app.use("/chat", require('./routes/chat'));
 
 // Error Handler Middleware
 app.use(errorHandler);

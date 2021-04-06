@@ -7,6 +7,11 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Please provide username"],
+    unique: true,
+  },
+  name: {
+    type: String,
+    required: [true, "Please provide your name (Last name first)"],
   },
   email: {
     type: String,
@@ -25,6 +30,19 @@ const UserSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
+  mentor: {
+    type: Boolean,
+    select: true,
+  },
+  major: String,
+  startyear: {
+    type: Number,
+    select: true,
+  },
+  endyear: {
+    type: Number,
+    select: true,
+  },
 });
 
 UserSchema.pre("save", async function (next) {
