@@ -9,10 +9,35 @@ import React from 'react'
 
 import CUtopiaLogo from '../../assets/images/CUTPLogo.png'
 import clement from '../../assets/frontend-temp/clement.jpg'
-import { Menu, Nav, NavbarContainer, NavLeft, NavLogo, NavRight, NavSearch, ProfileIcon, ProfileIdentity, SearchBar, Exit } from './NavbarElements'
+import { Menu, Nav, NavbarContainer, NavLeft, NavLogo, NavRight, NavSearch, ProfileIcon, ProfileIdentity, SearchBar, Exit, ProfileContainer } from './NavbarElements'
 import NavOptions from './NavOptions';
+import { useHistory } from "react-router-dom";
+import {useState} from 'react';
 
 const Navbar = () => {
+
+    const history = useHistory();
+    
+    function ChangeToProfile (){
+        history.push('/profile')
+    }
+    function ChangeToFeed (){
+        history.push('/feed')
+    }
+    function ChangeToJobs (){
+        history.push('/jobs')
+    }
+    function ChangeToEvents (){
+        history.push('/events')
+    }
+    function ChangeToChat (){
+        history.push('/chat')
+    }
+    function ChangeToCunity (){
+        history.push('/cunity')
+    }
+
+
     return (
         <>
             <Nav>
@@ -26,11 +51,11 @@ const Navbar = () => {
                         </NavLogo>
                         {/* 5 Menu Options, broken down and made to be reusable components NavOptions*/}
                         <Menu>
-                            <NavOptions Icon={AppsSharpIcon} title='Feed'/>
-                            <NavOptions Icon={SupervisorAccountIcon} title='CUnity'/>
-                            <NavOptions Icon={WorkIcon} title='Jobs'/>
-                            <NavOptions Icon={EventIcon} title='Events'/>
-                            <NavOptions Icon={MessageIcon} title='Chat'/>
+                            <NavOptions action={ChangeToFeed} Icon={AppsSharpIcon} title='Feed'/>
+                            <NavOptions action={ChangeToCunity} Icon={SupervisorAccountIcon} title='CUnity'/>
+                            <NavOptions action={ChangeToJobs} Icon={WorkIcon} title='Jobs'/>
+                            <NavOptions action={ChangeToEvents} Icon={EventIcon} title='Events'/>
+                            <NavOptions action={ChangeToChat} Icon={MessageIcon} title='Chat'/>
                         </Menu>
                         {/* Search bar of Navbar */}
                         <NavSearch>
@@ -41,11 +66,13 @@ const Navbar = () => {
                     {/* Right Side consisting: Profile Picture and Details, Log Out Button*/}
                     <NavRight>
                         {/* Profile Picture and Details */}
-                        <ProfileIcon src={clement}/>
-                        <ProfileIdentity>
-                            <h2>Clement Mihailescu</h2>
-                            <p>CEO at AlgoExpert.io</p>
-                        </ProfileIdentity>
+                        <ProfileContainer onClick={ChangeToProfile} >
+                            <ProfileIcon src={clement}/>
+                            <ProfileIdentity>
+                                <h2>Clement Mihailescu</h2>
+                                <p>CEO at AlgoExpert.io</p>
+                            </ProfileIdentity>
+                        </ProfileContainer>
                         {/* LogOut Button made using reused NavOptions component like the menu options on the left side */}
                         <Exit to='/'>
                             <NavOptions Icon={ExitToAppIcon} title='Log Out'/>

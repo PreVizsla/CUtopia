@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+
+//use form is a react custom hook
 const useForm = (success, validate) => {
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   //local variable to this function
-  const [values, updateValues] = useState({
+  const [variables, updateValues] = useState({
     major: '',
     start_year: '',
     end_year: '',
@@ -12,26 +14,29 @@ const useForm = (success, validate) => {
     age:'',
   });
 
+  //for handling changes in input field
   const handleChange = e => {
     const { name, value } = e.target;
-    updateValues({...values, [name]: value});
+    updateValues({...variables, [name]: value});
   };
 
+  //for handling events when submit button is pressed
   const handleSubmit = e => {
     //preventing refreshing
     e.preventDefault();
 
-    setErrors(validate(values));
-    setIsSubmitting(true);
+    setErrors(validate(variables));
+    setSubmit(true);
   };
 
   useEffect(
     () => {
-      //if there are no errors
-      if (Object.keys(errors).length === 0 && isSubmitting) {
+      //if there are no errors and use click submit button
+      if (Object.keys(errors).length === 0 && submit) {
         success();
         //to extract the input data
-        console.log('component signup state is: ', JSON.stringify(values) )
+        console.log('component signup state is: ', JSON.stringify(variables) )
+        // for mongodb trial
         // const postURL = "http://localhost:4000/api/staff/" //Our previously set up route in the backend
         // fetch(postURL, {
         //     method: 'POST',
@@ -54,7 +59,7 @@ const useForm = (success, validate) => {
     [errors]
   );
 
-  return { handleChange, handleSubmit, values, errors };
+  return { variables, errors, handleChange, handleSubmit  };
 };
 
 export default useForm;

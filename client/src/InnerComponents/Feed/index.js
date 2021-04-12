@@ -17,7 +17,7 @@ const Feed = () => {
         <>
             {/* Left side of Feed page, allowing users to write and see posts */}
             <FeedWrapper>
-                {/* Allows users to create an entry for a NEW POST */}
+                {/*Allows users to create an entry for a NEW POST*/}
                 <FeedWrite>
                     <FeedWriteHeader>
                         <FeedWriteTitle>NEW POST</FeedWriteTitle>

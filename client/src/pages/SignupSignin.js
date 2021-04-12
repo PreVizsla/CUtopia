@@ -36,9 +36,9 @@ function SignupSignin() {
 
 
   //check if it is submitted or not
-  const [isSubmittedLogin, setIsSubmitted] = useState(false);
-  function submitForm() {
-    setIsSubmitted(true);
+  const [isSubmittedLogin, LoginIsSubmitted] = useState(false);
+  function submitFormLogin() {
+    LoginIsSubmitted(true);
   }
 
   const [isSubmittedSignup, SignUpIsSubmitted] = useState(false);
@@ -64,9 +64,9 @@ function SignupSignin() {
 			</Buttons>
       
       {!isSubmittedLogin ? (
-      <LoginForm id="login" submitForm={submitForm}/>
+      <LoginForm id="login" submitFormLogin={submitFormLogin}/>
       ):(
-        history.push('./FeedPage')
+        history.push('./Feed')
       )}
 
       {!isSubmittedSignup ?(

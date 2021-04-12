@@ -2,25 +2,7 @@ import styled from 'styled-components'
 import { Link as LinkR } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
-// export const InputField = styled.input.attrs({ 
-//     type: 'password'
-//     })`
-//     width: 100%;
-//     border: none;       
-//     padding: 8px 8px;
-//     border-radius: 8px; 
-//     margin-bottom: 10px;
-//     border-left: 0;
-//     border-right: 0;
-//     border-top: 0;
-//     border-bottom: 1px solid #999;
-//     outline: none;
-//     &:focus {
-//         outline: none;      
-//         box-shadow: 0 0 0 2px #FF7F50;
-//         background-color: 'white';
-//     }
-//   `
+
   export const InputField = styled(TextField)`
     width: 100% !important;
     border: none !important;       

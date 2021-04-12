@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const Job = styled.div`
@@ -59,20 +59,19 @@ export const JobInfo = styled.div`
 `
 
 export const ApplyNow = styled.button`
-    margin-top: 3px;
-    cursor: pointer;
-    background-color: white;
-    border-radius: 4px;
-    padding: 2px 8px;
-    border: 1.5px solid #DDA300;
-    color: #DDA300;
-    width: 78px;
-    font-size: 10px;
-    margin-bottom: 10px;
+    margin-top: 3px !important;
+    cursor: pointer !important;
+    background-color: white !important;
+    border-radius: 4px !important;
+    padding: 2px 8px !important;
+    border: 1.5px solid #DDA300 !important;
+    color: #DDA300 !important;
+    width: 78px !important;
+    font-size: 10px !important;
+    margin-bottom: 10px !important;
 
     &:hover {
-        background-color: #DDA300;
-        color: white;
-        transition: 0.1s ease-in-out;
+        background-color: #DDA300 !important;
+        color: white !important;
     }
 `
