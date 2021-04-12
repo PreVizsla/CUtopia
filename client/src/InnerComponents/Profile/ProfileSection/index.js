@@ -5,8 +5,6 @@ import clement from '../../../assets/frontend-temp/clement.jpg'
 import Background from '../../../assets/images/profileBG.jpg'
 import { EditButtonText, ProfileIcon, ProfileInfo, CountryInfo, MainProfile, InformationContainer, EditButton, UploadButton, ProfileBackground, IconContainers, ContactButton } from './ProfileSectionElements'
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, Button } from 'antd';
-import ModalForm from "./ModalForm";
 import ProfileForm from "./ProfileForm"
 
 
