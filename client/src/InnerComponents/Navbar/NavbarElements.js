@@ -124,3 +124,13 @@ export const Exit = styled(LinkR)`
     width: fit-content;
     height: fit-content;
 `
+
+export const ProfileContainer = styled.div`
+    display: flex;
+
+    &:hover {
+        cursor: pointer;
+        background-color: grey;
+        border-radius: 5px;
+    }
+`

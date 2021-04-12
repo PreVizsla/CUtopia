@@ -147,5 +147,4 @@ export const Questions = styled.p`
     @media screen and (max-width: 1096px) {
         font-size:12px;
     }
-    
 `

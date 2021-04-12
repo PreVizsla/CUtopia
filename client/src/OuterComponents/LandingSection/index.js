@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button } from '../ButtonElement'
 import { ArrowForward, ArrowRight, BtnContainer, LandingContainer, LandingContent, Heading, Paragraph} from './LandingElements'
 
-const HeroSection = () => {
+const LandingSection = () => {
 
     const [hover, setHover] = useState(false)
 
@@ -31,4 +31,4 @@ const HeroSection = () => {
     )
 }
 
-export default HeroSection
+export default LandingSection

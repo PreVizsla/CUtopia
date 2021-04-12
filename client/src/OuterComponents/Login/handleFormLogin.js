@@ -34,6 +34,7 @@ const useForm = (success, validate) => {
         success();
         //to extract the input data
         console.log('component state is: ', JSON.stringify(variables) )
+        //connect data to backend here
       }
     },
     [errors]

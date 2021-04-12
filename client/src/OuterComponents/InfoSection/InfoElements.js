@@ -23,7 +23,7 @@ export const InfoWrapper = styled.div`
     margin-right: auto;
     margin-left: auto;
     
-
+    
     :before {
         content: '';
         top: 0;

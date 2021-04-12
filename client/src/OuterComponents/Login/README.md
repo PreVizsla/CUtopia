@@ -1,4 +1,3 @@
-
 # Log In page form
 This is the components for the Log In form (not the page)e.
 HandleForm is the file for handling the form input and activity

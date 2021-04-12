@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import { BtnWrapper, Content, EmailField, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
@@ -47,6 +48,11 @@ const ForgetPasswordForm = ({submitFormForget}) => {
                
                 <BtnWrapper>
                     <NextBtn to='./signup_signin' >back</NextBtn>
+                    {/* <Submit_btn type="submit" >
+                        <Link_text to='./next' >
+                            next
+                        </Link_text>
+                    </Submit_btn> */}
                     <SubmitBtn type="submit" >
                     Login
                     </SubmitBtn>          

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Avatar, Button } from '@material-ui/core'
 
 export const SidebarJobs = styled.div`
     display: flex;
@@ -43,21 +44,21 @@ export const SidebarJobListing = styled.div`
 `
 
 export const SidebarJobsButton = styled.button`
-    width: 100%;
-    align-items: center;
-    background-color: #DDA300;
-    color: white;
+    width: 100% !important;
+    align-items: center !important;
+    background-color: #DDA300 !important;
+    color: white !important;
     cursor: pointer;
     border: none;
-    border-radius: 4px;
-    height: 32px;
-    font-size: 12px;
-    font-weight: 500;
+    border-radius: 4px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
 
     &:hover {
-        background-color: white;
-        color: #DDA300;
-        transition: 0.1s ease-in-out;
-        border: 2px solid #DDA300;
+        background-color: white !important;
+        color: #DDA300 !important;
+        transition: 0.1s ease-in-out !important;
+        border: 2px solid #DDA300 !important;
     }
 `

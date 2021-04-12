@@ -26,7 +26,7 @@ const LoginForm = ({ submitFormLogin }) => {
     );
 
     return (
-        <div id="login" className="user-input" >  
+        <div id="login" className="user-input" >      
         
             <form onSubmit={handleSubmit} noValidate>
                 <div className='form-inputs' style={{marginBottom:15+"px"}}>

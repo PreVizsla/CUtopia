@@ -66,7 +66,7 @@ function SignupSignin() {
       {!isSubmittedLogin ? (
       <LoginForm id="login" submitFormLogin={submitFormLogin}/>
       ):(
-        history.push('./FeedPage')
+        history.push('./Feed')
       )}
 
       {!isSubmittedSignup ?(
