@@ -10,6 +10,7 @@ export const WholeContainer = styled.div`
     
     //background: linear-gradient( rgba(0,0,0) 0%, rgba(117,15,109) 100%);
     //background: linear-gradient(to top right, rgba(15,14,17) 0%, rgba(0,0,0) 100%);
+
     background: black;
     background-size: cover;
     @media screen and (max-width: 1000px) {
