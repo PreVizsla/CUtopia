@@ -13,7 +13,6 @@ const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
 const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-app.use(cors());
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
@@ -28,16 +27,30 @@ mongoose.connect(DB, {
 //const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
-//connectDB();
-app.use(express.static(path.join(__dirname, '../server')))
-app.use(express.json());
 
-app.get("/", (req, res, next) => {
-  res.send("Api running");
-});
+// Then pass them to cors:
+app.use(cors());
+
+const allowedOrigins = ['http://localhost:3000'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
+app.use(cors(options));
+
+//connectDB();
+
+
+app.use(express.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 // Connecting Routes
-app.use("/api/auth", require("./routes/auth"));
+app.use("/auth", require("./routes/auth"));
 // app.use("/api/post", require("./routes/post"));
 // app.use("/api/message", require("./routes/message"));
 
@@ -46,11 +59,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-
-const server = httpServer.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
-);
-
 
 // put it here (starting from io.on("connection"))
 
@@ -95,6 +103,13 @@ io.on("connection", socket => {
     });
 
 })
+
+
+mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
+mongoose.set('useFindAndModify', false);
 
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
