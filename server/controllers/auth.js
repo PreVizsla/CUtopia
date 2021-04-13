@@ -1,7 +1,12 @@
 const crypto = require("crypto");
+const { argon2i } = require("argon2-ffi");  
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
+const jwt = require("jsonwebtoken");
+
+const secret = process.env.JWT_SECRET;
+
 
 // @desc    Login user
 exports.login = async (req, res, next) => {
@@ -14,51 +19,73 @@ exports.login = async (req, res, next) => {
 
   try {
     // Check that user exists by email
-    const user = await User.findOne({ email }).select("+password");
+    const oldUser = await User.findOne({ email });
 
-    if (!user) {
-      return next(new ErrorResponse("Invalid credentials", 401));
-    }
+    if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
-    // Check that password match
-    const isMatch = await user.matchPassword(password);
+    var encodedHash = "$argon2i$v=19$m=4096,t=3,p=1$c2FsdHlzYWx0$oG0js25z7kM30xSg9+nAKtU0hrPa0UnvRnqQRZXHCV8";
 
-    if (!isMatch) {
-      return next(new ErrorResponse("Invalid credentials", 401));
-    }
 
-    sendToken(user, 200, res);
+    const isPasswordCorrect = await argon2i.verify(encodedHash, this.password);
+
+    if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+
+    res.status(200).json({ result: oldUser, token });
   } catch (err) {
-    return next(new ErrorResponse(err, 401));
+    res.status(500).json({ message: err.message })
   }
 };
 
-exports.logout = async (req, res, next) => {
-  res.clearCookie("t")
-  return res.status('200').json({ 
-    message: "signed out"
-  })
-}
+// exports.logout = async (req, res, next) => {
+
+//   return res.status('200').json({ 
+//     message: "signed out"
+//   })
+// }
 
 // @desc    Register user
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   try {
-    const user = await User.create({
-      username,
-      email,
-      password,
-    });
+    const oldUser = await User.findOne({ email: email });
 
-    user.save();
+    if (oldUser) return res.status(400).json({ message: "User already registered" })
 
-    sendToken(user, 200, res);
+    const hashedPassword = await
+    crypto.randomBytes(32, (err, salt) => {
+      if (err) return next(err);
+
+      argon2i.hash(this.password, salt).then(hash => {
+        password = hash;
+        next();
+      })
+    })
+
+    const result = await User.create({ username, email, password: hashedPassword });
+
+    const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
+    
+    res.status(201).json( { result, token }); 
+
   } catch (err) {
-    next(new ErrorResponse(err, 400));
+    res.status(500).json({ message: err.message });
+
+    console.log(err)
   }
 };
 
+// here
+exports.details = async (req, res, next) => {
+  const { name, major, graduation, mentee  } = req.body;
+
+  const result = await User.findOneandUpdate({ email });
+
+}
+
+  
 // @desc    Forgot Password Initialization
 exports.forgotPassword = async (req, res, next) => {
   // Send Email to email provided but first check if user exists
@@ -72,7 +99,16 @@ exports.forgotPassword = async (req, res, next) => {
     }
 
     // Reset Token Gen and add to database hashed (private) version of token
-    const resetToken = user.getResetPasswordToken();
+    const resetToken = crypto.randomBytes(20).toString("hex");
+
+    // Hash token (private key) and save to database
+    user.resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    // Set token expire date
+    user.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
 
     await user.save();
 

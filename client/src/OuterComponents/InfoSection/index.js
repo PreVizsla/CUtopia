@@ -39,7 +39,7 @@ const InfoSection = ({Router,Scroller,video, lightBg, id, imgStart, title, light
                                         >{buttonLabel}</Button>
                                     }
                                     {Router &&
-                                        <ButtonRouter to='/signup_signin'>
+                                        <ButtonRouter to='/auth'>
                                             {buttonLabel}
                                         </ButtonRouter>
                                     }

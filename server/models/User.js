@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const argon2 = require("argon2");
+const { argon2i } = require("argon2-ffi");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
@@ -24,7 +24,6 @@ const UserSchema = new mongoose.Schema({
     select: false,
   },
   name: { type: String, required: true },
-  
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   photo: { data: Buffer, contentType: String },
@@ -56,53 +55,11 @@ const experienceSchema = new mongoose.Schema({
     description: {type: String, required: false}
 })
 
-
-UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-
-  const salt = await argon2.generateSalt();
-  this.password = await argon2.hash(this.password, salt);
-  next();
-});
-
-UserSchema.methods.matchPassword = async function (password) {
-  return await argon2.verify(this.password, password);
-};
-
-UserSchema.methods.getSignedJwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
-};
-
-UserSchema.methods.getResetPasswordToken = function () {
-  const resetToken = crypto.randomBytes(20).toString("hex");
-
-  // Hash token (private key) and save to database
-  this.resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  // Set token expire date
-  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
-
-  return resetToken;
-};
-
-//DataSchema.pre('save', function(next){ 
-   // if(this.isModified('senha')){ 
-   //     return next()
-   // } 
-    //this.senha = bcrypt.hashSync(this.senha, 10)
-// })
-
-
 const User = mongoose.model("User", UserSchema);
 const Education = mongoose.model("Education", educationSchema);
 const Experience = mongoose.model("Experience", experienceSchema);
 
 module.exports = User;
+module.exports = Education;
+module.exports = Experience;
 

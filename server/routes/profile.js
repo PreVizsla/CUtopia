@@ -5,7 +5,8 @@ const { showInfo,
     deleteEducation,
     addExperience,
     deleteExperience,
-    getProfileID
+    getProfileID,
+    editPhoto
     } = require("../controllers/profile")
 
 const express = require('express')
@@ -15,6 +16,8 @@ const router = express.Router()
 router.route('/profile/:profileId').get(showInfo)
 
 router.route('/profile/:profileId/edit').post(editProfile)
+
+router.route('/profile/:editPhoto').post(editPhoto)
 
 router.route('/profile/:profileId/addeducation').put(addEducation)
 

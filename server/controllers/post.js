@@ -79,6 +79,18 @@ exports.feedPost = async (req, res) => {
 
 //Create the Post (POST)
 exports.create = (req, res, next) => {
+  var form = Formidable.incomingForm()
+    form.parse(req, (error, fields, files))
+    .then(
+        Post.photo.data = fs.readFileSync(files.photo.path),
+        Post.photo.contentType = files.photo.type,
+
+        res.status(202).send("Your photo has changed")
+    )
+    .catch(error => {
+        return next(new ErrorResponse("The image couldn't be uploaded", 400))
+    })
+  
   let text =  req.body.text
   if (!text) {
     return next(new ErrorResponse("There is no text in the post", 400));
@@ -134,11 +146,12 @@ exports.like = async (req, res, next) => {
 exports.comment = async (req, res) => {
   let comment = req.body.comment
   comment.username = req.body.userId
-  
-  Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
-  .populate('username')
-  .populate('comments')
-  .then(() => res.sendStatus)
+  try{
+    Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
+    .populate('username')
+    .populate('comments')
+    .exec()
+    res.json(result)
   }catch(err){
     return next(new ErrorResponse(err, 400));
   }

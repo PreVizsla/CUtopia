@@ -18,7 +18,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/Signup_signin" component={SignupSignin} exact />
+        <Route path="/auth"p_signin component={SignupSignin} exact />
         <Route path="/Forget_Password" component={ForgetPassword} exact />
         <Route path="/next" component={VerificationSend} exact />
         <Route path="/feed" component={FeedPage} exact />

@@ -47,7 +47,7 @@ const ForgetPasswordForm = ({submitFormForget}) => {
                 </div>
                
                 <BtnWrapper>
-                    <NextBtn to='./signup_signin' >back</NextBtn>
+                    <NextBtn to='./auth' >back</NextBtn>
                     {/* <Submit_btn type="submit" >
                         <Link_text to='./next' >
                             next

@@ -2,6 +2,8 @@ const User = require('../models/User')
 const Education = require('../models/User')
 const Experience = require('../models/User')
 const ErrorResponse = require("../utils/errorResponse");
+const formidable = require("formidable")
+const fs = require('fs')
 
 // Albert
 // DO we want to have photo for posts? Yes
@@ -41,7 +43,7 @@ exports.getProfileID = async (req, res, next) => {
 
 //Add the ability to edit profile
 exports.editProfile = (req, res, next) => {
-    User.findOneAndUpdate({photo: req.body.photo, city : req.body.city, country : req.body.country,
+    User.findOneAndUpdate({city : req.body.city, country : req.body.country,
     occupation : req.body.occupation, about : req.body.about})
     .then(() => res.sendStatus(204)
     .catch(error => {
@@ -50,8 +52,34 @@ exports.editProfile = (req, res, next) => {
   )
 }
 
+exports.editPhoto = (req, res, next) => {
+    var form = Formidable.incomingForm()
+    form.parse(req, (error, fields, files))
+    .then(
+        User.photo.data = fs.readFileSync(files.photo.path),
+        User.photo.contentType = files.photo.type,
+
+        res.status(202).send("Your photo has changed")
+    )
+    .catch(error => {
+        return next(new ErrorResponse("The image couldn't be uploaded", 400))
+    })
+}
+
 //Add the ability to add Education
 exports.addEducation = async (req, res, next) => {
+    var form = Formidable.incomingForm()
+    form.parse(req, (error, fields, files))
+    .then(
+        Education.photo.data = fs.readFileSync(files.photo.path),
+        Education.photo.contentType = files.photo.type,
+
+        res.status(202).send("Your photo has changed")
+    )
+    .catch(error => {
+        return next(new ErrorResponse("The image couldn't be uploaded", 400))
+    })
+
   let school =  req.body.school
   let major = req.body.major
 
@@ -83,6 +111,18 @@ exports.deleteEducation = async (req, res, next) => {
 
 //Add the ability to add Experience
 exports.addExperience = async (req, res, next) => {
+    var form = Formidable.incomingForm()
+    form.parse(req, (error, fields, files))
+    .then(
+        Experience.photo.data = fs.readFileSync(files.photo.path),
+        Experience.photo.contentType = files.photo.type,
+
+        res.status(202).send("Your photo has changed")
+    )
+    .catch(error => {
+        return next(new ErrorResponse("The image couldn't be uploaded", 400))
+    })
+    
     let company =  req.body.company
     let title = req.body.title
 
