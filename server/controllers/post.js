@@ -135,11 +135,10 @@ exports.comment = async (req, res) => {
   let comment = req.body.comment
   comment.username = req.body.userId
   
-    Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
-    .populate('username')
-    .populate('comments')
+  Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
+  .populate('username')
+  .populate('comments')
     .exec()
-    
   }catch(err){
     return next(new ErrorResponse(err, 400));
   }
