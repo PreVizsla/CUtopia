@@ -22,6 +22,7 @@ export const ProfileBackground = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     //margin-bottom: -45px;
+
 `
 export const InformationContainer = styled.div`
     display: flex;
@@ -50,6 +51,10 @@ export const ProfileIcon = styled(Avatar)`
     height: 150px !important;
     width: 150px !important;
     box-shadow: 0px 0px 0px 7px #fff;
+    @media screen and (max-width: 770px) {
+        height: 125px !important;
+        width: 125px !important;
+    }
 `
 
 
@@ -120,6 +125,9 @@ export const ContactButton = styled.button`
         transition: 0.1s ease-in-out;
         border: 2px solid #DDA300;
         outline:none
+    }
+    @media screen and (max-width: 770px) {
+        width: 95px;
     }
 `
 
