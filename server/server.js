@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 const path = require('path');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const express = require("express");
 const http = require("http");
@@ -12,7 +13,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
-const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const DB = 'mongodb+srv://thefar:admin@cluster0.aggbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
@@ -24,20 +25,29 @@ mongoose.connect(DB, {
 }).catch((err) => console.log('no connection'));
 
 
+
 //const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
 
 // Then pass them to cors:
-app.use(cors());
+// app.use(cors());
 
-const allowedOrigins = ['http://localhost:3000'];
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200, // For legacy browser support
+    methods: "GET, PUT, POST"
+}
 
-const options: cors.CorsOptions = {
-  origin: allowedOrigins
-};
+//app.use(bodyParser.json({limit: '50mb'}));
+//app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-app.use(cors(options));
+app.use(cors(corsOptions));
+
+// my bodyparser alternative
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 //connectDB();
 
@@ -111,7 +121,7 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
 
 mongoose.set('useFindAndModify', false);
 
-process.on("unhandledRejection", (err, promise) => {
-  console.log(`Logged Error: ${err.message}`);
-  server.close(() => process.exit(1));
-});
+// process.on("unhandledRejection", (err, promise) => {
+//   console.log(`Logged Error: ${err.message}`);
+  
+// });

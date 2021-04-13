@@ -5,7 +5,7 @@ const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
 const jwt = require("jsonwebtoken");
 
-const secret = process.env.JWT_SECRET;
+const secret = "test";
 
 
 // @desc    Login user
@@ -24,7 +24,6 @@ exports.login = async (req, res, next) => {
     if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
     var encodedHash = "$argon2i$v=19$m=4096,t=3,p=1$c2FsdHlzYWx0$oG0js25z7kM30xSg9+nAKtU0hrPa0UnvRnqQRZXHCV8";
-
 
     const isPasswordCorrect = await argon2i.verify(encodedHash, this.password);
 
@@ -54,15 +53,9 @@ exports.register = async (req, res, next) => {
 
     if (oldUser) return res.status(400).json({ message: "User already registered" })
 
-    const hashedPassword = await
-    crypto.randomBytes(32, (err, salt) => {
-      if (err) return next(err);
+    const salt = await crypto.randomBytes(32);
 
-      argon2i.hash(this.password, salt).then(hash => {
-        password = hash;
-        next();
-      })
-    })
+    const hashedPassword = await argon2i.hash(password, salt);
 
     const result = await User.create({ username, email, password: hashedPassword });
 
@@ -81,8 +74,8 @@ exports.register = async (req, res, next) => {
 exports.details = async (req, res, next) => {
   const { name, major, graduation, mentee  } = req.body;
 
-  const result = await User.findOneandUpdate({ email });
-
+  const result = await User.findOneandUpdate({ email }, {name: req.body.name, major: req.body.major, 
+    endYear: req.body.endYear, isMajor: req.body.major});
 }
 
   
