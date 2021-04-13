@@ -17,7 +17,7 @@ export default function validate(variables) {
   } else if (variables.end_year <  variables.start_year) {
     errors.year = 'Please enter a valid study period';
   }
-  if (!variables.mentor_mentee) {
+  if (variables.mentor_mentee.length < 1) {
     errors.mentor_mentee = 'Please enter your choice';
   } 
   return errors;

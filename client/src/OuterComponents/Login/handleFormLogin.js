@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { signIn } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 //use form is a react custom hook
 const useForm = (success, validate) => {
@@ -11,6 +14,9 @@ const useForm = (success, validate) => {
     password: ''
   });
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+  
   //for handling changes in input field
   const handleChange = e => {
     const { name, value } = e.target;

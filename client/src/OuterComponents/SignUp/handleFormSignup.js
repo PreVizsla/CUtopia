@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 
 //use form is a react custom hook
 const useForm = (success, validate) => {
@@ -12,6 +15,9 @@ const useForm = (success, validate) => {
     password: '',
     password2: '',
   });
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
     //for handling changes in input field
   const handleChange = e => {
@@ -33,6 +39,7 @@ const useForm = (success, validate) => {
       //if there are no errors and use click submit button
       if (Object.keys(errors).length === 0 && submit) {
         success();
+        dispatch(signUp(variables, history));
         //to extract the input data
         console.log('component signup state is: ', JSON.stringify(variables) )
       }

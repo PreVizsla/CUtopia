@@ -8,10 +8,9 @@ const useForm = (success, validate) => {
   //local variable to this function
   const [variables, updateValues] = useState({
     major: '',
-    start_year: '',
     end_year: '',
     mentor_mentee: '',
-    age:'',
+    name:'',
   });
 
   //for handling changes in input field

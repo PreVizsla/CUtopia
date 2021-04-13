@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const yearList = [1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]
 const SignUpForm = ({submitDetailSignup}) => {
 
 	const classes = useStyles();
@@ -48,6 +49,7 @@ const SignUpForm = ({submitDetailSignup}) => {
 		submitDetailSignup,
 		validate
 	);
+
 
     return (
         <FormContainer>
@@ -187,50 +189,7 @@ const SignUpForm = ({submitDetailSignup}) => {
                 {errors.major && <Warning>{errors.major}</Warning>}
                 <div >
                     
-                    <Questions>Starting year - Expected/End year</Questions>
-                    <FormControl className={classes.yearControl} variant="filled">
-                        <InputLabel id="demo-simple-select-helper-label">Start year</InputLabel>
-                        <Select
-                            id="demo-simple-select"
-                            value={variables.start_year}
-                            onChange={handleChange}
-                            name='start_year'
-                            >
-                            <MenuItem name='start_year' value={''}>select</MenuItem>
-                            <MenuItem name='start_year' value={1990}>1990</MenuItem>
-                            <MenuItem name='start_year' value={1991}>1991</MenuItem>
-                            <MenuItem name='start_year' value={1992}>1992</MenuItem>
-                            <MenuItem name='start_year' value={1993}>1993</MenuItem>
-                            <MenuItem name='start_year' value={1994}>1994</MenuItem>
-                            <MenuItem name='start_year' value={1995}>1995</MenuItem>
-                            <MenuItem name='start_year' value={1996}>1996</MenuItem>
-                            <MenuItem name='start_year' value={1997}>1997</MenuItem>
-                            <MenuItem name='start_year' value={1998}>1998</MenuItem>
-                            <MenuItem name='start_year' value={1999}>1999</MenuItem>
-                            <MenuItem name='start_year' value={2000}>2000</MenuItem>
-                            <MenuItem name='start_year' value={2001}>2001</MenuItem>
-                            <MenuItem name='start_year' value={2002}>2002</MenuItem>
-                            <MenuItem name='start_year' value={2003}>2003</MenuItem>
-                            <MenuItem name='start_year' value={2004}>2004</MenuItem>
-                            <MenuItem name='start_year' value={2005}>2005</MenuItem>
-                            <MenuItem name='start_year' value={2006}>2006</MenuItem>
-                            <MenuItem name='start_year' value={2007}>2007</MenuItem>
-                            <MenuItem name='start_year' value={2008}>2008</MenuItem>
-                            <MenuItem name='start_year' value={2009}>2009</MenuItem>
-                            <MenuItem name='start_year' value={2010}>2010</MenuItem>
-                            <MenuItem name='start_year' value={2011}>2011</MenuItem>
-                            <MenuItem name='start_year' value={2012}>2012</MenuItem>
-                            <MenuItem name='start_year' value={2013}>2013</MenuItem>
-                            <MenuItem name='start_year' value={2014}>2014</MenuItem>
-                            <MenuItem name='start_year' value={2015}>2015</MenuItem>
-                            <MenuItem name='start_year' value={2016}>2016</MenuItem>
-                            <MenuItem name='start_year' value={2017}>2017</MenuItem>
-                            <MenuItem name='start_year' value={2018}>2018</MenuItem>
-                            <MenuItem name='start_year' value={2019}>2019</MenuItem>
-                            <MenuItem name='start_year' value={2020}>2020</MenuItem>
-                            <MenuItem name='start_year' value={2021}>2021</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <Questions>Expected Graduation Year</Questions>
                     
                     <FormControl className={classes.yearControl} variant="filled">
                         <InputLabel id="demo-simple-select-helper-label">End year</InputLabel>
@@ -239,8 +198,14 @@ const SignUpForm = ({submitDetailSignup}) => {
                             value={variables.end_year}
                             onChange={handleChange}
                             name='end_year'
-                            >
+                            >   
+                                
                             <MenuItem name='end_year' value={''}>select</MenuItem>
+                            {/* {yearList.map((values)=>(
+                                <>
+                                    <MenuItem name='end_year' value={values}>{values}</MenuItem>                            
+                                </>
+                            ))} */}
                             <MenuItem name='end_year' value={1990}>1990</MenuItem>
                             <MenuItem name='end_year' value={1991}>1991</MenuItem>
                             <MenuItem name='end_year' value={1992}>1992</MenuItem>
@@ -301,9 +266,9 @@ const SignUpForm = ({submitDetailSignup}) => {
                     Finish
                 </SubmitBtn> 
             </form>
-        </FormContainer>
-			
-        
+            </FormContainer>
+                
+            
     )
 }
 

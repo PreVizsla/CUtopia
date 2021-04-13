@@ -12,7 +12,8 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
-const DB = 'mongodb+srv://adi:admin@cutopiacluster.xnzpe.mongodb.net/CUtopiaDB?retryWrites=true&w=majority'
+const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+app.use(cors());
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
@@ -28,7 +29,6 @@ mongoose.connect(DB, {
 const errorHandler = require("./middleware/error");
 
 //connectDB();
-
 app.use(express.static(path.join(__dirname, '../server')))
 app.use(express.json());
 
