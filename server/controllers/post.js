@@ -138,7 +138,7 @@ exports.comment = async (req, res) => {
   Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
   .populate('username')
   .populate('comments')
-    .exec()
+  .then(() => res.sendStatus)
   }catch(err){
     return next(new ErrorResponse(err, 400));
   }

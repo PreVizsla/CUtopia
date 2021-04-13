@@ -1,0 +1,13 @@
+Update 5 Apr 2021
+- Added the UserSchema (according to the one in the front end)
+- Add Routing for chat (inside server.js, routes)
+
+TODO: socket.io for the chat
+socket.io for the video call
+Step 1: Try to play with Socket.io v4.0.0 or 3.0.5
+Step 2: Recreate it in an individual project
+Step 3: integrate
+
+What Adi doing now: 
+- EC2 or heroku deploytment. We'll get back to here again later
+- Feed section. Post is already been done by Albert, handed off to Adi so he can work from there to make feed
