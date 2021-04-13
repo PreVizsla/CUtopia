@@ -6,6 +6,10 @@ export const EventsWrapper = styled.div`
     width: 100%;
 
     /* Media screen when below pixel */
+    @media screen and (max-width: 1040px) {
+        flex: 1;
+        margin: 0;
+    }
 `
 
 export const SidebarWrapper = styled.div`
@@ -15,6 +19,10 @@ export const SidebarWrapper = styled.div`
     margin-left: 30px;
     position: sticky;
     top: 115px;
+
+    @media screen and (max-width: 1040px) {
+        display: none;
+    }
 `
 
 export const NewEventsButtonWrapper = styled.div`

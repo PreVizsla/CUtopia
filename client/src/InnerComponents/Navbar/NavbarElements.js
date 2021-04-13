@@ -31,6 +31,7 @@ export const NavbarContainer = styled.div`
 
 export const NavLeft = styled.div`
     display: flex;
+  
 `
 
 export const NavLogo = styled.div`
@@ -47,14 +48,39 @@ export const NavLogo = styled.div`
         width: auto;
         max-height: 72px;
         max-width: 250px;
+    }  
+    @media screen and (max-width: 916px) {
+        display: none;
+    }
+
+`
+export const MobileIcon = styled.div`
+    display: none;
+
+    //only shows when the width of the screen is 770px
+    @media screen and (max-width: 814px) {
+        top: 0;
+        margin-left:15px;
+        position: absolute;
+        
+        display: block;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #fff;
     }
 `
-
 export const Menu = styled.div`
     display: flex;
     align-items:center;
     margin-left: 30px;
     margin-right: 30px;
+    @media screen and (max-width: 916px) {
+        margin-left:0px
+    }
+    @media screen and (max-width: 814px) {
+       display:none;
+    }
 `
 
 export const NavSearch = styled.div`
@@ -66,6 +92,9 @@ export const NavSearch = styled.div`
     height: 30px;
     color: gray;
     background-color: #384063;
+    @media screen and (max-width: 1145px) {
+        display: none;
+    }
 `
 
 export const SearchBar = styled.input`
@@ -123,8 +152,13 @@ export const LogoutButton = styled(ExitToAppIcon)`
 export const Exit = styled(LinkR)`
     width: fit-content;
     height: fit-content;
+    text-decoration:none;
 `
-
+export const ExitWrapper = styled.div`
+    @media screen and (max-width: 814px) {
+        display: none;
+    }
+`
 export const ProfileContainer = styled.div`
     display: flex;
 

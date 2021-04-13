@@ -77,7 +77,6 @@ export const JobDesc = styled.div`
     max-width: 400px;
     font-weight: 400;
     font-size: 14px;
-    text-align: justify;
 `
 
 export const CloseBtn = styled.button`

@@ -6,15 +6,17 @@ import SearchIcon from '@material-ui/icons/Search'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import WorkIcon from '@material-ui/icons/Work';
 import React from 'react'
+import { FaBars } from 'react-icons/fa'
 
 import CUtopiaLogo from '../../assets/images/CUTPLogo.png'
 import clement from '../../assets/frontend-temp/clement.jpg'
-import { Menu, Nav, NavbarContainer, NavLeft, NavLogo, NavRight, NavSearch, ProfileIcon, ProfileIdentity, SearchBar, Exit, ProfileContainer } from './NavbarElements'
+import { Menu, ExitWrapper, Nav, NavbarContainer, NavLeft, NavLogo,MobileIcon, NavRight, NavSearch, ProfileIcon, ProfileIdentity, SearchBar, Exit, ProfileContainer } from './NavbarElements'
 import NavOptions from './NavOptions';
 import { useHistory } from "react-router-dom";
 import {useState} from 'react';
+import Sidebar from '../../OuterComponents/Sidebar';
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
 
     const history = useHistory();
     
@@ -37,16 +39,19 @@ const Navbar = () => {
         history.push('/cunity')
     }
 
-
+    //const toggle
     return (
         <>
             <Nav>
-                <NavbarContainer>
+                <NavbarContainer >
                     {/* We break down navbar to 2 sides left and right, left consists of elements up until the search bar */}
                     {/* Left Side consisting: Logo, 5 Menu Options, Search Bar*/}
                     <NavLeft>
                         {/* Logo */}
-                        <NavLogo>
+                        <MobileIcon onClick={toggle}>
+                            <FaBars />
+                        </MobileIcon >
+                        <NavLogo >
                             <img src={CUtopiaLogo} alt="" />
                         </NavLogo>
                         {/* 5 Menu Options, broken down and made to be reusable components NavOptions*/}
@@ -57,6 +62,7 @@ const Navbar = () => {
                             <NavOptions action={ChangeToEvents} Icon={EventIcon} title='Events'/>
                             <NavOptions action={ChangeToChat} Icon={MessageIcon} title='Chat'/>
                         </Menu>
+                        <Sidebar/>
                         {/* Search bar of Navbar */}
                         <NavSearch>
                             <SearchIcon style={{fill: "#11ADFF"}}/>
@@ -74,9 +80,11 @@ const Navbar = () => {
                             </ProfileIdentity>
                         </ProfileContainer>
                         {/* LogOut Button made using reused NavOptions component like the menu options on the left side */}
-                        <Exit to='/'>
-                            <NavOptions Icon={ExitToAppIcon} title='Log Out'/>
-                        </Exit>
+                        <ExitWrapper>
+                            <Exit to='/'>
+                                <NavOptions Icon={ExitToAppIcon} title='Log Out'/>
+                            </Exit>
+                        </ExitWrapper>
                     </NavRight>
                 </NavbarContainer>
             </Nav>
