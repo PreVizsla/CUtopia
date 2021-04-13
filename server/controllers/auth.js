@@ -29,9 +29,16 @@ exports.login = async (req, res, next) => {
 
     sendToken(user, 200, res);
   } catch (err) {
-    next(err);
+    return next(new ErrorResponse(err, 401));
   }
 };
+
+exports.logout = async (req, res, next) => {
+  res.clearCookie("t")
+  return res.status('200').json({ 
+    message: "signed out"
+  })
+}
 
 // @desc    Register user
 exports.register = async (req, res, next) => {
@@ -44,9 +51,11 @@ exports.register = async (req, res, next) => {
       password,
     });
 
+    user.save();
+
     sendToken(user, 200, res);
   } catch (err) {
-    next(err);
+    next(new ErrorResponse(err, 400));
   }
 };
 
@@ -136,5 +145,5 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
-  res.status(statusCode).json({ sucess: true, token });
+  res.status(statusCode).json({ success: true, token });
 };
