@@ -17,7 +17,7 @@ export default function validate(variables) {
   else if (variables.password.length < 6) {
     errors.password = 'Password must be 6 characters or more';
   }
-  if (variables.password.length >= 6 && variables.password2.length ==0) {
+  if (variables.password.length >= 6 && variables.password2.length < 1) {
     errors.password2 = 'Please re-enter your password';
   } //optional settings 
   else if (variables.password.length >= 6 && variables.password !== variables.password2) {

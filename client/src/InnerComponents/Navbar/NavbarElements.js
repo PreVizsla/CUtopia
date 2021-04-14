@@ -127,12 +127,18 @@ export const ProfileIdentity = styled.div`
         font-size: 14px;
         font-weight: 500;
         color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     > p {
         font-size: 12px;
         font-weight: lighter;
         color: lightgray;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `
 
@@ -161,6 +167,7 @@ export const ExitWrapper = styled.div`
 `
 export const ProfileContainer = styled.div`
     display: flex;
+    max-height: 80px;
 
     &:hover {
         cursor: pointer;

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {Button} from '@material-ui/core'
 
 export const SidebarWrapper = styled.div`
     flex: 0.27;
@@ -35,13 +34,6 @@ export const ActiveChats = styled.div`
         border-radius: 20px;
         border: 3px solid white;
     }
-`
-
-export const TestBlock = styled.div`
-    background-color: green;
-    margin-bottom: 2px;
-    height: 13vh;
-    width: 100%;
 `
 
 export const ActiveChatsSidebarHeader = styled.div`

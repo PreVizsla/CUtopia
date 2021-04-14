@@ -1,10 +1,6 @@
 import React from 'react'
 import {useState, useRef} from 'react'
-import ProfileSidebar from '../Sidebars/ProfileSidebar'
-import { ChatScreenWrapper, Screen, ChatScreenHeader, SubheadingWrapper, SubheadingText, Input, MessageEndContainer, SendButton, VideoIcon, ChatDetails, ProfileIcon, ProfileInfo, SidebarProfile, ChatsContainer, InputMessageContainer } from './ChatScreenElements'
-import clement from '../../assets/frontend-temp/clement.jpg'
-import profileBackground from '../../assets/images/profileBG.jpg'
-import {IconButton} from '@material-ui/core'
+import { ChatScreenWrapper, Screen, ChatScreenHeader, SubheadingWrapper, SubheadingText, Input, MessageEndContainer, SendButton, VideoIcon, ChatDetails, ChatsContainer, InputMessageContainer } from './ChatScreenElements'
 import Message from './Message'
 
 const ChatScreen = () => {

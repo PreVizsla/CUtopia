@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Event, EventHeader, EventDetails, SidebarEventAvatar, EventImageWrapper, EventInfo, RegisterNow } from './EventListingElements'
+import { Event, EventHeader, EventDetails, EventImageWrapper, EventInfo, RegisterNow } from './EventListingElements'
 
 const EventListing = ({name, date, image, description}) => {
     return (

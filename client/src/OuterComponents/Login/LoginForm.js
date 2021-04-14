@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Form, NextBtn, InputField, LogInBtn, EmailField, SubmitBtn, Warning} from './LoginElements';
+import {  NextBtn, SubmitBtn, Warning} from './LoginElements';
 
 import validate from './ValidateLogin';
 import handleForm from './handleFormLogin';

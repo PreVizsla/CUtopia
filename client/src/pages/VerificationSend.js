@@ -10,8 +10,6 @@ import CUTOPIA from '../assets/images/CUTOPIA.png'
 
 import NavbarLogin from '../OuterComponents/NavbarLogin'
 
-
-import { useHistory } from "react-router-dom";
 function VerificationSend() {
 
   const [isOpen, setIsOpen] = useState(false)
@@ -19,13 +17,9 @@ function VerificationSend() {
   const toggle = () => {
       setIsOpen(!isOpen)
   }
-  //for router
-  const history = useHistory();
   
   return (
-    
     <>
-    
     <NavbarLogin toggle={toggle}/>
     <CUtopia>
         <img src={logo} width="300px" className="logo" alt="logo"/>       

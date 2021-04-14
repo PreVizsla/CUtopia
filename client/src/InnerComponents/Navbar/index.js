@@ -13,7 +13,6 @@ import clement from '../../assets/frontend-temp/clement.jpg'
 import { Menu, ExitWrapper, Nav, NavbarContainer, NavLeft, NavLogo,MobileIcon, NavRight, NavSearch, ProfileIcon, ProfileIdentity, SearchBar, Exit, ProfileContainer } from './NavbarElements'
 import NavOptions from './NavOptions';
 import { useHistory } from "react-router-dom";
-import {useState} from 'react';
 import Sidebar from '../../OuterComponents/Sidebar';
 
 const Navbar = ({ toggle }) => {
