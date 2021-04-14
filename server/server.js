@@ -13,7 +13,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
-const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const DB = 'mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
