@@ -4,8 +4,9 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
 const jwt = require("jsonwebtoken");
+const config = require("../config/auth")
 
-const secret = "test";
+const secret = config.SECRET;
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -21,14 +22,14 @@ exports.login = async (req, res) => {
           return res.status(400).json({ message: "Invalid credentials"});
         }
         else {
-          // if (user.status != "Active") {
-          //   return res.status(401).send({ message: "Pending account. Please verify your email "});
-          // }
-          // else {
+          if (user.status != "Active") {
+            return res.status(401).send({ message: "Pending account. Please verify your email "});
+          }
+          else {
             const token = jwt.sign({ email: user.email, id: user._id }, secret, { expiresIn: "1h" });
 
             return res.status(200).json({ user: { email: user.email, user: user.username}, token });
-          // }
+          }
         }
       }
     })
@@ -47,7 +48,7 @@ exports.login = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
 
   try {
     User.findOne({ email: email }).then( user => {
@@ -55,18 +56,34 @@ exports.register = async (req, res) => {
         return res.status(400).json({ message: "User already registered" })
       }
       else {
+        const token = jwt.sign( { email: email }, secret, { expiresIn: "1h" } );
         const hashedPassword = bcrypt.hashSync(password, 16);
 
         const newUser = new User({
           username: username,
           email: email, 
-          password: hashedPassword
+          password: hashedPassword,
+          firstname: firstname,
+          lastname: lastname,
+          major: major,
+          gradYear: end_year,
+          isMentor: mentor_mentee,
+          confirmationCode: token
         });
-        newUser.save()
-        const token = jwt.sign( { email: newUser.email, id: newUser._id }, secret, { expiresIn: "1h" } );
-        res.status(201).json({ newUser: { email: username, email: email}, token: token });
+        newUser.save((err) => {
+          if (err){
+            res.status(500).json({ message: err.message });
+            return;
+          }
+          res.status(201).send({ message: "User was registered successfully" })
+        });
+        confirmationEmail(
+          newUser.username,
+          newUser.email, 
+          newUser.confirmationCode
+        )
       }
-    })
+    });
     // const oldUser = await User.findOne({ email });
 
     // if (oldUser) return res.status(400).json({ message: "User already exists" });
@@ -98,22 +115,48 @@ exports.details = async (req, res, next) => {
 }
 
 // @desc Send confirmation email
-exports.confirmationEmail = async (req, res, next) => {
-  const { email } = req.body;
+const confirmationEmail = (name, email, confirmationCode) => {
 
-  try {
-    const user = await User.findOne({ email });
+    const resetUrl = `http://localhost:3000/confirm/${confirmationCode}`
+
+    const message = `
+    <h1> Hello ${name} </h1>
+    <h2>You have requested an account opening on CUtopia</h1>
+      <p>Please click </p>
+      <a href=${resetUrl} clicktracking=off>at the following link</a>
+
+      <b>Do not reply to this email</b>
+   `;
+    try {
+      sendEmail({
+        to: email,
+        subject: "Account Creation Request",
+        text: message,
+      });
+    }
+    catch (err){
+      console.log(err.message);
+    } 
+    
+  }
+
+exports.verifyUser = (req, res, next) => {
+  User.findOne({ 
+    confirmationCode: req.params.confirmationCode,
+  })
+  .then((user) => {
     if (!user) {
-      res.status(404).json({ message: "Email not found" });
+      res.status(404).send({ message: 'User not found'})
     }
-    else {
-      const resetToken = crypto.randomBytes(20).toString("hex");
-      user.ConfirmationEmail =
-    }
-  }
-  catch (err) {
-    res.status(500).json({ message: err.message})
-  }
+    user.status = "Active";
+    user.save((err) => {
+      if (err) {
+        res.status(500).json({ message: err.message})
+        return;
+      }
+    });
+  })
+  .catch(err => res.status(500).json({ message: err.message }))
 }
   
 // @desc    Forgot Password Initialization
@@ -147,9 +190,12 @@ exports.forgotPassword = async (req, res, next) => {
 
     // HTML Message
     const message = `
-      <h1>You have requested a password reset</h1>
-      <p>Please make a put request to the following link:</p>
-      <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      <h1> Hello ${user.username} </h1>
+      <h2>You have requested an account opening on CUtopia</h1>
+      <p>Please click  <a href=${resetUrl} clicktracking=off>at the following link</a></p>
+     
+
+      <b>Do not reply to this email</b>
     `;
 
     try {
@@ -176,7 +222,7 @@ exports.forgotPassword = async (req, res, next) => {
 };
 
 // @desc    Reset User Password
-exports.resetPassword = async (req, res, next) => {
+exports.resetPassword = async (req, res, next) => { 
   // Compare token in URL params to hashed token
   const resetPasswordToken = crypto
     .createHash("sha256")

@@ -33,3 +33,22 @@ export const signUpDetail = (formData, router) => async (dispatch) => {
     }
 };
     
+
+export const forgotPassword = (formData, router) => async (dispatch) => {
+    try {
+        const { data } = await api.forgotPassword(formData);
+
+        dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const verifyUser = (formData, router) => async (dispatch) => {
+    try {
+        const { data } = await api.verifyUser(formData);
+        dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.log(error);
+    }
+}
