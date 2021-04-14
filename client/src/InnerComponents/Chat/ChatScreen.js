@@ -41,10 +41,10 @@ const ChatScreen = () => {
                     <SubheadingWrapper>
                         <SubheadingText><h3><div className='cunite'>CUnited</div> at 11 January 2021</h3></SubheadingText>
                     </SubheadingWrapper>
-                    <Message user="self" message="Hello there" timestamp="4:20 PM"/>
-                    <Message user="other" message="Hello there" timestamp="4:21 PM"/>
-                    <Message user="self" message="Hello there" timestamp="4:20 PM"/>
-                    <Message user="other" message="Hello there" timestamp="4:21 PM"/>
+                    <Message user="self" message="Hello there! Nice to meet you!" timestamp="4:20 PM"/>
+                    <Message user="other" message="Hey! Nice to meet you too." timestamp="4:24 PM"/>
+                    <Message user="self" message="I wanted to CUnite with you to know more about what being a software engineering is like" timestamp="4:30 PM"/>
+                    <Message user="other" message="Bro, being a software engineer is rally fun. One tip I can give you is " timestamp="4:21 PM"/>
                     <Message user="self" message="Hello there" timestamp="4:20 PM"/>
                     <Message user="other" message="Hello there" timestamp="4:21 PM"/>
                     <Message user="self" message="Hello there" timestamp="4:20 PM"/>

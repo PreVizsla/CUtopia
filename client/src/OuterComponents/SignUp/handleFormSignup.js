@@ -10,10 +10,13 @@ const useForm = (success, validate) => {
 
   //local variable to this function
   const [variables, updateValues] = useState({
+    name:'',
     username: '',
     email: '',
+    major:'',
+    mentor_mentee: '',
     password: '',
-    password2: '',
+    password2: '',d2: '',
   });
 
   const dispatch = useDispatch();

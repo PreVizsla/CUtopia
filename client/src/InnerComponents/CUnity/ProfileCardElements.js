@@ -60,5 +60,6 @@ export const CUniteButton = styled.button`
         background-color: #DDA300 !important;
         color: white !important;
         transition: 0.1s ease-in-out !important;
+        cursor: pointer !important;
     }
 `

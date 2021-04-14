@@ -76,6 +76,7 @@ export const RandomButton = styled.button`
     &:hover {
         background-color: white !important;
         color: #DDA300 !important;
+        cursor: pointer;
     }
 `
 

@@ -50,8 +50,9 @@ function SignupSignin() {
   return (
     
     <>
+    <div style={{backgroundColor:"rgba(0,0,0,0.4)", height:"100%", top:0, left:0 }}>
     
-    <NavbarLogin toggle={toggle}/>
+    {/* <NavbarLogin toggle={toggle}/> */}
     <CUtopia>
       <img src={logo} width="300px" className="logo" alt="logo"/>       
       <img src={CUTOPIA} width="200px"className="logo"alt="CTUPIA_word"/>
@@ -72,10 +73,11 @@ function SignupSignin() {
       {!isSubmittedSignup ?(
       <SignUpForm id="register" submitFormSignup={submitFormSignup} ></SignUpForm>
       ) : (
-        history.push('./Signup')
+        history.push('./Feed')
       )}
       </ContainerBox> 
       </CUtopia>
+      </div>
       </>
   );
 }

@@ -2,15 +2,15 @@ import React from 'react'
 
 import { ProfileCardWrapper, ProfileCardInfo, ProfileAvatar, PersonInfo, CUniteButton } from './ProfileCardElements'
 
-const ProfileCard = () => {
+const ProfileCard = ({avatar, name, desc}) => {
     return (
         <>
             <ProfileCardWrapper>
                 <ProfileCardInfo>
-                    <ProfileAvatar/>
+                    <ProfileAvatar src={avatar}/>
                     <PersonInfo>
-                        <h4>Alessandro Figo</h4>
-                        <p>2nd Year CSE Student</p>
+                        <h4>{name}</h4>
+                        <p>{desc}</p>
                     </PersonInfo>
                 </ProfileCardInfo>
                 <CUniteButton>

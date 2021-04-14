@@ -28,3 +28,33 @@ export const SubmitBtn = styled.button`
         background: #fff;
     }
 `
+
+export const Questions = styled.p`
+    font-size:14px;
+    margin-top: 5px;
+    margin-left: 15%;
+    font-weight: bold;
+    color: white;
+    text-align: left;      
+    @media screen and (max-width: 1096px) {
+        font-size:12px;
+    }
+`
+export const FormContainer = styled.div`
+    position:absolute;
+    margin:auto;
+    height:380px;
+	width: 280px;
+    overflow-y:scroll;
+	transition: .5s;
+    overflow-x: hidden;
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #DDA300;
+        border-radius: 20px;
+    }
+`
