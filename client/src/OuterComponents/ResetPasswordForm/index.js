@@ -58,19 +58,13 @@ const ResetPasswordForm = ({submitFormForget}) => {
                 </div>
                
                 <BtnWrapper>
-                    <NextBtn to='./auth' >back</NextBtn>
-                    {/* <Submit_btn type="submit" >
-                        <Link_text to='./next' >
-                            next
-                        </Link_text>
-                    </Submit_btn> */}
+                    
                     <SubmitBtn type="submit" >
-                    Login
+                    Submit
                     </SubmitBtn>          
                 </BtnWrapper> 
             </form>
         </Form>
     )
 }
-
 export default ResetPasswordForm

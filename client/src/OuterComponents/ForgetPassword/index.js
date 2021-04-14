@@ -1,11 +1,9 @@
 
 import React from 'react'
-
 import { BtnWrapper, Content, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
 import validate from './ValidateForget';
 import handleForm from './handleFormForget';
 import TextField from "@material-ui/core/TextField";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

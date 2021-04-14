@@ -73,7 +73,7 @@ function SignupSignin() {
       {!isSubmittedSignup ?(
       <SignUpForm id="register" submitFormSignup={submitFormSignup} ></SignUpForm>
       ) : (
-        history.push('./Feed')
+        history.push('./next')
       )}
       </ContainerBox> 
       </CUtopia>

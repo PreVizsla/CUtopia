@@ -34,7 +34,7 @@ export default function validate(variables) {
   else if (variables.password.length >= 6 && variables.password !== variables.password2) {
     errors.password2 = 'Password does not match';
   }
-  if (!variables.mentor_mentee) {
+  if (variables.mentor_mentee.length<1) {
     errors.mentor_mentee = 'Please enter your choice';
   } 
   return errors;

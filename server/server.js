@@ -61,6 +61,7 @@ app.use((req, res, next) => {
 
 // Connecting Routes
 app.use("/auth", require("./routes/auth"));
+app.use("/profile", require("./routes/profile"));
 // app.use("/api/post", require("./routes/post"));
 // app.use("/api/message", require("./routes/message"));
 

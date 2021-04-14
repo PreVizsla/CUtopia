@@ -47,8 +47,14 @@ exports.login = async (req, res) => {
   }
 };
 
+// exports.logout = async (req, res, next) => {
+//   try {
+//     User.findOne({  })
+//   }
+// }
+
 exports.register = async (req, res) => {
-  const { username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
+  const { name, username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
 
   try {
     User.findOne({ email: email }).then( user => {
@@ -60,6 +66,7 @@ exports.register = async (req, res) => {
         const hashedPassword = bcrypt.hashSync(password, 16);
 
         const newUser = new User({
+          name: name,
           username: username,
           email: email, 
           password: hashedPassword,
@@ -142,7 +149,7 @@ const confirmationEmail = (name, email, confirmationCode) => {
 
 exports.verifyUser = (req, res, next) => {
   User.findOne({ 
-    confirmationCode: req.params.confirmationCode,
+    where: { confirmationCode: req.query.confirmationCode },
   })
   .then((user) => {
     if (!user) {
@@ -186,7 +193,7 @@ exports.forgotPassword = async (req, res, next) => {
     await user.save();
 
     // Create reset url to email to provided email
-    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
 
     // HTML Message
     const message = `
@@ -231,7 +238,7 @@ exports.resetPassword = async (req, res, next) => {
 
   try {
     const user = await User.findOne({
-      resetPasswordToken,
+      resetPasswordToken: req.query.resetPasswordToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
 
@@ -239,7 +246,7 @@ exports.resetPassword = async (req, res, next) => {
       return next(new ErrorResponse("Invalid Token", 400));
     }
 
-    user.password = req.body.password;
+    user.password = bcrypt.hashSync(req.body.password,16);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 

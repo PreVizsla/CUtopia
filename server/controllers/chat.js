@@ -1,9 +1,7 @@
 const Chat = require('../models/Chat');
 const User = require('../models/User');
-const Profile = require('../models/Profile');
 const Message = require('../models/Message');
 const ErrorResponse = require('../utils/errorResponse');
-const { Profile } = require('../models/Profile');
 
 // line 12 - 38
 exports.createChatRoom = async (req, res, next) => {
@@ -85,3 +83,4 @@ exports.readMessage = async (req, res, next) => {
         return next(new ErrorResponse(err,400));
     })
 }
+

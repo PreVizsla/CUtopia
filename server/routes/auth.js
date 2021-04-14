@@ -14,6 +14,7 @@ const { register,
 
 router.post("/register", register);
 router.post("/login", login);
+// router.post("/logout", logout);
 router.post("/forgetpassword", forgotPassword);
 router.get("/confirm/:confirmationCode", verifyUser)
 router.put("/passwordreset/:resetToken", resetPassword);

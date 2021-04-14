@@ -44,9 +44,18 @@ export const forgotPassword = (formData, router) => async (dispatch) => {
     }
 }
 
-export const verifyUser = (formData, router) => async (dispatch) => {
+export const resetPassword = (code, formData, router) => async (dispatch) => {
     try {
-        const { data } = await api.verifyUser(formData);
+        const { data } = await api.resetPassword(formData);
+        dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const verifyUser = (code, router) => async (dispatch) => {
+    try {
+        const { data } = await api.verifyUser(code);
         dispatch({ type: AUTH, data });
     } catch (error) {
         console.log(error);
