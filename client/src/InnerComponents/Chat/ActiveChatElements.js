@@ -25,7 +25,8 @@ export const DetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 60%;
+    width: 200px;
+    padding-right: 20px;
 
     > h1 {
         margin-top: auto;
