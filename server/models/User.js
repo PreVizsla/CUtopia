@@ -19,16 +19,18 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please add a password"],
-    minlength: 6,
-    select: false,
+    required: true,
   },
-  name: { type: String, required: false },
+  // status: { type: String, enum: ['Pending', 'Active'], default: 'Pending' },
+  confirmationCode: { type: String, unique: true },
+  firstname: { type: String, required: false },
+  lastname: { type: String, required: false },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   photo: { data: Buffer, contentType: String },
   isMentor: { type: Boolean, required: false },
   major: { type: String, required: false },
+  gradYear: { type: Date, required: false },
   country: { type: String, required: false },
   city: { type: String, required: false },
   occupation: { type: String, required: false },
@@ -53,7 +55,7 @@ const experienceSchema = new mongoose.Schema({
     startYear: {type: Date, required: false},
     endYear: {type: Date, default: Date.now, required: false},
     description: {type: String, required: false}
-})
+});
 
 const User = mongoose.model("User", UserSchema);
 const Education = mongoose.model("Education", educationSchema);

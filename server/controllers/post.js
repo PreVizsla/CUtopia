@@ -7,12 +7,6 @@ exports.searchPost =  async(req, res, next) => {
 
   var searchObj = req.query;
 
-  if(searchObj.isReply !== undefined) {
-    var isReply = searchObj.isReply == "true";
-    searchObj.comments = { $exists: isReply };
-    delete searchObj.isReply;
-  }
-
   if(searchObj.search !== undefined) {
     searchObj.content = { $regex: searchObj.search, $options: "i" };
     delete searchObj.search;
@@ -23,61 +17,50 @@ exports.searchPost =  async(req, res, next) => {
 }
 
 //Search post by id (GET)
-exports.searchPostByID = async (req, res, next, id) => {
+//exports.searchPostByID = async (req, res, next, id) => {
  
-  var postId = req.params.id;
-  var postData = await getPosts({_id: postId });
-  postData = postData[0];
+  //var postId = req.params.id;
+  //var postData = await findOne({_id: postId });
 
-  var result = { postData: postData }
+  //var result = { postData: postData }
 
-  if(postData.comments !== undefined) {
-    result.comments = postData.comments;
 
-    if(result.comments.content != null) {
-      const postBody = result.comments.content
+    //if(result.comments.content != null) {
+      //const postBody = result.comments.content
 
-      const textToArr = postBody.split(" ")
+      //const textToArr = postBody.split(" ")
 
-      textToArr.forEach((word, index) => {
-        if(word.match(/\bhttps?/i)) {
-          word = `<p><a href="${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
-          textToArr[index] = word
-        }
-        else if(!word.match(/\bhttps?/i) && word.indexOf("www") !== -1) {
-          word = `<p><a href="https://${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
-          textToArr[index] = word
-        }
-      })
+      //textToArr.forEach((word, index) => {
+        //if(word.match(/\bhttps?/i)) {
+          //word = `<p><a href="${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
+          //textToArr[index] = word
+        //}
+        //else if(!word.match(/\bhttps?/i) && word.indexOf("www") !== -1) {
+          //word = `<p><a href="https://${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
+         // textToArr[index] = word
+        //}
+      //})
 
-      result.comments.content = textToArr.join(" ")
-    }
-  }
+      //result.comments.content = textToArr.join(" ")
+   //}
+  //}
 
-  result.replies = await getPosts({ comments: postId });
+  //result.replies = await getPosts({ comments: postId });
 
-  res.status(200).send(result);
-}
+  //res.status(200).send(result);
+//}
 
 //Load the Post (GET) 
 exports.feedPost = async (req, res) => {
-  let following = req.session.user.following
-  following.push(req.session.user.id)
-  try{
-    // ini masih salah juga
-    let posts = await Post.find({username: { $in : req.session.user.following } })
-                          .populate('comments.username', '_id name') //isn't this one already loading the comments(?)
-                          .populate('username', '_id name') //i dont think we need to have a separate get for comments(?)
-                          .sort('-created')
-                          .exec()
-    res.json(posts)
-  }catch(err){
-    return next(new ErrorResponse(err, 400));
-  }
+    try {
+        const postMessages = await Post.find();
+                
+        res.status(200).json(postMessages);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
 
-
-//Create the Post (POST)
 exports.create = (req, res, next) => {
   var form = Formidable.incomingForm()
     form.parse(req, (error, fields, files))
@@ -142,20 +125,20 @@ exports.like = async (req, res, next) => {
   res.status(200).send(post)
 }
 
-//Add the ability to comment on the post (POST)
-exports.comment = async (req, res) => {
-  let comment = req.body.comment
-  comment.username = req.body.userId
-  try{
-    Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
-    .populate('username')
-    .populate('comments')
-    .exec()
-    res.json(result)
-  }catch(err){
-    return next(new ErrorResponse(err, 400));
-  }
-}
+//Add the ability to comment on the post (POST) (should we // all since it is not being implemented?)
+//exports.comment = async (req, res) => {
+  //let comment = req.body.comment
+  //comment.username = req.body.userId
+  //try{
+    //Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
+    //.populate('username')
+    //.populate('comments')
+    //.exec()
+    //res.json(result)
+  //}catch(err){
+    //return next(new ErrorResponse(err, 400));
+  //}
+//}
 
 //Edit the post (PUT)
 exports.editPost = (req, res, next) => {
@@ -166,14 +149,14 @@ exports.editPost = (req, res, next) => {
   })
 }
 
-//Edit the comment (PUT)
-exports.editComment = (req, res, next) => {
-  Comments.findByIdAndUpdate(req.params.id, req.body)
-  .then(() => res.sendStatus(204))
-  .catch(error => {
-    return next(new ErrorResponse(error, 400));
-  })
-}
+//Edit the comment (PUT) (should we // all since it is not being implemented?)
+//exports.editComment = (req, res, next) => {
+  //Comments.findByIdAndUpdate(req.params.id, req.body)
+  //.then(() => res.sendStatus(204))
+  //.catch(error => {
+    //return next(new ErrorResponse(error, 400));
+  //})
+//}
 
 //Delete the Post (DELETE)
 exports.removePost = async (req, res) => {
@@ -184,14 +167,14 @@ exports.removePost = async (req, res) => {
   })
 }
 
-//Delete comment (DELETE)
-exports.removeComment = async (req, res, next) => {
-  Comments.findByIdAndDelete(req.params.id)
-  .then(() => res.sendStatus(202))
-  .catch(error => {
-    return next(new ErrorResponse(error, 400));
-  })
-}
+//Delete comment (DELETE) (should we // all since it is not being implemented?)
+//exports.removeComment = async (req, res, next) => {
+  //Comments.findByIdAndDelete(req.params.id)
+  //.then(() => res.sendStatus(202))
+  //.catch(error => {
+    //return next(new ErrorResponse(error, 400));
+  //})
+//}
 
 //exports.isPoster = (req, res, next) => {
   //let isPoster = req.post && req.auth && req.post.username._id == req.auth._id
@@ -209,46 +192,21 @@ exports.postByID = async (req, res, next) => {
 }
 
 // TODO: this one
-exports.commentID = async (req, res, next) => {
-  Comments.findOne({_id: req.params.commentId})
-  .then(result => res.status(200).send(result))
-  .catch(err => {
-    return next(new ErrorResponse(err, 400));
-  })
-}
+//exports.commentID = async (req, res, next) => {
+  //Comments.findOne({_id: req.params.commentId})
+  //.then(result => res.status(200).send(result))
+  //.catch(err => {
+    //return next(new ErrorResponse(err, 400));
+  //})
+//}
 
-//ini masih salah
-async function getPosts(filter) {
-    var results = await Post.find(filter)
-    .populate("username")
-    .populate("comments")
-    .sort({ "createdAt": -1 })
-    .then(results => { 
-      results = await Profile.populate(results, { path: "comments.username"})
-
-      results.forEach(post => { // Can Add Links in the Post
-          if(post.content != null) {
-              const postBody = post.content
-     
-              const textToArr = postBody.split(" ")
-     
-              textToArr.forEach((word, index) => {
-                  if(word.match(/\bhttps?/i)) {
-                      word = `<p><a href="${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
-                      textToArr[index] = word
-                  }
-                  else if(!word.match(/\bhttps?/i) && word.indexOf("www") !== -1) {
-                      word = `<p><a href="https://${word}" class="postLink" target="_blank" style="color: #007bff;">${word}</a></p>`
-                      textToArr[index] = word
-                  }
-              })
-     
-              post.content = textToArr.join(" ")
-          }
-      })
-    })
-    .catch( error =>{
-      return next(new ErrorResponse(error, 400));
-    })
+exports.getPosts = async (req, res) => { 
+    try {
+        const postMessages = await Post.find();
+                
+        res.status(200).json(postMessages);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
 

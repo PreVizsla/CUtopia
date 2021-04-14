@@ -39,6 +39,7 @@ const useForm = (success, validate) => {
       if (Object.keys(errors).length === 0 && submit) {
         success();
         //to extract the input data
+        dispatch(signIn(variables, history))
         console.log('component state is: ', JSON.stringify(variables) )
         //connect data to backend here
       }
