@@ -34,7 +34,10 @@ const ChatScreen = () => {
                         <h3>CHAT WITH <div className='recipient'>THEODORE F.</div></h3>
                         <h2>LAST ONLINE: <div className='lastOnline'>14 HOURS AGO</div></h2>
                     </ChatDetails>
-                    <VideoIcon onClick="window.open('http://localhost:8080')" fontSize='large'/>
+                    <a href="http://localhost:8080" target="_blank"    >
+                    <VideoIcon  fontSize='large'/>
+                    {/* onClick="window.open('https://www.youtube.com')" */}
+                    </a>
                 </ChatScreenHeader>
 
                 <ChatsContainer >

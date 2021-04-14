@@ -28,3 +28,6 @@ export const resetPassword = (code, formData) => API.put('/auth/passwordreset/',
     resetPasswordToken: this.props.match.params.token
 } }, formData);
 export const verifyUser = (code) => API.get("/auth/confirm/" + code)
+
+export const fetchJobs = () => API.get('/jobs');
+export const createJob = (newJob) => API.get('/jobs', newJob);
