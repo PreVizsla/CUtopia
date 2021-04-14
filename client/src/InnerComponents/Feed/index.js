@@ -1,6 +1,7 @@
 import ImageIcon from '@material-ui/icons/CropOriginal';
 import SendIcon from '@material-ui/icons/Send';
 import React, {useState, useEffect} from 'react'
+import FlipMove from 'react-flip-move'
 
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
@@ -116,6 +117,7 @@ const Feed = () => {
                     <SubheadingText><h3>POSTS FOR YOU</h3></SubheadingText>
                 </SubheadingWrapper>
                 {/* Individual Posts */}
+                <FlipMove>
                 {searchResults.map((data)=>{
                     return <Post
                         name={data.name}
@@ -127,6 +129,7 @@ const Feed = () => {
                         comments={data.comments}
                     />
                 })}
+                </FlipMove>
             </FeedWrapper>
             {/* Right side of Feed page, filled with 3 items: Personal profile info, Mentor suggestions, Job suggestions */}
             <SidebarWrapper>

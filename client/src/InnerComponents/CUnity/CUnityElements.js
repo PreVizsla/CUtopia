@@ -7,11 +7,20 @@ export const SidebarWrapper = styled.div`
     margin-right: 30px;
     position: sticky;
     top: 115px;
+
+    @media screen and (max-width: 1040px) {
+        display: none;
+    }
 `
 
 export const CUnityWrapper = styled.div`
     flex: 0.7;
     width: 100%;
+
+    @media screen and (max-width: 1040px) {
+        flex: 1;
+        margin: 0;
+    }
 `
 
 export const SubheadingWrapper = styled.div`
