@@ -34,7 +34,7 @@ const ChatScreen = () => {
                         <h3>CHAT WITH <div className='recipient'>THEODORE F.</div></h3>
                         <h2>LAST ONLINE: <div className='lastOnline'>14 HOURS AGO</div></h2>
                     </ChatDetails>
-                    <VideoIcon fontSize='large'/>
+                    <VideoIcon onClick="window.open('http://localhost:8080')" fontSize='large'/>
                 </ChatScreenHeader>
 
                 <ChatsContainer >
@@ -44,13 +44,8 @@ const ChatScreen = () => {
                     <Message user="self" message="Hello there! Nice to meet you!" timestamp="4:20 PM"/>
                     <Message user="other" message="Hey! Nice to meet you too." timestamp="4:24 PM"/>
                     <Message user="self" message="I wanted to CUnite with you to know more about what being a software engineering is like" timestamp="4:30 PM"/>
-                    <Message user="other" message="Bro, being a software engineer is rally fun. One tip I can give you is " timestamp="4:21 PM"/>
-                    <Message user="self" message="Hello there" timestamp="4:20 PM"/>
-                    <Message user="other" message="Hello there" timestamp="4:21 PM"/>
-                    <Message user="self" message="Hello there" timestamp="4:20 PM"/>
-                    <Message user="other" message="Hello there" timestamp="4:21 PM"/>
-                    <Message user="self" message="Hello there" timestamp="4:20 PM"/>
-                    <Message user="other" message="Hello there" timestamp="4:21 PM"/>
+                    <Message user="other" message="Believe me, you will enjoy your time being a software engineer!" timestamp="4:35 PM"/>
+                    <Message user="self" message="Sweet!" timestamp="4:50 PM"/>
                     <MessageEndContainer ref={messageEnd}/>
                 </ChatsContainer>
 
