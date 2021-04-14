@@ -1,4 +1,4 @@
-# Server - The Backbone :hammer:
+# CUtopia - The Testing Prototype :hammer:
 
 Updated as of Aptil 14 2021 
 
