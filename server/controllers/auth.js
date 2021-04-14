@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const { argon2i } = require("argon2-ffi");  
+const bcrypt = require("bcrypt");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
@@ -7,77 +7,114 @@ const jwt = require("jsonwebtoken");
 
 const secret = "test";
 
-
-// @desc    Login user
-exports.login = async (req, res, next) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  // Check if email and password is provided
-  if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
-  }
-
   try {
-    // Check that user exists by email
-    const oldUser = await User.findOne({ email });
+    User.findOne({ email: email }).then(user => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      else {
+        const isPasswordCorrect = bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+          return res.status(400).json({ message: "Invalid credentials"});
+        }
+        else {
+          // if (user.status != "Active") {
+          //   return res.status(401).send({ message: "Pending account. Please verify your email "});
+          // }
+          // else {
+            const token = jwt.sign({ email: user.email, id: user._id }, secret, { expiresIn: "1h" });
 
-    if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
+            return res.status(200).json({ user: { email: user.email, user: user.username}, token });
+          // }
+        }
+      }
+    })
+    // const oldUser = await User.findOne({ email });
 
-    var encodedHash = "$argon2i$v=19$m=4096,t=3,p=1$c2FsdHlzYWx0$oG0js25z7kM30xSg9+nAKtU0hrPa0UnvRnqQRZXHCV8";
+    // if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
-    const isPasswordCorrect = await argon2i.verify(encodedHash, this.password);
+    // const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
-    if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+    // if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
-
-    res.status(200).json({ result: oldUser, token });
+    // res.status(200).json({ result: oldUser, token });
   } catch (err) {
-    res.status(500).json({ message: err.message })
+    res.status(500).json({ message: err.message });
   }
 };
 
-// exports.logout = async (req, res, next) => {
-
-//   return res.status('200').json({ 
-//     message: "signed out"
-//   })
-// }
-
-// @desc    Register user
-exports.register = async (req, res, next) => {
+exports.register = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    const oldUser = await User.findOne({ email: email });
+    User.findOne({ email: email }).then( user => {
+      if (user) {
+        return res.status(400).json({ message: "User already registered" })
+      }
+      else {
+        const hashedPassword = bcrypt.hashSync(password, 16);
 
-    if (oldUser) return res.status(400).json({ message: "User already registered" })
+        const newUser = new User({
+          username: username,
+          email: email, 
+          password: hashedPassword
+        });
+        newUser.save()
+        const token = jwt.sign( { email: newUser.email, id: newUser._id }, secret, { expiresIn: "1h" } );
+        res.status(201).json({ newUser: { email: username, email: email}, token: token });
+      }
+    })
+    // const oldUser = await User.findOne({ email });
 
-    const salt = await crypto.randomBytes(32);
+    // if (oldUser) return res.status(400).json({ message: "User already exists" });
 
-    const hashedPassword = await argon2i.hash(password, salt);
+    // const hashedPassword = await bcrypt.hash(password, 16);
 
-    const result = await User.create({ username, email, password: hashedPassword });
+    // const result = await User.create({ username, email, password: hashedPassword });
 
-    const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
+    // const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+
+    // res.status(201).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
     
-    res.status(201).json( { result, token }); 
-
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-
-    console.log(err)
+    console.log(error);
   }
 };
 
 // here
 exports.details = async (req, res, next) => {
-  const { name, major, graduation, mentee  } = req.body;
+  const { firstname, lastname, major, gradYear, isMentor  } = req.body;
 
-  const result = await User.findOneandUpdate({ email }, {name: req.body.name, major: req.body.major, 
-    endYear: req.body.endYear, isMajor: req.body.major});
+  try{
+    const result = User.findOneandUpdate({ _id: req.session.user._id },  { firstname: firstname, lastname: lastname,  major: major, gradYear: gradYear, isMentor: isMentor });
+    res.status(200).json({ result });
+  } catch (err) {
+    res.status(500).json({ message: err.message});
+  }
 }
 
+// @desc Send confirmation email
+exports.confirmationEmail = async (req, res, next) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(404).json({ message: "Email not found" });
+    }
+    else {
+      const resetToken = crypto.randomBytes(20).toString("hex");
+      user.ConfirmationEmail =
+    }
+  }
+  catch (err) {
+    res.status(500).json({ message: err.message})
+  }
+}
   
 // @desc    Forgot Password Initialization
 exports.forgotPassword = async (req, res, next) => {
