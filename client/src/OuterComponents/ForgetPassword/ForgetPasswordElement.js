@@ -1,26 +1,6 @@
 import { Link as LinkR } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const EmailField = styled.input.attrs({ 
-    type: 'email',
-    })`
-    width: 100%;
-    border: none;       
-    padding: 8px 8px;
-    border-radius: 8px; 
-    margin: 30px 0 0 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 1px solid #999;
-    outline: none;
-    &:focus {
-        outline: none;      
-        box-shadow: 0 0 0 2px #FF7F50;
-        background-color: 'white';
-    }
-`
-
 export const Heading = styled.h1`
     margin-top: 18px;
     font-weight: bold;
@@ -85,7 +65,6 @@ export const SubmitBtn = styled.button`
 `
 export const NextBtn = styled(LinkR)`    
     border-radius: 50px;
-    align-items: ;
     background: linear-gradient(to right, #ff105f, #ffad06);
 
     padding: 10px 30px;

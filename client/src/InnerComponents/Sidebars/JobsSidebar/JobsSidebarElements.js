@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Avatar, Button } from '@material-ui/core'
 
 export const SidebarJobs = styled.div`
     display: flex;

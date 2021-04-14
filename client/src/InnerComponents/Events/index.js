@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
 
-import {EventsWrapper, SidebarWrapper, NewEventsButtonWrapper, NewEventsButton, SubheadingWrapper, SubheadingText, EventsGrid, Card} from './EventsElements'
+import {EventsWrapper, SidebarWrapper, NewEventsButtonWrapper, NewEventsButton, SubheadingWrapper, SubheadingText, EventsGrid } from './EventsElements'
 import {Search, SearchContent, SearchHeader, SearchTitle, ContentForm, SearchSubmit, FilterIcon} from '../SearchElements'
 import ProfileSidebar from '../Sidebars/ProfileSidebar'
 import JobsSidebar from '../Sidebars/JobsSidebar'

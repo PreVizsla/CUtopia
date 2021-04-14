@@ -1,5 +1,5 @@
 import React from 'react'
-import {  PasswordField, NameField, Warning, CheckBox,White, SubmitBtn, EmailField} from './SignupElements';
+import { Warning, SubmitBtn} from './SignupElements';
 
 import validate from './ValidateSignup';
 import handleForm from './handleFormSignup';

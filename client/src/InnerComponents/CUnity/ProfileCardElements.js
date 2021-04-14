@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Avatar, Button } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 
 export const ProfileCardWrapper = styled.div`
     width: 100%;

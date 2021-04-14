@@ -23,7 +23,7 @@ export default Message
 const MessageContainer = styled.div`
     display: flex;
     flex-direction: column;
-
+    text-align:left;
     > h5 {
         color: black;
         padding: 0 10px;
@@ -55,7 +55,7 @@ const MessageLayout = styled.div`
     padding: 15px;
     max-width: 380px;
     position: relative;
-    text-align: center;
+    text-align: left;
     height: fit-content;
     overflow-wrap: break-word;
 

@@ -26,7 +26,7 @@ const MentorSidebar = () => {
                         />
                         <MentorListing
                             name='Jonathan Ma'
-                            job='Data Scientist at Facebook'
+                            job='Data Scientist at Facebook sajsjka'
                             avatar={joma}
                         />
                         <MentorListing

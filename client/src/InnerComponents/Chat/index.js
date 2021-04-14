@@ -1,6 +1,6 @@
 import React from 'react'
 import ActiveChat from './ActiveChat'
-import { SidebarWrapper, ActiveChatsSidebar, TestBlock, ActiveChatsSidebarHeader, ActiveChats, FindMentorButtonWrapper, FindMentorButton } from './ChatSidebarElements'
+import { SidebarWrapper, ActiveChatsSidebar, ActiveChatsSidebarHeader, ActiveChats, FindMentorButtonWrapper, FindMentorButton } from './ChatSidebarElements'
 
 const Chat = () => {
     return (

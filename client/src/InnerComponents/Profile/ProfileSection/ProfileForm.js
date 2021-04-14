@@ -1,5 +1,4 @@
-import react from 'react'
-import { EditButtonText, ProfileIconForm,FormContainer,Warning,EditInfoContainer, Form, SaveBtn,  ProfileInfo, CountryInfo, MainProfile, InformationContainer, EditButton, UploadButton, ProfileBackground, IconContainers, ContactButton } from './ProfileSectionElements'
+import { ProfileIconForm,FormContainer,Warning,EditInfoContainer, SaveBtn, MainProfile, InformationContainer, ProfileBackground } from './ProfileSectionElements'
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import FormControl from '@material-ui/core/FormControl';
@@ -10,8 +9,6 @@ import handleForm from './handleFormProfile';
 import validate from './ValidateProfile';
 import clement from '../../../assets/frontend-temp/clement.jpg'
 import Background from '../../../assets/images/profileBG.jpg'
-
-
 
 const useStyles = makeStyles((theme) => ({
     upload: {

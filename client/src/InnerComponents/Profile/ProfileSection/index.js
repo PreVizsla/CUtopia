@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect }  from 'react'
+import React, { useState }  from 'react'
 import PublishIcon from '@material-ui/icons/Publish';
 import EditIcon from '@material-ui/icons/Edit';
 import clement from '../../../assets/frontend-temp/clement.jpg'
@@ -34,13 +34,8 @@ export const Intro = {
 const ProfileSection = () => {
 
     const [openPopup, setOpenPopup] = useState(false);
-
-
     const classes = useStyles();
-    const [visible, setVisible] = useState(false);
-    const [formRef, setFormRef] = useState(null);
-  
-   
+
     //check if it is submitted or not
     const [isSubmittedProfileForm, LoginIsSubmitted] = useState(false);
     function setSubmitTrue() {
@@ -91,12 +86,6 @@ const ProfileSection = () => {
                     <ContactButton >
                         CONTACT ME
                     </ContactButton>
-                    {/* <ModalForm
-                        ref={saveFormRef}
-                        visible={visible}
-                        onCancel={() => setVisible(false)}
-                        onCreate={() => handleCreate()}
-                    /> */}
                     </ProfileInfo>
                     <CountryInfo>
                         <h4>{Intro.city}, {Intro.country}</h4>

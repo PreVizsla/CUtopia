@@ -1,4 +1,4 @@
-import { Avatar, Button } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const Job = styled.div`
@@ -46,12 +46,17 @@ export const SidebarJobAvatar = styled(Avatar)`
 
 export const JobInfo = styled.div`
     width: 100%;
-    /* background-color: yellow; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 78px;
     
     > p {
+        background: -webkit-linear-gradient(#000 70%, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 12px;
         font-weight: 400;
         margin-bottom: auto;

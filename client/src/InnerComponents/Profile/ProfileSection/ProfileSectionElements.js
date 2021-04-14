@@ -167,6 +167,7 @@ export const UploadButton = styled.button`
         background-color: white;
         color:black;
         transition: 0.1s ease-in-out;
+    }
 `
 export const EditButton = styled.button`
     display: flex;
@@ -185,8 +186,7 @@ export const EditButton = styled.button`
         background-color: white;
         color:black;
         transition: 0.1s ease-in-out;   
- 
-    
+    }
 `
 
 export const EditButtonText = styled.p`

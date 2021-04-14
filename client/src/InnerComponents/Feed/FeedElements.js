@@ -35,7 +35,7 @@ export const FeedWriteContent = styled.div`
     /* background-color: blue; */
 `
 
-export const ContentForm = styled.input`
+export const ContentQuery = styled.input`
     color: black;
     background: none;
     border: none;

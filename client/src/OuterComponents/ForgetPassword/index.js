@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import { BtnWrapper, Content, EmailField, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
+import { BtnWrapper, Content, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
 import validate from './ValidateForget';
 import handleForm from './handleFormForget';
 import TextField from "@material-ui/core/TextField";

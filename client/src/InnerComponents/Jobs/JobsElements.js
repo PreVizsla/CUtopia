@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {Button} from '@material-ui/core'
 
 export const JobsWrapper = styled.div`
     flex: 0.7;

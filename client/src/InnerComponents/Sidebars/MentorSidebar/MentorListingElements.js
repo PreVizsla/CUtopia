@@ -18,20 +18,30 @@ export const SidebarMentorAvatar = styled(Avatar)`
 `
 
 export const MentorInfo = styled.div`
-    width: 100%;
-    /* background-color: yellow; */
+    width: 200px;
 
     > h4 {
+
         font-size: 14px;
         font-weight: 700;
         margin-bottom: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
+
     > p {
+        background-image: linear-gradient(90deg,#000000 80%,rgba(0,0,0,0));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-size: 12px;
         font-weight: 400;
         margin-top: auto;
         margin-bottom: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `
 
