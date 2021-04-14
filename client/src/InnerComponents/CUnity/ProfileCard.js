@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 import { ProfileCardWrapper, ProfileCardInfo, ProfileAvatar, PersonInfo, CUniteButton } from './ProfileCardElements'
 
-const ProfileCard = () => {
+const ProfileCard = forwardRef(({avatar, name, desc}, ref) => {
     return (
         <>
-            <ProfileCardWrapper>
+            <ProfileCardWrapper ref={ref}>
                 <ProfileCardInfo>
-                    <ProfileAvatar/>
+                    <ProfileAvatar src={avatar}/>
                     <PersonInfo>
-                        <h4>Alessandro Figo</h4>
-                        <p>2nd Year CSE Student</p>
+                        <h4>{name}</h4>
+                        <p>{desc}</p>
                     </PersonInfo>
                 </ProfileCardInfo>
                 <CUniteButton>
@@ -19,6 +19,6 @@ const ProfileCard = () => {
             </ProfileCardWrapper>   
         </>
     )
-}
+})
 
 export default ProfileCard

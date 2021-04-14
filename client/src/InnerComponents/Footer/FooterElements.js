@@ -8,7 +8,7 @@ export const FooterWrapper = styled.div`
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 48px 24px;
 
@@ -21,11 +21,14 @@ export const FooterWrapper = styled.div`
         max-height: 120px;
         max-width: 250px;
     }
-`
+`   
 
 export const FooterLinksContainer = styled.div`
     justify-content: center;
     display: flex;
+    @media screen and (max-width: 704px) {
+        display:none;
+    }
 `
 
 export const FooterLinksWrapper = styled.div`

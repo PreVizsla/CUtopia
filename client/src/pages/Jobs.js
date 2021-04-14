@@ -1,5 +1,5 @@
-import React from 'react';
-
+import {React , useState} from 'react';
+import SideNavbar from '../InnerComponents/SideNavbar'
 import Navbar from '../InnerComponents/Navbar'
 import Jobs from '../InnerComponents/Jobs'
 import Footer from '../InnerComponents/Footer'
@@ -7,9 +7,15 @@ import Footer from '../InnerComponents/Footer'
 import './Inner.css';
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+      setIsOpen(!isOpen)
+  }
   return (
     <div className="InnerPage">
-      <Navbar />
+      <SideNavbar isOpen={isOpen} toggle={toggle}/>
+      <Navbar toggle={toggle} />
       <div className="outerContainer">
         <div className="InnerBody">
           <Jobs />

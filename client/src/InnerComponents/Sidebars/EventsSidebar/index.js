@@ -17,7 +17,7 @@ const index = () => {
                             name='Microsoft Recruitment Talk'
                             date='1 January 2021'
                             image={EventImage}
-                            description='Get to know more about the opportunities at our company on our event!'
+                            description='Get to know more about the opportunities at our company on our event! sasdasd dasd adasdasd dasdasdad'
                         />
                         <EventListing 
                             name='Microsoft Recruitment Talk'

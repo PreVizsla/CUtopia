@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Avatar, Button } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 
 export const JobPostContainer = styled.div`
     height: fit-content;
@@ -77,7 +77,6 @@ export const JobDesc = styled.div`
     max-width: 400px;
     font-weight: 400;
     font-size: 14px;
-    text-align: justify;
 `
 
 export const CloseBtn = styled.button`

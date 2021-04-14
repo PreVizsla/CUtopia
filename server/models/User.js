@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
@@ -19,50 +18,47 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please add a password"],
-    minlength: 6,
-    select: false,
+    required: true,
   },
+  status: { type: String, enum: ['Pending', 'Active'], default: 'Pending' },
+  confirmationCode: { type: String, unique: true },
+  confirmationCodeExpire: { type: Date },
+  name: { type: String, required: false },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
+  photo: { data: Buffer, contentType: String },
+  isMentor: { type: Boolean, required: false },
+  major: { type: String, required: false },
+  gradYear: { type: String, required: false },
+  country: { type: String, required: false },
+  city: { type: String, required: false },
+  occupation: { type: String, required: false },
+  about: { type: String, required: false },
+  education: [{ type: mongoose.Schema.ObjectId, ref:'Education', required: false }],
+  experience: [{ type: mongoose.Schema.ObjectId, ref: 'Experience', required: false }]
 });
 
-UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-
-  const salt = await argon2.generateSalt();
-  this.password = await argon2.hash(this.password, salt);
-  next();
+const educationSchema = new mongoose.Schema({
+    photo: { data: Buffer, contentType: String },
+    school: {type: String, required: false },
+    major: {type: String, required: false },
+    startYear: {type: Date, required: false},
+    endYear: {type: Date, default: Date.now, required: false},
+    description: {type: String, required: false}
 });
 
-UserSchema.methods.matchPassword = async function (password) {
-  return await argon2.verify(this.password, password);
-};
-
-UserSchema.methods.getSignedJwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
-};
-
-UserSchema.methods.getResetPasswordToken = function () {
-  const resetToken = crypto.randomBytes(20).toString("hex");
-
-  // Hash token (private key) and save to database
-  this.resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  // Set token expire date
-  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
-
-  return resetToken;
-};
+const experienceSchema = new mongoose.Schema({ 
+    photo: {data: Buffer, contentType: String},
+    company: {type: String, required: false},
+    title: {type: String, required: false},
+    startYear: {type: Date, required: false},
+    endYear: {type: Date, default: Date.now, required: false},
+    description: {type: String, required: false}
+});
 
 const User = mongoose.model("User", UserSchema);
+const Education = mongoose.model("Education", educationSchema);
+const Experience = mongoose.model("Experience", experienceSchema);
 
 module.exports = User;
 

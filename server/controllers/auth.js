@@ -1,55 +1,171 @@
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth")
 
-// @desc    Login user
-exports.login = async (req, res, next) => {
+const secret = config.SECRET;
+
+exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  // Check if email and password is provided
-  if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
-  }
-
   try {
-    // Check that user exists by email
-    const user = await User.findOne({ email }).select("+password");
+    User.findOne({ email: email }).then(user => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      else {
+        const isPasswordCorrect = bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+          return res.status(400).json({ message: "Invalid credentials"});
+        }
+        else {
+          if (user.status != "Active") {
+            return res.status(401).send({ message: "Pending account. Please verify your email "});
+          }
+          else {
+            const token = jwt.sign({ email: user.email, id: user._id }, secret, { expiresIn: "1h" });
 
-    if (!user) {
-      return next(new ErrorResponse("Invalid credentials", 401));
-    }
+            return res.status(200).json({ user: { email: user.email, user: user.username}, token });
+          }
+        }
+      }
+    })
+    // const oldUser = await User.findOne({ email });
 
-    // Check that password match
-    const isMatch = await user.matchPassword(password);
+    // if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
-    if (!isMatch) {
-      return next(new ErrorResponse("Invalid credentials", 401));
-    }
+    // const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
-    sendToken(user, 200, res);
+    // if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+
+    // res.status(200).json({ result: oldUser, token });
   } catch (err) {
-    next(err);
+    res.status(500).json({ message: err.message });
   }
 };
 
-// @desc    Register user
-exports.register = async (req, res, next) => {
-  const { username, email, password } = req.body;
+// exports.logout = async (req, res, next) => {
+//   try {
+//     User.findOne({  })
+//   }
+// }
+
+exports.register = async (req, res) => {
+  const { name, username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
 
   try {
-    const user = await User.create({
-      username,
-      email,
-      password,
+    User.findOne({ email: email }).then( user => {
+      if (user) {
+        return res.status(400).json({ message: "User already registered" })
+      }
+      else {
+        const token = jwt.sign( { email: email }, secret, { expiresIn: "1h" } );
+        const hashedPassword = bcrypt.hashSync(password, 16);
+
+        const newUser = new User({
+          name: name,
+          username: username,
+          email: email, 
+          password: hashedPassword,
+          firstname: firstname,
+          lastname: lastname,
+          major: major,
+          gradYear: end_year,
+          isMentor: mentor_mentee,
+          confirmationCode: token
+        });
+        newUser.save((err) => {
+          if (err){
+            res.status(500).json({ message: err.message });
+            return;
+          }
+          res.status(201).send({ message: "User was registered successfully" })
+        });
+        confirmationEmail(
+          newUser.username,
+          newUser.email, 
+          newUser.confirmationCode
+        )
+      }
     });
+    // const oldUser = await User.findOne({ email });
 
-    sendToken(user, 200, res);
-  } catch (err) {
-    next(err);
+    // if (oldUser) return res.status(400).json({ message: "User already exists" });
+
+    // const hashedPassword = await bcrypt.hash(password, 16);
+
+    // const result = await User.create({ username, email, password: hashedPassword });
+
+    // const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+
+    // res.status(201).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    
+    console.log(error);
   }
 };
 
+// here
+exports.details = async (req, res, next) => {
+  const { firstname, lastname, major, gradYear, isMentor  } = req.body;
+
+  try{
+    const result = User.findOneandUpdate({ _id: req.session.user._id },  { firstname: firstname, lastname: lastname,  major: major, gradYear: gradYear, isMentor: isMentor });
+    res.status(200).json({ result });
+  } catch (err) {
+    res.status(500).json({ message: err.message});
+  }
+}
+
+// @desc Send confirmation email
+const confirmationEmail = (name, email, confirmationCode) => {
+
+    const resetUrl = `http://localhost:3000/confirm/${confirmationCode}`
+
+    const message = `
+    <h1> Hello ${name} </h1>
+    <h2>You have requested an account opening on CUtopia</h1>
+      <p>Please click </p>
+      <a href=${resetUrl} clicktracking=off>at the following link</a>
+
+      <b>Do not reply to this email</b>
+   `;
+    try {
+      sendEmail({
+        to: email,
+        subject: "Account Creation Request",
+        text: message,
+      });
+    }
+    catch (err){
+      console.log(err.message);
+    } 
+    
+  }
+
+exports.verifyUser = (req, res, next) => {
+  User.findOne({ 
+    where: { confirmationCode: req.query.confirmationCode },
+  })
+  .then((user) => {
+    if (!user) {
+      res.status(404).send({ message: 'User not found'})
+    }
+    user.status = "Active";
+    user.save((err) => {
+      if (err) {
+        res.status(500).json({ message: err.message})
+        return;
+      }
+    });
+  })
+  .catch(err => res.status(500).json({ message: err.message }))
+}
+  
 // @desc    Forgot Password Initialization
 exports.forgotPassword = async (req, res, next) => {
   // Send Email to email provided but first check if user exists
@@ -63,18 +179,30 @@ exports.forgotPassword = async (req, res, next) => {
     }
 
     // Reset Token Gen and add to database hashed (private) version of token
-    const resetToken = user.getResetPasswordToken();
+    const resetToken = crypto.randomBytes(20).toString("hex");
+
+    // Hash token (private key) and save to database
+    user.resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    // Set token expire date
+    user.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
 
     await user.save();
 
     // Create reset url to email to provided email
-    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
 
     // HTML Message
     const message = `
-      <h1>You have requested a password reset</h1>
-      <p>Please make a put request to the following link:</p>
-      <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      <h1> Hello ${user.username} </h1>
+      <h2>You have requested an account opening on CUtopia</h1>
+      <p>Please click  <a href=${resetUrl} clicktracking=off>at the following link</a></p>
+     
+
+      <b>Do not reply to this email</b>
     `;
 
     try {
@@ -101,7 +229,7 @@ exports.forgotPassword = async (req, res, next) => {
 };
 
 // @desc    Reset User Password
-exports.resetPassword = async (req, res, next) => {
+exports.resetPassword = async (req, res, next) => { 
   // Compare token in URL params to hashed token
   const resetPasswordToken = crypto
     .createHash("sha256")
@@ -110,7 +238,7 @@ exports.resetPassword = async (req, res, next) => {
 
   try {
     const user = await User.findOne({
-      resetPasswordToken,
+      resetPasswordToken: req.query.resetPasswordToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
 
@@ -118,7 +246,7 @@ exports.resetPassword = async (req, res, next) => {
       return next(new ErrorResponse("Invalid Token", 400));
     }
 
-    user.password = req.body.password;
+    user.password = bcrypt.hashSync(req.body.password,16);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
@@ -136,5 +264,5 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
-  res.status(statusCode).json({ sucess: true, token });
+  res.status(statusCode).json({ success: true, token });
 };

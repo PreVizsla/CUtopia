@@ -130,7 +130,6 @@ export const InputMessageContainer = styled.form`
     align-items: center;
     padding: 0 20px;
     bottom: 0;
-    z-index: 100;
     width: 100%;
     height: 60px;
     border-top: 2px solid #f3f2ef;

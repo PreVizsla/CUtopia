@@ -1,11 +1,6 @@
-import react from 'react'
-import { EditButtonText, ProfileIconForm,FormContainer,Warning,EditInfoContainer, Form, SaveBtn,  ProfileInfo, CountryInfo, MainProfile, InformationContainer, EditButton, UploadButton, ProfileBackground, IconContainers, ContactButton } from '../Profile/ProfileSection/ProfileSectionElements'
+import { FormContainer,Warning,EditInfoContainer, SaveBtn, MainProfile } from '../Profile/ProfileSection/ProfileSectionElements'
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
 import handleForm from './handleFormJob';
 import validate from './ValidateJob';
 
@@ -59,28 +54,27 @@ const AddJobForm = ({ submitFormJob }) => {
                                 className={classes.root}
                                 fullWidth={true}
                                 type='text'
-                                name='name'
+                                name='jobName'
                                 placeholder='Enter your job name'
-                                value={variables.name}
+                                value={variables.jobName}
                                 onChange={handleChange}                                
                             />
-                            {errors.name && <Warning>{errors.name}</Warning>}
+                            {errors.jobName && <Warning>{errors.jobName}</Warning>}
                         </div>
-                        
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Company Name*<br></br>
                             <TextField
                                     id="outlined-basic" label="Company Name" variant="filled"
                                     //className={classes.input}
                                     type='text'
-                                    name='company'
+                                    name='companyName'
                                     placeholder='Enter the company name'
                                     fullWidth={true}
-                                    value={variables.company}
+                                    value={variables.companyName}
                                     onChange={handleChange}
                                 />
                         </div>    
-                        {errors.company && <Warning>{errors.company}</Warning>}
+                        {errors.companyName && <Warning>{errors.companyName}</Warning>}
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Location*<br></br>
                             <TextField

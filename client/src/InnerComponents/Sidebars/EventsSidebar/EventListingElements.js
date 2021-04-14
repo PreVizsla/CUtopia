@@ -1,4 +1,3 @@
-import { Avatar, Button } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const Event = styled.div`
@@ -12,19 +11,26 @@ export const Event = styled.div`
 export const EventHeader = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    //width: 220px;
+    width:100%;
     height: fit-content;
     justify-content: space-between;
 
     > h4 {
         font-weight: 700;
         font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+
     }
 
     > p {
         color: #DDA300;
         font-weight: 600;
         font-size: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+
     }
 `
 
@@ -35,28 +41,27 @@ export const EventDetails = styled.div`
     display: flex;
 `
 
-export const SidebarEventAvatar = styled(Avatar)`
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 60px !important;
-    width: 60px !important;
-    margin-right: 10px;
-`
 
 export const EventInfo = styled.div`
     width: 100%;
     /* background-color: yellow; */
+    height: 68px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 10px;
-    
+    margin-left:15px;
+  
     > p {
+        background: -webkit-linear-gradient(#000 70%, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 12px;
         font-weight: 400;
     }
+    
 `
-
 export const RegisterNow = styled.button`
     margin-top: 3px !important;
     cursor: pointer;

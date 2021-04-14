@@ -1,12 +1,16 @@
 import Profile from '../InnerComponents/Profile';
 import Footer from '../InnerComponents/Footer'
 import Navbar from '../InnerComponents/Navbar';
-import {React, useEffect} from 'react';
-
+import {React, useEffect, useState} from 'react';
+import SideNavbar from '../InnerComponents/SideNavbar'
 import './Inner.css';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
 
+  const toggle = () => {
+      setIsOpen(!isOpen)
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -14,7 +18,8 @@ function App() {
   return (
     <div className="InnerPage">
       {/* Navbar refers to the navigation bar constantly on the top of the page */}
-      <Navbar />
+      <SideNavbar isOpen={isOpen} toggle={toggle}/>
+      <Navbar toggle={toggle} />
       <div className="outerContainer">
         <div className="InnerBody">
           <Profile />

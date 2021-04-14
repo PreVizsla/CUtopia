@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Avatar } from '@material-ui/core'
 export const ProfileData = styled.div`
     flex: 0.7;
     /* background-color: blue; */
@@ -58,39 +57,10 @@ export const Header = styled.h3`
     font-weight: bold;
     font-size: 16px;
 `
-export const AttachImage = styled.div`
-    color: lightgray;
-    margin-left: 10px;
-    
-    &:hover {
-        color: gray;
-        cursor: pointer;
-    }
-`
-
-export const ContentFormSubmit = styled.div`
-    color: #DDA300;
-    cursor: pointer;
-    margin-left: 10px;
-`
-
 export const SectionTitle = styled.h2`
     display: flex;
     font-size: 20px;
     margin-right: auto;
-`
-
-export const SubheadingText = styled.div`
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    background-color: #f3f2ef;
-    margin-bottom: -5px;
-
-    > h3 {
-        font-size: 12px;
-        color: #DDA300;
-    }
 `
 
 export const SidebarWrapper = styled.div`

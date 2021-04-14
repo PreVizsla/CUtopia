@@ -1,16 +1,18 @@
 const nodemailer = require("nodemailer");
+const config = require("../config/auth")
 
 const sendEmail = (options) => {
   const transporter = nodemailer.createTransport({
-    service: process.env.EMAIL_SERVICE,
+    // service: process.env.EMAIL_SERVICE,
+    service: config.EMAIL_SERVICE,
     auth: {
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD,
+      user: config.EMAIL_USERNAME,
+      pass: config.EMAIL_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_FROM,
+    from: `${config.EMAIL_FROM} ${config.EMAIL_USERNAME}`,
     to: options.to,
     subject: options.subject,
     html: options.text,

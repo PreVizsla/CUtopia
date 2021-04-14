@@ -1,11 +1,9 @@
 
 import React from 'react'
-
-import { BtnWrapper, Content, EmailField, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
+import { BtnWrapper, Content, Form, Heading, NextBtn, Warning, SubmitBtn } from './ForgetPasswordElement';
 import validate from './ValidateForget';
 import handleForm from './handleFormForget';
 import TextField from "@material-ui/core/TextField";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +45,7 @@ const ForgetPasswordForm = ({submitFormForget}) => {
                 </div>
                
                 <BtnWrapper>
-                    <NextBtn to='./signup_signin' >back</NextBtn>
+                    <NextBtn to='./auth' >back</NextBtn>
                     {/* <Submit_btn type="submit" >
                         <Link_text to='./next' >
                             next

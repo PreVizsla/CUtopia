@@ -1,15 +1,15 @@
 import ChatIcon from '@material-ui/icons/ChatBubbleOutline'
 import ShareIcon from '@material-ui/icons/ShareOutlined'
 import LikeIcon from '@material-ui/icons/ThumbUpAltOutlined'
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 import { ActionButton, FeedPost, FeedPostBottom, FeedPostProfileInfo, FeedPostTop, PostAuthor, PostAvatar, PostBottomLeft, PostBottomRight, PostContent, PostImageWrapper } from './PostElements'
 
-const Post = ({avatar, name, desc, content, image, likes, comments}) => {
+const Post = forwardRef(({avatar, name, desc, content, image, likes, comments}, ref) => {
     return (
         <>
             {/* Post broken down to two parts, top and bottom */}
-            <FeedPost>
+            <FeedPost ref={ref}>
                 {/* Top part consists of: Author details and post content */}
                 <FeedPostTop>
                     {/* Author Details */}
@@ -61,6 +61,6 @@ const Post = ({avatar, name, desc, content, image, likes, comments}) => {
             </FeedPost>
         </>
     )
-}
+})
 
 export default Post

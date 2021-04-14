@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import FlipMove from 'react-flip-move'
 
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
@@ -11,8 +12,46 @@ import { SidebarWrapper, CUnityWrapper, SubheadingWrapper, SubheadingText, FindR
 import {Search, SearchContent, SearchHeader, SearchTitle, ContentForm, SearchSubmit, FilterIcon} from '../SearchElements'
 import ProfileCard from './ProfileCard';
 
+import albert from '../../assets/frontend-temp/albert.jpg'
+import adi from '../../assets/frontend-temp/adi.jpg'
+import theo from '../../assets/frontend-temp/theo.jpg'
 
-const index = () => {
+const personListings = [
+    {
+        avatar: theo,
+        name: "Theodore Fabian",
+        desc: "2nd Year CSE Student"
+    },
+    {
+        avatar: albert,
+        name: "Christopher Albert",
+        desc: "2nd Year CSE Student"
+    },
+    {
+        avatar: adi,
+        name: "Aditya Varshney",
+        desc: "2nd Year CSE Sudent"
+    }
+]
+
+
+const CUnity = () => {
+
+    const [searchQuery, setSearchQuery] = useState("")
+    const [searchResults, setSearchResults] = useState([])
+
+    const handleSearch = e => {
+        setSearchQuery(e.target.value)
+    }
+
+    useEffect(() => {
+        const filtered = personListings.filter(person =>
+            person.name.toLowerCase().includes(searchQuery)
+        )
+    setSearchResults(filtered)
+}, [searchQuery])
+
+
     return (
         <>
             <SidebarWrapper>
@@ -27,7 +66,7 @@ const index = () => {
                         <SearchTitle>Explore CUtopia</SearchTitle>
                     </SearchHeader>
                     <SearchContent>
-                        <ContentForm placeholder="Search Fellow CUtopians" type='text'/>
+                        <ContentForm value={searchQuery} onChange={handleSearch} placeholder="Search Fellow CUtopians" type='text'/>
                         <FilterIcon>
                             <FilterListIcon />
                         </FilterIcon>
@@ -51,14 +90,18 @@ const index = () => {
                     </RandomButton>
                 </FindRandomWrapper>
                 {/* CUtopians displayed in cards */}
-                <ProfileGrid>
-                    <ProfileCard />
-                    <ProfileCard />
-                    <ProfileCard />
+                <ProfileGrid>                   
+                    {searchResults.map((data)=>{
+                        return <ProfileCard
+                            avatar={data.avatar}
+                            name={data.name}
+                            desc={data.desc}
+                        />
+                    })}
                 </ProfileGrid>
             </CUnityWrapper>   
         </>
     )
 }
 
-export default index
+export default CUnity
