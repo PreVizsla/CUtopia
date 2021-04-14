@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 import { ProfileCardWrapper, ProfileCardInfo, ProfileAvatar, PersonInfo, CUniteButton } from './ProfileCardElements'
 
-const ProfileCard = ({avatar, name, desc}) => {
+const ProfileCard = forwardRef(({avatar, name, desc}, ref) => {
     return (
         <>
-            <ProfileCardWrapper>
+            <ProfileCardWrapper ref={ref}>
                 <ProfileCardInfo>
                     <ProfileAvatar src={avatar}/>
                     <PersonInfo>
@@ -19,6 +19,6 @@ const ProfileCard = ({avatar, name, desc}) => {
             </ProfileCardWrapper>   
         </>
     )
-}
+})
 
 export default ProfileCard

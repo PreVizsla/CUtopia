@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import FlipMove from 'react-flip-move'
 
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
@@ -89,7 +90,7 @@ const CUnity = () => {
                     </RandomButton>
                 </FindRandomWrapper>
                 {/* CUtopians displayed in cards */}
-                <ProfileGrid>
+                <ProfileGrid>                   
                     {searchResults.map((data)=>{
                         return <ProfileCard
                             avatar={data.avatar}
