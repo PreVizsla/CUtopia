@@ -3,7 +3,7 @@
 Updated as of Aptil 14 2021 
 
 This is the test version of CUtopia - this version represents the simplistic overview of our main Project CUtopia.
-Created by learning from [guide](https://www.udemy.com/course/create-a-twitter-clone-with-nodejs-socketio-and-mongodb/)
+Created by learning from this [guide](https://www.udemy.com/course/create-a-twitter-clone-with-nodejs-socketio-and-mongodb/)
 
 ## Trying out the Test Version :fireworks:
 
