@@ -1,6 +1,4 @@
-import { useHistory } from 'react-router-dom';
-import { forgotPassword } from '../../actions/auth';
-import { useDispatch } from 'react-redux';
+
 import { useState, useEffect } from 'react';
 
 //use form is a react custom hook
@@ -10,11 +8,9 @@ const useForm = (success, validate) => {
 
   //local variable to this function
   const [variables, updateValues] = useState({
-    email: '',
+    password: '',
+    password2:'',
   });
-
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   //for handling changes in input field
   const handleChange = e => {
@@ -36,7 +32,6 @@ const useForm = (success, validate) => {
       //if there are no errors and use click submit button
       if (Object.keys(errors).length === 0 && submit) {
         success();
-        dispatch(forgotPassword(variables, history));
         //to extract the input data
         console.log('component state is: ', JSON.stringify(variables) )
       }
@@ -46,5 +41,3 @@ const useForm = (success, validate) => {
 
   return { variables, errors, handleChange, handleSubmit };
 };
-
-export default useForm;

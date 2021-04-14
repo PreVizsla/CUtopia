@@ -7,7 +7,6 @@ export const signIn = (formData, router) => async (dispatch) => {
   
       dispatch({ type: AUTH, data });
   
-      router.push('/');
     } catch (error) {
       console.log(error);
     }
@@ -26,13 +25,30 @@ export const signUp = (formData, router) => async (dispatch) => {
 
 export const signUpDetail = (formData, router) => async (dispatch) => {
     try {
-        const { data } = await api.signUp(formData);
+        const { data } = await api.signUpDetail(formData);
     
         dispatch({ type: AUTH, data });
-    
-        router.push('/');
     } catch (error) {
         console.log(error);
     }
 };
     
+
+export const forgotPassword = (formData, router) => async (dispatch) => {
+    try {
+        const { data } = await api.forgotPassword(formData);
+
+        dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const verifyUser = (formData, router) => async (dispatch) => {
+    try {
+        const { data } = await api.verifyUser(formData);
+        dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.log(error);
+    }
+}

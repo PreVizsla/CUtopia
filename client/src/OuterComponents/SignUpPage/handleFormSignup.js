@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUpDetail } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 
 //use form is a react custom hook
 const useForm = (success, validate) => {
@@ -28,6 +31,9 @@ const useForm = (success, validate) => {
     setSubmit(true);
   };
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(
     () => {
       //if there are no errors and use click submit button
@@ -35,6 +41,7 @@ const useForm = (success, validate) => {
         success();
         //to extract the input data
         console.log('component signup state is: ', JSON.stringify(variables) )
+        dispatch(signUpDetail(variables, history))
         // for mongodb trial
         // const postURL = "http://localhost:4000/api/staff/" //Our previously set up route in the backend
         // fetch(postURL, {

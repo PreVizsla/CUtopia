@@ -5,35 +5,31 @@ const { searchPost, searchPostById, feedPost, create, comment, like, editComment
 const router = express.Router()
 
 //Router of searchPost
-router.route('/posts/search').get(searchPost)
+router.get('/search', searchPost)
 
 //Router of searchPostByID
-router.route('/posts/search/by/:postId').get(searchPostById)
+//router.get('/search/by/:postId', searchPostById)
 
 //Router of feedPost
-router.route('/posts/feed/:profileId').get(feedPost)
+router.get('/feed/:profileId', feedPost)
 
 //Router of createPost
-router.route('/posts/create').post(create)
+router.post('/create', create)
 
 //Router of createComment
-router.route('/posts/:postId/comment').post(comment)
+//router.post('/:postId/comment', comment)
 
 //Router of like
-router.route('/posts/like').put(like)
+router.put('/:postId/like', like)
 
 //Router of editComment
-router.route('/posts/:postId/:commentId/edit').put(editComment)
+//router.put('/:postId/:commentId/edit', editComment)
 
 //Router of removePost
-router.route('/posts/:postId').delete(removePost)
+router.delete('/:postId', removePost)
 
 //Router of removePost
-router.route('/posts/:postId/:commentId').delete(removeComment)
-
-router.param('profileId', profileCtrl.getProfileID)
-router.param('postId', postByID)
-router.param('commentId', commentID)
+//router.delete('/:postId/:commentId', removeComment)
 
 module.exports = router
 

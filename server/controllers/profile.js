@@ -5,17 +5,9 @@ const ErrorResponse = require("../utils/errorResponse");
 const formidable = require("formidable")
 const fs = require('fs')
 
-// Albert
-// DO we want to have photo for posts? Yes
-// yes - I guess
-// ALBERT
-// We have class? YES 
-
-
-
 //Add the ability to check a person's profile
 exports.showInfo = (req, res, next) => {
-    User.findOne({_id: req.params.id})
+    User.findOne({ _id: req.params.id })
     .then(result => res.status(200).send(result))
     .catch(err => {
         return next(new ErrorResponse("The user is not found", 400));
@@ -34,7 +26,7 @@ exports.showInfo = (req, res, next) => {
 //}
 
 exports.getProfileID = async (req, res, next) => {
-    User.findOne({ _id: req.params.profileId })
+    User.findOne( { _id: req.params.profileId } )
     .then(results => res.status(200).send(results))
     .catch(err => {
         return next(new ErrorResponse(err, 400))
@@ -43,9 +35,9 @@ exports.getProfileID = async (req, res, next) => {
 
 //Add the ability to edit profile
 exports.editProfile = (req, res, next) => {
-    User.findOneAndUpdate({city : req.body.city, country : req.body.country,
-    occupation : req.body.occupation, about : req.body.about})
-    .then(() => res.sendStatus(204)
+    const { city, country, occupation, about} = req.body;
+    User.findOneAndUpdate( { _id : res.session.user._id }, { city : city, country : country, occupation : occupation, about:about})
+    .then(() => res.sendStatus(202)
     .catch(error => {
         return next(new ErrorResponse(error, 400));
     })
@@ -86,18 +78,29 @@ exports.addEducation = async (req, res, next) => {
   if(!school && !major){
       return next(new ErrorResponse("You need to fill the School and Major", 400))
   }
-  
-  var educationData = {school: school, major: major, startYear: req.body.startYear,
-      endYear: req.body.endYear, description: req.body.description}
+  const { startYear, endYear, description } = req.body;
+
+  var educationData = { school: school, major: major, startYear: startYear, endYear: endYear, description: description }
 
   Education.createData(educationData)
-  User.findOne({_id: req.params.id})
+  User.findOne( { _id: req.params.id } )
   .populate('education.username', '_id name')
   .then(result => res.status(200).send(result))
   .catch(error => {
       return next(new ErrorResponse(error, 400))
   })
 
+}
+
+//Add the ability to edit Education
+exports.editEducation = async (req, res, next) => {
+    const { photo, school, major, startYear, endYear, description } = req.body;
+
+    Education.fineOneAndUpdate({_id : req.session.user.education._id},  { photo: photo, school: school, major: major, startYear: startYear , endYear: endYear, description: description })
+    .then(() => res.send(202).status("Accepted!"))
+    .catch( error =>  {
+        return next(new ErrorResponse( error, 400));
+    })
 }
 
 //Add the ability to delete Education
@@ -122,16 +125,16 @@ exports.addExperience = async (req, res, next) => {
     .catch(error => {
         return next(new ErrorResponse("The image couldn't be uploaded", 400))
     })
-    
+
     let company =  req.body.company
     let title = req.body.title
 
     if(!company && !title){
       return next(new ErrorResponse("You need to fill the Company and Title", 400))
     }
-  
-    var experienceData = {company: company, title: title, startYear: req.body.startYear,
-        endYear: req.body.endYear, description: req.body.description }
+    const { startYear, endYear, description } = req.body;
+
+    var experienceData = { company: company, title: title, startYear: startYear, endYear: endYear, description: description }
     
     Experience.createData(experienceData)
     User.findOne({_id: req.params.id})
@@ -142,9 +145,20 @@ exports.addExperience = async (req, res, next) => {
     })
 }
 
+//Add the ability to edit Experience
+exports.editEducation = async (req, res, next) => {
+    const { photo, company, title, startYear, endYear, description } = req.body;
+
+    Experience.fineOneAndUpdate({_id : req.session.user.experience._id},  { photo: photo, company: company, title: title, startYear: startYear , endYear: endYear, description: description })
+    .then(() => res.send(202).status("Accepted!"))
+    .catch( error =>  {
+        return next(new ErrorResponse( error, 400));
+    })
+}
+
 //Add the ability to delete Experience
 exports.deleteExperience = async (req, res, next) => {
-    Experience.findOneAndDelete({"experience._id" : req.params.id})
+    Experience.findOneAndDelete( { "experience._id" : req.params.id } )
     .then(() => res.sendStatus(202))
     .catch(error => {
         return next(new ErrorResponse(error, 400));
