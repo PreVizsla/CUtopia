@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { createEvent } from '../../actions/events';
+
 //use form is a react custom hook
 const useForm = (success, validate) => {
   const [errors, setErrors] = useState({});
@@ -7,8 +10,8 @@ const useForm = (success, validate) => {
 
   //local variable to this function
   const [variables, updateValues] = useState({
-    name:'',
-    date:'',  
+    title:'',
+    eventDate:'',  
     location:'',
     description:'',
   });

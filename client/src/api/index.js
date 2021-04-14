@@ -31,3 +31,6 @@ export const verifyUser = (code) => API.get("/auth/confirm/" + code)
 
 export const fetchJobs = () => API.get('/jobs');
 export const createJob = (newJob) => API.post('/jobs', newJob);
+
+export const fetchEvents = () => API.get('/events');
+export const createEvent = (newEvent) => API.post('/events', newEvent);

@@ -15,7 +15,7 @@ exports.createJob = async (req, res) => {
     // const { jobName, companyName, location, description } = req.body;
     const jobs = req.body;
 
-    const newJob =  new Jobs({jobs});
+    const newJob =  new Jobs(jobs);
 
     try {
         await newJob.save();
