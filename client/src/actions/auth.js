@@ -61,3 +61,14 @@ export const verifyUser = (code, router) => async (dispatch) => {
         console.log(error);
     }
 }
+
+// export const createPost = (formData) => async (dispatch) => {
+//     try {
+//       const { data } = await api.createPost(formData);
+  
+//       dispatch({ type: CREATE, payload: data });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   };
+  

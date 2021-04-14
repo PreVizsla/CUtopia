@@ -13,7 +13,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
-const DB = 'mongodb+srv://thefar:admin@cluster0.aggbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
@@ -56,11 +56,14 @@ app.use(express.json());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   next();
 })
 
+
 // Connecting Routes
 app.use("/auth", require("./routes/auth"));
+app.use("/jobs", require("./routes/jobs"));
 // app.use("/profile", require("./routes/profile"));
 // app.use("/api/post", require("./routes/post"));
 // app.use("/api/message", require("./routes/message"));
@@ -89,7 +92,8 @@ io.on("connection", socket => {
         var chat = newMessage.chat;
 
         if(!chat.users) return console.log("Chat.users not defined");
-
+        // yo, need help?
+        
         chat.users.forEach(user => {
             
             if(user._id == newMessage.sender._id) return;

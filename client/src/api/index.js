@@ -30,4 +30,4 @@ export const resetPassword = (code, formData) => API.put('/auth/passwordreset/',
 export const verifyUser = (code) => API.get("/auth/confirm/" + code)
 
 export const fetchJobs = () => API.get('/jobs');
-export const createJob = (newJob) => API.get('/jobs', newJob);
+export const createJob = (newJob) => API.post('/jobs', newJob);

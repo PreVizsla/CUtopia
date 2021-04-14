@@ -54,28 +54,27 @@ const AddJobForm = ({ submitFormJob }) => {
                                 className={classes.root}
                                 fullWidth={true}
                                 type='text'
-                                name='name'
+                                name='jobName'
                                 placeholder='Enter your job name'
-                                value={variables.name}
+                                value={variables.jobName}
                                 onChange={handleChange}                                
                             />
-                            {errors.name && <Warning>{errors.name}</Warning>}
+                            {errors.jobName && <Warning>{errors.jobName}</Warning>}
                         </div>
-                        
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Company Name*<br></br>
                             <TextField
                                     id="outlined-basic" label="Company Name" variant="filled"
                                     //className={classes.input}
                                     type='text'
-                                    name='company'
+                                    name='companyName'
                                     placeholder='Enter the company name'
                                     fullWidth={true}
-                                    value={variables.company}
+                                    value={variables.companyName}
                                     onChange={handleChange}
                                 />
                         </div>    
-                        {errors.company && <Warning>{errors.company}</Warning>}
+                        {errors.companyName && <Warning>{errors.companyName}</Warning>}
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Location*<br></br>
                             <TextField

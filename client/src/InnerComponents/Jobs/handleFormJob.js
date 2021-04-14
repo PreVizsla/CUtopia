@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { createJob } from '../../actions/jobs';
+
 //use form is a react custom hook
 const useForm = (success, validate) => {
   const [errors, setErrors] = useState({});
@@ -7,11 +10,13 @@ const useForm = (success, validate) => {
 
   //local variable to this function
   const [variables, updateValues] = useState({
-    name:'',
-    company:'',  
+    jobName:'',
+    companyName:'',  
     location:'',
     description:'',
   });
+
+  const dispatch = useDispatch();
 
   //for handling changes in input field
   const handleChange = e => {
@@ -35,6 +40,7 @@ const useForm = (success, validate) => {
       if (Object.keys(errors).length === 0 && submit) {
         success();
         //to extract the input data
+        dispatch(createJob( variables ));
         console.log('component state is: ', JSON.stringify(variables) )
       }
     },
