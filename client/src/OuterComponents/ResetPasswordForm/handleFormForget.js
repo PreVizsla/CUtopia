@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { resetPassword } from '../../actions/auth'
 import { useHistory } from 'react-router-dom';
@@ -11,17 +12,17 @@ const useForm = (success, validate) => {
   //local variable to this function
   const [variables, updateValues] = useState({
     password: '',
-    password2:'',
+    password2:''
   });
-
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   //for handling changes in input field
   const handleChange = e => {
     const { name, value } = e.target;
     updateValues({...variables, [name]: value});
   };
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   //for handling events when submit button is pressed
   const handleSubmit = e => {
@@ -37,6 +38,7 @@ const useForm = (success, validate) => {
       //if there are no errors and use click submit button
       if (Object.keys(errors).length === 0 && submit) {
         success();
+        
         dispatch(resetPassword(variables, history))
         //to extract the input data
         console.log('component state is: ', JSON.stringify(variables) )

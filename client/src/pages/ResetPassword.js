@@ -1,17 +1,16 @@
+import React, { useState } from "react";
+
+import CUTOPIA from '../assets/images/CUTOPIA.png'
+import logo from '../assets/images/logo_cropped.png'
+import ResetPasswordForm from '../OuterComponents/ResetPasswordForm'
+import NavbarLogin from '../OuterComponents/NavbarLogin'
+import { ContainerBox, CUtopia } from './style';
 
 import './SignupSigninElements.css';
-import React, { useState } from "react";
-import ResetPasswordForm from '../OuterComponents/ResetPasswordForm'
-
-import { CUtopia, ContainerBox} from './style';
-
-import logo from '../assets/images/logo_cropped.png'
-import CUTOPIA from '../assets/images/CUTOPIA.png'
-
-import NavbarLogin from '../OuterComponents/NavbarLogin'
-
 import { useHistory } from "react-router-dom";
-function ResetPassword() {
+
+
+function ForgetPassword() {
   const [isSubmitFormForget, ForgetIsSubmitted] = useState(false);
   function submitFormForget() {
     ForgetIsSubmitted(true);
@@ -26,6 +25,8 @@ function ResetPassword() {
 
   return (
     <>
+    
+    <NavbarLogin toggle={toggle}/>
     <CUtopia>
         <img src={logo} width="300px" className="logo" alt="logo"/>       
         <img src={CUTOPIA} width="200px"className="logo" alt="CUTOPIA_word"/>
@@ -34,6 +35,7 @@ function ResetPassword() {
           <ResetPasswordForm id="Forget" submitFormForget={submitFormForget}></ResetPasswordForm>
         ):(
           history.push('./passwordchanged')
+      
         )}
       </ContainerBox> 
       </CUtopia>
@@ -41,4 +43,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default ForgetPassword;

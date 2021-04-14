@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { BtnWrapper, Content, Form, Heading, NextBtn, Warning, SubmitBtn } from '../ForgetPassword/ForgetPasswordElement';
-import validate from './ValidateReset';
-import handleForm from './handleFormReset';
+import { BtnWrapper, Content, EmailField, Form, Heading, Warning, SubmitBtn } from './ForgetPasswordElement';
+import validate from './ValidateForget';
+import handleForm from './handleFormForget';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,9 +26,8 @@ const ResetPasswordForm = ({submitFormForget}) => {
     return (
         <Form>
             <form onSubmit={handleSubmit} noValidate>
-                <Heading>Forget Password</Heading>
-                <Content>Enter your New Password</Content>
-                <Content>Password needs to be 6 or more letters</Content>
+                <Heading>Reset Password</Heading>
+                <Content>Please enter your new password</Content>
                 <br></br>
                 <div className='form-inputs' style={{marginBottom:15+"px"}}>
                     <TextField
@@ -38,7 +37,7 @@ const ResetPasswordForm = ({submitFormForget}) => {
                         type='password'
                         name='password'
                         placeholder='Enter your password'
-                        value={variables.password}
+                        value={variables.passwrod}
                         onChange={handleChange}
                     />
                     {errors.password && <Warning>{errors.password}</Warning>}
@@ -55,10 +54,8 @@ const ResetPasswordForm = ({submitFormForget}) => {
                         onChange={handleChange}
                     />
                     {errors.password2 && <Warning>{errors.password2}</Warning>}
-                </div>
-               
+                </div>               
                 <BtnWrapper>
-                    
                     <SubmitBtn type="submit" >
                     Submit
                     </SubmitBtn>          
@@ -67,4 +64,5 @@ const ResetPasswordForm = ({submitFormForget}) => {
         </Form>
     )
 }
+
 export default ResetPasswordForm

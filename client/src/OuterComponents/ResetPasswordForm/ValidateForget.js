@@ -12,4 +12,6 @@ export default function validate(variables) {
   else if (variables.password.length >= 6 && variables.password !== variables.password2) {
     errors.password2 = 'Password does not match';
   }
+
+  return errors;
 }

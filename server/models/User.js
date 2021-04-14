@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const { argon2i } = require("argon2-ffi");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
