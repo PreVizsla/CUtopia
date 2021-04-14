@@ -32,11 +32,17 @@ export const DetailsContainer = styled.div`
         font-size: 15px;
         font-weight: 700;
         margin-bottom: 7px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     > h3 {
         font-size: 12px;
         font-weight: 400;
         margin-bottom: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `
