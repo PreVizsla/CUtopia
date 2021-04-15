@@ -25,10 +25,17 @@ export const signUp = (formData) => API.post('/auth/register', formData);
 export const signUpDetail = (formData) => API.post('/auth/details', formData);
 export const forgotPassword = (formData) => API.post('/auth/forgetpassword', formData);
 export const resetPassword = (code, formData) => API.put('/auth/passwordreset/', { params: {
-    resetPasswordToken: this.props.match.params.token
+    resetPasswordToken: this.props.match.params.resetToken
 } }, formData);
-export const verifyUser = (code) => API.get("/auth/confirm/" + code)
 
+var paramsString = "confirmationCode"
+const searchParams = new URLSearchParams()
+
+export const verifyUser = (code) => API.get("/auth/confirm/"+code).then((response) => {
+    return response.data;
+  });
+  //tbh idk why this is still error lol 
+//me rea scrip
 export const fetchJobs = () => API.get('/jobs');
 export const createJob = (newJob) => API.post('/jobs', newJob);
 
