@@ -1,6 +1,6 @@
 # Server - Video Chat (WIP):video_camera: 
 
-Updated as of March 19 2021 - (Initial Code Phase)
+Updated as of April 14 2021 
 
 This folder take care for the video chat feature. It contains both the client side and server side code, where the client side code can be seen in public folder and server side code can be seen in src folder.
 
