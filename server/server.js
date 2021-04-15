@@ -1,3 +1,4 @@
+//To securely store crdentials in confg.env file
 require('dotenv').config({ path: "./config.env" });
 
 const mongoose = require('mongoose');
@@ -44,13 +45,12 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// my bodyparser alternative
+// Bodyparser alternative for newer version of Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
 //connectDB();
-
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -74,8 +74,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// put it here (starting from io.on("connection"))
-
+// Socket.io connection 
 io.on("connection", socket => {
 
     socket.on("setup", userData => {
@@ -92,7 +91,6 @@ io.on("connection", socket => {
         var chat = newMessage.chat;
 
         if(!chat.users) return console.log("Chat.users not defined");
-        // yo, need help?
         
         chat.users.forEach(user => {
             
