@@ -1,3 +1,4 @@
+//Using nodemailer for sending emails to users of the platform
 const nodemailer = require("nodemailer");
 const config = require("../config/auth")
 
