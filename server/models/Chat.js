@@ -1,3 +1,4 @@
+//Schema for storing the details and properties of chat in MongoDB database
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
