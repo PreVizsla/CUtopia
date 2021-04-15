@@ -1,3 +1,4 @@
+// listing out the devDependencies and dependencies of project
 const express = require('express');
 const app = express();
 const port = 3006;
@@ -9,6 +10,7 @@ const session = require("express-session");
 const server = app.listen(port, () => console.log("Server listening on port "+port));
 const io = require("socket.io")(server, { pingTimeout: 60000 });
 
+//to retrieve the value of view engine & views in the template pug files
 app.set("view engine", "pug");
 app.set("views", "pugviews");
 
@@ -63,6 +65,7 @@ app.use("/api/chats", chatsApiRoute);
 app.use("/api/messages", messagesApiRoute);
 app.use("/api/notifications", notificationsApiRoute);
 
+//middleare implementation
 app.get("/", middleware.requireLogin, (req, res, next) => {
 
     var payload = {
@@ -74,13 +77,14 @@ app.get("/", middleware.requireLogin, (req, res, next) => {
     res.status(200).render("home", payload);
 })
 
+//socket.io connection for the chat appliction of the project
 io.on("connection", socket => {
 
     socket.on("setup", userData => {
         socket.join(userData._id);
         socket.emit("connected");
     })
-
+    //to handle different events and sending messages through the server
     socket.on("join room", room => socket.join(room));
     socket.on("typing", room => socket.in(room).emit("typing"));
     socket.on("stop typing", room => socket.in(room).emit("stop typing"));
