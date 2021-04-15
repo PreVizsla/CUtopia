@@ -1,3 +1,4 @@
+//Middleware for authenticating the users with the help of tokens
 const jwt = require("jsonwebtoken");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
