@@ -1,3 +1,4 @@
+//Schema for storing the details of Cutopians, their job, education and experience details in MongoDB database
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
