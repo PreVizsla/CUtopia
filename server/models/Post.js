@@ -1,3 +1,4 @@
+//Schema for storing the details and properties of posts and the comments in MongoDB database
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
