@@ -1,3 +1,4 @@
+// to store the details of the MongoDB database cluster beig used for this project 
 const mongoose = require("mongoose");
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
