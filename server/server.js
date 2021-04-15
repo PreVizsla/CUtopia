@@ -13,7 +13,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = require("socket.io")(httpServer, { pingTimeout: 60000 });
 
-const DB = 'mongodb+srv://figo24:figo240301@cluster0.r8gzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const DB = 'mongodb+srv://thefar:admin@cluster0.aggbt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(DB, {
   useNewUrlParser: true,
@@ -64,6 +64,7 @@ app.use((req, res, next) => {
 // Connecting Routes
 app.use("/auth", require("./routes/auth"));
 app.use("/jobs", require("./routes/jobs"));
+app.use("/events", require("./routes/events"));
 // app.use("/profile", require("./routes/profile"));
 // app.use("/api/post", require("./routes/post"));
 // app.use("/api/message", require("./routes/message"));

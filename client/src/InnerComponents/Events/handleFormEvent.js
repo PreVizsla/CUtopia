@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { createEvent } from '../../actions/events';
 
@@ -15,6 +15,9 @@ const useForm = (success, validate) => {
     location:'',
     description:'',
   });
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   //for handling changes in input field
   const handleChange = e => {
@@ -37,6 +40,7 @@ const useForm = (success, validate) => {
       //if there are no errors and use click submit button
       if (Object.keys(errors).length === 0 && submit) {
         success();
+        dispatch(createEvent(variables, history))
         //to extract the input data
         console.log('component state is: ', JSON.stringify(variables) )
       }

@@ -54,7 +54,7 @@ const AddEventForm = ({ submitFormEvent }) => {
                                 className={classes.root}
                                 fullWidth={true}
                                 type='text'
-                                name='name'
+                                name='title'
                                 placeholder='Enter your Event name'
                                 value={variables.name}
                                 onChange={handleChange}                                
@@ -68,7 +68,7 @@ const AddEventForm = ({ submitFormEvent }) => {
                                     id="outlined-basic" label="Event date" variant="filled"
                                     //className={classes.input}
                                     type='text'
-                                    name='date'
+                                    name='eventDate'
                                     placeholder='Enter the Event date'
                                     fullWidth={true}
                                     value={variables.date}

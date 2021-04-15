@@ -14,7 +14,7 @@ import Jobs from './pages/Jobs'
 import Chat from './pages/Chat'
 import ResetPassword from './pages/ResetPassword'
 import PasswordChanged from './pages/PasswordChanged'
-import EmailConfirmedForm from './pages/EmailConfirmed'
+import EmailConfirmed from './pages/EmailConfirmed'
 function App() {
   return (
     <Router>
@@ -30,7 +30,7 @@ function App() {
         <Route path="/events" component={Events} exact />
         <Route path="/jobs" component={Jobs} exact />
         <Route path="/chat" component={Chat} exact />
-        <Route path="/confirm" component={EmailConfirmedForm} />
+        <Route path="/confirm/:id" component={EmailConfirmed} />
         <Route path="/resetpassword" component={ResetPassword} />
         <Route path="/passwordchanged" component={PasswordChanged} exact />
       </Switch>

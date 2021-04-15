@@ -1,4 +1,4 @@
-const Event = require('../modelss/Event')
+const Event = require('../models/Events')
 
 exports.showEvents = async (req, res) => {
     try{
@@ -10,9 +10,9 @@ exports.showEvents = async (req, res) => {
 }
 
 exports.createEvent = async (req, res) => {
-    const { event } = req.body;
+    const event = req.body;
 
-    const newEvent =  new Event({ event });
+    const newEvent =  new Event(event);
 
     try {
         await newEvent.save();

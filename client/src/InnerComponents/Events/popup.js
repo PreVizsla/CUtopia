@@ -22,7 +22,7 @@ export default function Popup(props) {
         <Dialog open={openPopup} maxWidth="md" classes={{ paper: classes.dialogWrapper }}>
             <DialogTitle>
                 <div style={{display:"flex" , flexDirection:"row", justifyContent:"space-between"}}>
-                    <div>Post a Job</div>
+                    <div>Post an Event</div>
                     <CloseBtn onClick={()=>{setOpenPopup(false)} }>
                         <CloseIcon/>    
                     </CloseBtn>

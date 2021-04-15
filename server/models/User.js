@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: { type: String, enum: ['Pending', 'Active'], default: 'Pending' },
+  status: { type: Boolean, default: false },
   confirmationCode: { type: String, unique: true },
   confirmationCodeExpire: { type: Date },
   name: { type: String, required: false },

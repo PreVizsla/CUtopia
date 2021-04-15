@@ -1,6 +1,5 @@
 const { default: jobs } = require('../../client/src/reducers/jobs');
 const Jobs = require('../models/Jobs')
-const ErrorResponse = require('../utils/ErrorResponse')
 
 exports.showJobs = async (req, res) => {
     try{

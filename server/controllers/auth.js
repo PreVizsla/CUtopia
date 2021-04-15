@@ -8,6 +8,7 @@ const config = require("../config/auth")
 
 const secret = config.SECRET;
 
+// login (POST)
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -22,7 +23,7 @@ exports.login = async (req, res) => {
           return res.status(400).json({ message: "Invalid credentials"});
         }
         else {
-          if (user.status != "Active") {
+          if (!user.status) {
             return res.status(401).send({ message: "Pending account. Please verify your email "});
           }
           else {
@@ -53,6 +54,7 @@ exports.login = async (req, res) => {
 //   }
 // }
 
+// Register POST 
 exports.register = async (req, res) => {
   const { name, username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
 
@@ -109,19 +111,8 @@ exports.register = async (req, res) => {
   }
 };
 
-// here
-exports.details = async (req, res, next) => {
-  const { firstname, lastname, major, gradYear, isMentor  } = req.body;
-
-  try{
-    const result = User.findOneandUpdate({ _id: req.session.user._id },  { firstname: firstname, lastname: lastname,  major: major, gradYear: gradYear, isMentor: isMentor });
-    res.status(200).json({ result });
-  } catch (err) {
-    res.status(500).json({ message: err.message});
-  }
-}
-
 // @desc Send confirmation email
+// Post
 const confirmationEmail = (name, email, confirmationCode) => {
 
     const resetUrl = `http://localhost:3000/confirm/${confirmationCode}`
@@ -129,9 +120,8 @@ const confirmationEmail = (name, email, confirmationCode) => {
     const message = `
     <h1> Hello ${name} </h1>
     <h2>You have requested an account opening on CUtopia</h1>
-      <p>Please click </p>
-      <a href=${resetUrl} clicktracking=off>at the following link</a>
-
+      <p>Please click <a href=${resetUrl} clicktracking=off>at the following link</a> </p>
+      
       <b>Do not reply to this email</b>
    `;
     try {
@@ -147,24 +137,26 @@ const confirmationEmail = (name, email, confirmationCode) => {
     
   }
 
+// @desc Confirm account creation
 exports.verifyUser = (req, res, next) => {
-  User.findOne({ 
-    where: { confirmationCode: req.query.confirmationCode },
+  User.findOne({
+    confirmationCode: req.params.confirmationCode,
   })
-  .then((user) => {
-    if (!user) {
-      res.status(404).send({ message: 'User not found'})
-    }
-    user.status = "Active";
-    user.save((err) => {
-      if (err) {
-        res.status(500).json({ message: err.message})
-        return;
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
       }
-    });
-  })
-  .catch(err => res.status(500).json({ message: err.message }))
-}
+
+      user.status = "Active";
+      user.save((err) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+      });
+    })
+    .catch((e) => console.log("error", e));
+};
   
 // @desc    Forgot Password Initialization
 exports.forgotPassword = async (req, res, next) => {
@@ -238,7 +230,7 @@ exports.resetPassword = async (req, res, next) => {
 
   try {
     const user = await User.findOne({
-      resetPasswordToken: req.query.resetPasswordToken,
+      resetPasswordToken: resetPasswordToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
 
