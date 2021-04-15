@@ -1,3 +1,4 @@
+//Schema for storing the details of Notifications displayed for the user in MongoDB database
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
