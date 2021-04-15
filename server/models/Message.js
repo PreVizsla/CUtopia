@@ -1,3 +1,4 @@
+//Schema for storing the details and properties of messages sent by users in MongoDB database
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
