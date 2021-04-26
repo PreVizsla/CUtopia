@@ -1,6 +1,6 @@
 # Schemas
 
-Updated as of Aptil 26 2021 
+Updated as of April 26 2021 
 
 ## This folder consists of the following Scheemas
 
