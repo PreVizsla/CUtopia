@@ -16,7 +16,8 @@ router.get("/", (req, res, next) => {
 })
 
 router.post("/", async (req, res, next) => {
-
+    
+    // storing details of the user by request method
     var firstName = req.body.firstName.trim();
     var lastName = req.body.lastName.trim();
     var email = req.body.email.trim();
@@ -26,7 +27,8 @@ router.post("/", async (req, res, next) => {
     var payload = req.body;
 
     var checkemail = false;
-
+    
+    // regular expression to check for user email authenticity
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(re.test(email)){
         //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
@@ -35,7 +37,7 @@ router.post("/", async (req, res, next) => {
             checkemail=true;
         }
     }
-
+    // condition that verifies user for registration 
     if(firstName && lastName && checkemail && username && password) {
         var user = await User.findOne({
             $or: [
