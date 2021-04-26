@@ -7,6 +7,7 @@ const User = require('../schemas/UserSchema')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// once logged out, user is redirected to login page
 router.get("/", (req,res,next) => {
     
     if(req.session) {
