@@ -12,6 +12,7 @@ const Notification = require('../../schemas/NotificationSchema');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// getting user with the help of details stored in the mongoose model using regex
 router.get("/", async (req, res, next) => {
     var searchObj = req.query;
 
@@ -34,6 +35,7 @@ router.get("/", async (req, res, next) => {
     })
 });
 
+// to display relevant buttons of follow or not for users already following some other users on the platform
 router.put("/:userId/follow", async (req, res, next) => {
 
     var userId = req.params.userId;
@@ -88,6 +90,7 @@ router.get("/:userId/followers", async (req, res, next) => {
     })
 });
 
+// to check profile picture uploaded using CropperJS or not
 router.post("/profilePicture", upload.single("croppedImage"), async (req, res, next) => {
     if(!req.file) {
         console.log("No file uploaded with ajax request.");
@@ -110,6 +113,7 @@ router.post("/profilePicture", upload.single("croppedImage"), async (req, res, n
 
 });
 
+// to check if there exists cover picture uploaded using CropperJS or not
 router.post("/coverPhoto", upload.single("croppedImage"), async (req, res, next) => {
     if(!req.file) {
         console.log("No file uploaded with ajax request.");
