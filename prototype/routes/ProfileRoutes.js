@@ -19,6 +19,7 @@ router.get("/", (req, res, next) => {
     res.status(200).render("profilePage", payload);
 })
 
+// to render profile page of users
 router.get("/:username", async (req, res, next) => {
 
     var payload = await getPayload(req.params.username, req.session.user);
@@ -26,6 +27,7 @@ router.get("/:username", async (req, res, next) => {
     res.status(200).render("profilePage", payload);
 })
 
+// post replies
 router.get("/:username/replies", async (req, res, next) => {
 
     var payload = await getPayload(req.params.username, req.session.user);
@@ -34,6 +36,7 @@ router.get("/:username/replies", async (req, res, next) => {
     res.status(200).render("profilePage", payload);
 })
 
+// following users of the current user
 router.get("/:username/following", async (req, res, next) => {
 
     var payload = await getPayload(req.params.username, req.session.user);
@@ -42,6 +45,7 @@ router.get("/:username/following", async (req, res, next) => {
     res.status(200).render("followersAndFollowing", payload);
 })
 
+// followers of the current user
 router.get("/:username/followers", async (req, res, next) => {
 
     var payload = await getPayload(req.params.username, req.session.user);
@@ -65,7 +69,7 @@ async function getPayload(username, userLoggedIn) {
         }
         
         user = await User.findById(username);
-
+        // no user found condition
         if (user == null) {
             return {
                 pageTitle: "User not found",
@@ -74,7 +78,7 @@ async function getPayload(username, userLoggedIn) {
             }
         }
     }
-
+    // payload return for valid user found
     return {
         pageTitle: user.username,
         userLoggedIn: userLoggedIn,
