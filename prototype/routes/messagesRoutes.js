@@ -9,6 +9,7 @@ const Chat = require('../schemas/ChatSchema');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// chat inbox page
 router.get("/", (req, res, next) => {
     res.status(200).render("inboxPage", {
         pageTitle: "Inbox",
@@ -17,6 +18,7 @@ router.get("/", (req, res, next) => {
     });
 })
 
+// new message page -> /new
 router.get("/new", (req, res, next) => {
     res.status(200).render("newMessage", {
         pageTitle: "New message",
@@ -25,6 +27,7 @@ router.get("/new", (req, res, next) => {
     });
 })
 
+// to retrieve existing chat with chatId
 router.get("/:chatId", async (req, res, next) => {
 
     var userId = req.session.user._id;
@@ -37,7 +40,8 @@ router.get("/:chatId", async (req, res, next) => {
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     };
-
+    
+    // no chat exists condition
     if(!isValidId) {
         payload.errorMessage = "Chat does not exist.";
         return res.status(200).render("chatPage", payload);
@@ -66,6 +70,7 @@ router.get("/:chatId", async (req, res, next) => {
     res.status(200).render("chatPage", payload);
 })
 
+// function for chat with condition that initially chat is between 2 users by default for non-group chats and for group chats, users can be added as illustrated through the setOnInsert
 function getChatByUserId(userLoggedInId, otherUserId) {
     return Chat.findOneAndUpdate({
         isGroupChat: false,
