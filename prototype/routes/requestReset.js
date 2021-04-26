@@ -7,7 +7,8 @@ const uuid = require("uuid-random")
  
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
- 
+
+// used for password reset
 router.get("/", (req, res, next) => {
     res.status(200).render("requestReset")
 })
@@ -57,7 +58,8 @@ router.post("/", async (req, res, next) => {
             payload.statusMessage = "Something went wrong. Please try again."
             return res.status(400).render("requestReset", payload)
         })
- 
+        
+        // defining the transporter using details provided by nodemailer
         var transporter = nodemailer.createTransport({
             host: "smtp.mailtrap.io",
             port: 2525,
@@ -66,7 +68,8 @@ router.post("/", async (req, res, next) => {
               pass: "51c476e246a079"
             }
         });
-      
+     
+        // defining the details of password reset email sent to users
         var mailOptions = {
             from: 'admin@cutopia.hk',
             to: findEmail,
@@ -79,7 +82,8 @@ router.post("/", async (req, res, next) => {
             `
             
         }
-      
+       
+        // to verify identity of user on the platform and send email after that for password reset
         transporter.sendMail(mailOptions, async function(error, info){
             if (error) {
                 const updateUser = await User.findOneAndUpdate({email: findEmail}, {resetPassword: ""})
