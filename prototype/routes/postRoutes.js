@@ -7,6 +7,7 @@ const User = require('../schemas/UserSchema');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// to get all posts of users using payload
 router.get("/:id", (req, res, next) => {
 
     var payload = {
