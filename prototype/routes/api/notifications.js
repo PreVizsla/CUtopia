@@ -30,6 +30,7 @@ router.get("/", async (req, res, next) => {
 
 })
 
+// populating latest notifications 
 router.get("/latest", async (req, res, next) => {
     
     Notification.findOne({ userTo: req.session.user._id })
@@ -44,6 +45,7 @@ router.get("/latest", async (req, res, next) => {
 
 })
 
+// to update a particular notifcation as read by clicking on it
 router.put("/:id/markAsOpened", async (req, res, next) => {
     
     Notification.findByIdAndUpdate(req.params.id, { opened: true })
@@ -55,6 +57,7 @@ router.put("/:id/markAsOpened", async (req, res, next) => {
 
 })
 
+// to update all the unread notifications of the user as read
 router.put("/markAsOpened", async (req, res, next) => {
     
     Notification.updateMany({ userTo: req.session.user._id }, { opened: true })
