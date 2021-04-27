@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import handleForm from './handleFormJob';
 import validate from './ValidateJob';
 
+//this is for the material UI design
 const useStyles = makeStyles((theme) => ({
     upload: {
       fontSize: "45px",
@@ -37,6 +38,7 @@ const AddJobForm = ({ submitFormJob }) => {
 
     const classes = useStyles();
 
+    //this if for handling changes in the form
     const { variables, errors, handleChange, handleSubmit } = handleForm(
         submitFormJob,
         validate

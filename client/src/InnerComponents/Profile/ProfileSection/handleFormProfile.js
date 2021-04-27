@@ -6,6 +6,7 @@ const useForm = (success, validate) => {
   const [submit, setSubmit] = useState(false);
 
   //local variable to this function
+  //the edit profile form is using the initial variable from the profile to get the data
   const [variables, updateValues] = useState({
     name: Intro.name,
     country:Intro.country,

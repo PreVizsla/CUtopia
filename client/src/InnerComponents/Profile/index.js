@@ -12,7 +12,7 @@ import { RemoveItem, RemoveContainer, AddItem, InformationContainer, Header, Log
 import AddEduPopup from  './AddEducation/AddEduPopup'
 import AddEduForm from './AddEducation/AddEduForm'
 
-//maybe add image data in the array?
+//this is the template variable for user to add their education
 export const education_template = {
     school:'',
     degree:'',
@@ -22,6 +22,7 @@ export const education_template = {
     visible: true,
 }
 
+//this is the template variable for user to add their experience
 export const experience_template = {
     title:'',
     company:'',
@@ -31,6 +32,8 @@ export const experience_template = {
     image: FACEBOOK,
     visible: true,
 }
+
+//this is the initial education data of the profile
 export const education = 
 [
     {
@@ -53,6 +56,7 @@ export const education =
     }
 ]
 
+//this is the initial experience data of the profile
 export const experience = [
     {
         title:'Software Engineer',
@@ -74,6 +78,7 @@ export const experience = [
     }
 ]
 
+//this is the initial about data of the profile
 const About = {
     about:'I am more experienced in eCommerce web projects and mobile banking apps, but also like to work with creative projects, such as landing pages or unusual corporate websites',
     education_count: 1,
@@ -81,20 +86,18 @@ const About = {
 
 const Profile = () => {
 
+    //this will be used for indicating the success of adding or deleting education
     const [TEST, setTEST] = useState(true);
-    // const deleteEvent = (index, e)=>{
-    //    // const temp = Object.assign([], education);
-    //     education.splice(index, 1);
-    //    // education = (education:temp)
-    // }
+
+    //function for handling the delete education button
     const deleteEvent = (values, index)=>{
         values.visible=false;
-        //console.log(values.school)
         education.splice(index, 1);
         setTEST(false);
         console.log('component state is: ', JSON.stringify(education) )
-      
      }
+     
+    //function for handling the delete experience button
      const deleteExp = (values, index)=>{
         values.visible=false;
         experience.splice(index, 1);
@@ -103,16 +106,21 @@ const Profile = () => {
       
      }
 
+    //this is for handling open popup trigger
     const [openPopupAddEdu, setOpenPopupAddEdu] = useState(false);
-    const [isSubmittedProfileForm, LoginIsSubmitted] = useState(false);
-    function setSubmitTrue() {
-      LoginIsSubmitted(true);
-      setOpenPopupAddEdu(!openPopupAddEdu);
-      LoginIsSubmitted(false);
-     
-      education.push(education_template);
-    }
 
+    //this is for handling if the edit profile form is submitted or no
+    const [isSubmittedProfileForm, ProfileFormIsSubmitted] = useState(false);
+
+    //this is if the add education form submission is a success
+    function setSubmitTrue() {
+        //to triggers to shut the form
+        ProfileFormIsSubmitted(true);
+        setOpenPopupAddEdu(!openPopupAddEdu);
+        //to make it back to the initial value of false
+        ProfileFormIsSubmitted(false);
+        education.push(education_template);
+    }
 
     return (
         <>                
@@ -146,10 +154,8 @@ const Profile = () => {
                         <AboutContent>   
                             {/* looping through the dataset */}                         
                             {education.map((values,index) => (
-
                                 <>
                                 {values.visible ? (
-
                                     <InformationContainer >
                                     {/* school icon */}
                                     <Logo src={values.image}/>
@@ -160,9 +166,8 @@ const Profile = () => {
                                         <Description>{values.description}</Description>  
                                     </InfoSection>
                                     <RemoveContainer>
-                                        {/*<RemoveItem onClick={() =>{values.visible=false}}> */}
-                                        {/* <RemoveItem onClick={() => deleteEvent.bind(index)}> */}
-                                        <RemoveItem onClick={() => deleteEvent(values, index)}>
+                                        {/* clicking the button will pass the value of the data at the certain index of the array */}
+                                       <RemoveItem onClick={() => deleteEvent(values, index)}>
                                             <CloseIcon/>
                                         </RemoveItem>
                                     </RemoveContainer>
@@ -176,9 +181,9 @@ const Profile = () => {
                             ))}
                         </AboutContent>
                     </Section>
-                    
                     </>
                 ):(
+                    // if there is no education, then it will show blank section       
                     <></>
                 )}
                 </>
@@ -227,6 +232,7 @@ const Profile = () => {
                     </AboutContent>
                 </Section>
                 ):(
+                    // if there is no experience, then it will show blank section 
                     <></>
                 )}
                 </>

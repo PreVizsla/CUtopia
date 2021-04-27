@@ -10,6 +10,7 @@ import validate from './ValidateProfile';
 import clement from '../../../assets/frontend-temp/clement.jpg'
 import Background from '../../../assets/images/profileBG.jpg'
 
+//this is for the material UI styling
 const useStyles = makeStyles((theme) => ({
     upload: {
       fontSize: "45px",
@@ -23,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },  formControl: {
         minWidth: "170px",
         background: "white",
-        //marginLeft: "15%",
-        //marginTop: "15px",
         maxHeight: "60px",
       },
       selectEmpty: {
@@ -46,6 +45,7 @@ const ProfileForm = ({ submitFormLogin }) => {
 
     const classes = useStyles();
 
+    //this if for handling changes in the form
     const { variables, errors, handleChange, handleSubmit } = handleForm(
         submitFormLogin,
         validate
@@ -62,8 +62,11 @@ const ProfileForm = ({ submitFormLogin }) => {
                     <ProfileIconForm src={clement}/>
                     {/*Edit avatar button */}
                 </InformationContainer>
-                <EditInfoContainer id="login">         
+                <EditInfoContainer id="login">    
+                    {/* this is the whole edit profile form */}
                     <form onSubmit={handleSubmit} noValidate>
+
+                        {/* this is the name part */}
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Name*
                             <TextField 
@@ -79,6 +82,8 @@ const ProfileForm = ({ submitFormLogin }) => {
                             />
                             {errors.name && <Warning>{errors.name}</Warning>}
                         </div>
+
+                        {/* this is the major part */}
                         <div className='form-inputs' style={{marginBottom:15+"px"}}>
                             Major*<br></br>
                             <FormControl className={classes.formControl} variant="filled">
@@ -202,7 +207,6 @@ const ProfileForm = ({ submitFormLogin }) => {
                                 City<br></br>
                                 <TextField
                                     id="outlined-basic" label="City" variant="filled"
-                                    //className={classes.input}
                                     type='text'
                                     name='city'
                                     value={variables.city}
@@ -213,7 +217,6 @@ const ProfileForm = ({ submitFormLogin }) => {
                                 Country <br></br>
                                 <TextField
                                     id="outlined-basic" label="Country" variant="filled"
-                                    //className={classes.input}
                                     type='text'
                                     name='country'
                                     value={variables.country}
@@ -239,14 +242,12 @@ const ProfileForm = ({ submitFormLogin }) => {
                             Education<br></br>
                             <TextField
                                     id="outlined-basic" label="Country" variant="filled"
-                                    //className={classes.input}
                                     type='text'
                                     name='country'
                                     value={variables.country}
                                     onChange={handleChange}
                                 />
                         </div>
-
                         <SaveBtn type="submit" >
                             save
                         </SaveBtn> 

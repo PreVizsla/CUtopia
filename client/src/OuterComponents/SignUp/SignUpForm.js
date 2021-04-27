@@ -1,10 +1,8 @@
 import React from 'react'
-import { Warning, SubmitBtn, FormContainer, Questions } from './SignupElements';
-
+import { Warning, SubmitBtn, FormContainer } from './SignupElements';
 import validate from './ValidateSignup';
 import handleForm from './handleFormSignup';
 import TextField from "@material-ui/core/TextField";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -39,6 +37,7 @@ const SignUpForm = ({submitFormSignup}) => {
 	);
 
     return (
+        //this is the container for the whole revised signup page
         <FormContainer id="register">
         <div >
             <form onSubmit={handleSubmit} noValidate>

@@ -7,6 +7,7 @@ const useForm = (success, validate) => {
   const [submit, setSubmit] = useState(false);
 
   //local variable to this function
+  //we are updating the value from the education_template local variable from the index
   const [variables, updateValues] = useState({
     school: education_template.school,
     degree: education_template.degree,

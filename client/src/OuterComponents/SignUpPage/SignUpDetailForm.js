@@ -1,10 +1,8 @@
 import React from 'react'
 import {  FormContainer, Heading, Warning, Content,Questions, SubmitBtn } from './SignUpDetailFormElements';
-
 import validate from './ValidateSignup';
 import handleForm from './handleFormSignup';
 import TextField from "@material-ui/core/TextField";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiFilledInput-root": {
       background: "white",
-      
-	  //height:"6ch"
+
     }
   },  formControl: {
     minWidth: "170px",
@@ -40,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-//const yearList = [1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]
 const SignUpForm = ({submitDetailSignup}) => {
 
 	const classes = useStyles();
@@ -50,8 +46,8 @@ const SignUpForm = ({submitDetailSignup}) => {
 		validate
 	);
 
-
     return (
+        // This is the container for the detailed signup page
         <FormContainer>
             <Heading>Welcome!!</Heading>
             <Content>While we are cooking your account</Content>
@@ -70,10 +66,9 @@ const SignUpForm = ({submitDetailSignup}) => {
                 {errors.name && <Warning>{errors.name}</Warning>}
             </div>
 
-
             <Questions>What is your major?</Questions>
-		    <form onSubmit={handleSubmit} noValidate>
-                <FormControl className={classes.formControl} variant="filled">
+		        <form onSubmit={handleSubmit} noValidate>
+              <FormControl className={classes.formControl} variant="filled">
                 <InputLabel id="demo-simple-select-helper-label">major</InputLabel>
                     <Select
                         id="demo-simple-select"
@@ -187,8 +182,8 @@ const SignUpForm = ({submitDetailSignup}) => {
                     </Select>
                 </FormControl>
                 {errors.major && <Warning>{errors.major}</Warning>}
-                <div >
-                    
+
+                <div>
                     <Questions>Expected Graduation Year</Questions>
                     
                     <FormControl className={classes.yearControl} variant="filled">
@@ -199,13 +194,7 @@ const SignUpForm = ({submitDetailSignup}) => {
                             onChange={handleChange}
                             name='end_year'
                             >   
-                                
                             <MenuItem name='end_year' value={''}>select</MenuItem>
-                            {/* {yearList.map((values)=>(
-                                <>
-                                    <MenuItem name='end_year' value={values}>{values}</MenuItem>                            
-                                </>
-                            ))} */}
                             <MenuItem name='end_year' value={1990}>1990</MenuItem>
                             <MenuItem name='end_year' value={1991}>1991</MenuItem>
                             <MenuItem name='end_year' value={1992}>1992</MenuItem>
@@ -243,7 +232,6 @@ const SignUpForm = ({submitDetailSignup}) => {
                             <MenuItem name='end_year' value={2024}>2024</MenuItem>
                             <MenuItem name='end_year' value={2025}>2025</MenuItem>
                         </Select>
-                        
                     </FormControl>
                 </div>
                 {errors.year && <Warning >{errors.year}</Warning>}

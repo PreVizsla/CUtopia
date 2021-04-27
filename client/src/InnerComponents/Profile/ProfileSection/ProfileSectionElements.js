@@ -21,17 +21,14 @@ export const ProfileBackground = styled.div`
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    //margin-bottom: -45px;
 
 `
 export const InformationContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: left;
-    //background-color: green;
     justify-content: space-between;
     width:100%
-    //height: fit-content;
 `
 
 export const EditInfoContainer = styled.div`
@@ -72,7 +69,6 @@ export const ProfileInfo = styled.div`
     margin-top: 5px;
     margin-bottom: 25px;
     text-align: left;
-    //background-color: red;
     > h2 {
         margin-top:15px;
         margin-bottom:15px;
@@ -98,7 +94,6 @@ export const CountryInfo = styled.div`
     margin-top: 5px;
     margin-bottom: 25px;
     text-align: right;
-    //background-color: red;
     > h4 {
         margin: 15px 15px 15px 15px;
         max-width: 100%;
@@ -150,10 +145,8 @@ export const IconContainers = styled.div`
     display: flex;
     flex-direction: row;
     align-items: left;
-    //background-color: green;
     justify-content: space-between;
     width:100%
-    //height: fit-content;
 `
 
 export const UploadButton = styled.button`
@@ -196,7 +189,6 @@ export const EditButtonText = styled.p`
 
 `
 export const FormContainer = styled.div`
-    //following linkedIn Style
     width: 700px;
 
 `
@@ -232,35 +224,28 @@ export const SubmitBtn = styled.button`
     &:hover {
         transition: all 0.2s ease-in-out;
         color:rgba(117, 15, 109);
-        //disabled the hover
         background: #fff;
     }
 `
-
-
 export const SaveBtn = styled.button`
-width: 25%;
-padding: 10px 30px;
-cursor: pointer;
-display: block;
-margin:auto;
-margin-top:20px;
-//background: -webkit-linear-gradient(right, #ff105f, #ffad06);
-//background: -moz-linear-gradient(right, #ff105f, #ffad06);
-//background: linear-gradient(to right, #ff105f, #ffad06);
-
-font-size: 16px;
-font-weight: 500;
-background:#DDA300;
-border: 0;
-outline: none;
-border-radius: 10px;
-color:white;
-&:hover {
-    background-color: white;
-    color: #DDA300;
-    transition: 0.1s ease-in-out;
-    border: 1px solid #DDA300;
-    outline:none
-}
+    width: 25%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin:auto;
+    margin-top:20px;
+    font-size: 16px;
+    font-weight: 500;
+    background:#DDA300;
+    border: 0;
+    outline: none;
+    border-radius: 10px;
+    color:white;
+    &:hover {
+        background-color: white;
+        color: #DDA300;
+        transition: 0.1s ease-in-out;
+        border: 1px solid #DDA300;
+        outline:none
+    }
 `

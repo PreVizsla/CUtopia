@@ -3,6 +3,7 @@ import {  Form, Content, Heading } from '../VerificationSend/VerificationSendEle
 
 function EmailConfirmedForm() {
     return (
+        //this is just for the form where the email is verified
         <form>
             <Form>
             <Heading>Congratulations!!</Heading>

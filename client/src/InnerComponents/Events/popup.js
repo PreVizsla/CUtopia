@@ -23,12 +23,14 @@ export default function Popup(props) {
             <DialogTitle>
                 <div style={{display:"flex" , flexDirection:"row", justifyContent:"space-between"}}>
                     <div>Post a Job</div>
+                    {/* this is the button to close the popup */}
                     <CloseBtn onClick={()=>{setOpenPopup(false)} }>
                         <CloseIcon/>    
                     </CloseBtn>
                 </div>
             </DialogTitle>
             <DialogContent dividers>
+                {/* this will contain the whole form which is being passed inside this components as a children */}
                 {children }
             </DialogContent>    
         </Dialog>
