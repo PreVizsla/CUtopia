@@ -4,8 +4,10 @@ import { ProfileCardWrapper, ProfileCardInfo, ProfileAvatar, PersonInfo, CUniteB
 
 const ProfileCard = forwardRef(({avatar, name, desc}, ref) => {
     return (
-        <>
+        <>  
+            {/* Component for the card each user is displayed in, consists of the CUtopian's avatar, name, description and a button to CUnite */}
             <ProfileCardWrapper ref={ref}>
+                {/* Displays, avatar, name and description */}
                 <ProfileCardInfo>
                     <ProfileAvatar src={avatar}/>
                     <PersonInfo>
@@ -13,6 +15,7 @@ const ProfileCard = forwardRef(({avatar, name, desc}, ref) => {
                         <p>{desc}</p>
                     </PersonInfo>
                 </ProfileCardInfo>
+                {/* Quick access CUnite button */}
                 <CUniteButton>
                     +CUnite
                 </CUniteButton>

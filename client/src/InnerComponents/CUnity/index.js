@@ -37,6 +37,7 @@ const personListings = [
 
 const CUnity = () => {
 
+    // used for searching the names of other CUtopians in the platform
     const [searchQuery, setSearchQuery] = useState("")
     const [searchResults, setSearchResults] = useState([])
 
@@ -48,17 +49,19 @@ const CUnity = () => {
         const filtered = personListings.filter(person =>
             person.name.toLowerCase().includes(searchQuery)
         )
-    setSearchResults(filtered)
-}, [searchQuery])
+        setSearchResults(filtered)
+    }, [searchQuery])
 
 
     return (
         <>
+            {/* Sidebars on the left for quick access to other CUtopia facilities */}
             <SidebarWrapper>
                 <ProfileSidebar />
                 <EventsSidebar />
                 <JobsSidebar />
             </SidebarWrapper>
+            {/* Main feature in which a CUtopian can look for other CUtopians */}
             <CUnityWrapper>
                 {/* Allow searching */}
                 <Search>

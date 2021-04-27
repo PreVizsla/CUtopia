@@ -1,6 +1,7 @@
 import { CREATE, FETCH_ALL } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
+// for fetching jobs
 export const showJobs = () => async (dispatch) => {
     try {
         const { data } = await api.fetchJobs();
@@ -10,6 +11,7 @@ export const showJobs = () => async (dispatch) => {
     }
 };
 
+// for creating a job
 export const createJob = (job) => async (dispatch) => {
     try {
         const { data } = await api.createJob(job);

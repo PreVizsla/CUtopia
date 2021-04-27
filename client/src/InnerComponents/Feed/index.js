@@ -50,6 +50,7 @@ const Feed = () => {
     
     const [postContent, setPostContent] = useState("")
 
+    // handles when a new post is to be added
     const handleSubmit = () =>{
         console.log('component state is: ', JSON.stringify(postContent))
         setPostContent("")
@@ -57,6 +58,8 @@ const Feed = () => {
     const handleAddPost = e => {
         setPostContent(e.target.value)
     }
+
+    // for use of query searching in the page
     const [searchQuery, setSearchQuery] = useState("")
     const [searchResults, setSearchResults] = useState([])
 
@@ -98,6 +101,8 @@ const Feed = () => {
                     <SubheadingText><h3>FIND POSTS</h3></SubheadingText>
                 </SubheadingWrapper>
                 {/*Allows users to create an entry for a NEW POST*/}
+
+                {/* Also a serach bar in which users can search for posts */}
                 <Search>
                     <SearchHeader>
                         <SearchTitle>CHECK OUT WHAT OTHERS ARE UP TO</SearchTitle>
@@ -117,6 +122,7 @@ const Feed = () => {
                     <SubheadingText><h3>POSTS FOR YOU</h3></SubheadingText>
                 </SubheadingWrapper>
                 {/* Individual Posts */}
+                {/* Flip move adds animation to when the posts are displayed */}
                 <FlipMove>
                 {searchResults.map((data)=>{
                     return <Post

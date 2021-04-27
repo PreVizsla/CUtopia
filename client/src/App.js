@@ -17,6 +17,9 @@ import PasswordChanged from './pages/PasswordChanged'
 import EmailConfirmedForm from './pages/EmailConfirmed'
 function App() {
   return (
+
+    // we use react routers to manage all the routes in our site
+
     <Router>
       <Switch>
         <Route path="/" component={Home} exact />

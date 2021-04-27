@@ -41,6 +41,7 @@ const eventListings = [
 
 const Events = () => {
     
+    // allows filling in form to post a new event
     const [openPopup, setOpenPopup] = useState(false);
 
     const [isSubmittedProfileForm, JobIsSubmitted] = useState(false);
@@ -49,6 +50,8 @@ const Events = () => {
       setOpenPopup(!openPopup);
       JobIsSubmitted(false);
     }
+
+    // allows searching of new events
     const [searchQuery, setSearchQuery] = useState("")
     const [searchResults, setSearchResults] = useState([])
 
@@ -86,7 +89,7 @@ const Events = () => {
                 <SubheadingWrapper>
                     <SubheadingText><h3>EVENTS FOR YOU</h3></SubheadingText>
                 </SubheadingWrapper>
-                {/* Events laid out in a grid fashion */}
+                {/* Map Events laid out in a grid fashion */}
                 <EventsGrid>
                 {searchResults.map((data)=>{
                     return <EventCard

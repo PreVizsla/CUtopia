@@ -15,11 +15,15 @@ export default function Home() {
   }
   return (
     <div className="InnerPage">
+      {/* Collapsable sidebar for mobile view */}
       <SideNavbar isOpen={isOpen} toggle={toggle}/>
+      {/* Actual sidebar */}
       <Navbar toggle={toggle} />
       <div className="outerContainer">
         <div className="InnerBody">
+          {/* Chat sidebar displaying active chats */}
           <Chat />
+          {/* Actual chat screen with messages */}
           <ChatScreen />
         </div>
       </div>

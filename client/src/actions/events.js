@@ -1,6 +1,7 @@
 import { CREATE, FETCH_ALL } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
+// for fetching events
 export const showEvents = () => async (dispatch) => {
     try {
         const { data } = await api.fetchEvents();
@@ -10,6 +11,7 @@ export const showEvents = () => async (dispatch) => {
     }
 };
 
+// for creating an event
 export const createEvent = (event) => async (dispatch) => {
     try {
         const { data } = await api.createEvent(event);

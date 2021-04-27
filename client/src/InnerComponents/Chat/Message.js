@@ -3,11 +3,14 @@ import styled from 'styled-components'
 
 const Message = ({user, message, timestamp}) => {
 
+    // to make sure chat is displayed differently depending on who sent it
     const ContainerType = user === 'self' ? SenderContainer : ReceiverContainer
     const MessageType = user === 'self' ? Sender : Receiver
 
     return (
+        
         <ContainerType>
+            {/* Display the chat bubble for each message accordingly to who sent it */}
             <MessageType>
                 <p>{message}</p>
             </MessageType>

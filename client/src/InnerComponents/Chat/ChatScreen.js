@@ -9,6 +9,7 @@ const ChatScreen = () => {
 
     const messageEnd = useRef(null)
 
+    // used for the auto scroll to last chat whenever user enters a new chat
     const scrollToBottom = () => {
         messageEnd.current.scrollIntoView({
             behavior: 'smooth',
@@ -19,7 +20,7 @@ const ChatScreen = () => {
     const sendMessage = (e) => {
         e.preventDefault()
 
-        /*kirim message content*/
+        /* send message content */
 
         setInput("")
         scrollToBottom()
@@ -27,8 +28,9 @@ const ChatScreen = () => {
 
     return (
         <ChatScreenWrapper>
+            {/* This is the entire chat screen and has a header, the chat body, and the input box for entering a new message*/}
             <Screen>
-
+                {/* Chat screen header consisting of the name, last online, and video call button */}
                 <ChatScreenHeader>
                     <ChatDetails>
                         <h3>CHAT WITH <div className='recipient'>THEODORE F.</div></h3>
@@ -36,10 +38,9 @@ const ChatScreen = () => {
                     </ChatDetails>
                     <a href="http://localhost:8080" target="_blank"    >
                     <VideoIcon  fontSize='large'/>
-                    {/* onClick="window.open('https://www.youtube.com')" */}
                     </a>
                 </ChatScreenHeader>
-
+                {/* Chat container consisting of all the chats sent from both sides */}
                 <ChatsContainer >
                     <SubheadingWrapper>
                         <SubheadingText><h3><div className='cunite'>CUnited</div> at 11 January 2021</h3></SubheadingText>
@@ -51,7 +52,7 @@ const ChatScreen = () => {
                     <Message user="self" message="Sweet!" timestamp="4:50 PM"/>
                     <MessageEndContainer ref={messageEnd}/>
                 </ChatsContainer>
-
+                {/* An input box to type in a new message ot send to the othe person */}
                 <InputMessageContainer>
                     <Input placeholder="Write your message" value={input} onChange={e => setInput(e.target.value)} />
                     <button hidden disabled={!input} type='submit' onClick={sendMessage}>Send Message</button>

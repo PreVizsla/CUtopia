@@ -14,10 +14,13 @@ export default function Home() {
   }
   return (
     <div className="InnerPage">
+      {/* Collapsable sidebar for mobile view */}
       <SideNavbar isOpen={isOpen} toggle={toggle}/>
+      {/* Actual sidebar */}
       <Navbar toggle={toggle} />
       <div className="outerContainer">
         <div className="InnerBody">
+          {/* Feature where CUtopians can find other CUtopians */}
           <CUnity />
         </div>
       </div>

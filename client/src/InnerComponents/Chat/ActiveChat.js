@@ -4,6 +4,7 @@ import { ChatPersonContainer, UserAvatar, DetailsContainer } from './ActiveChatE
 const ActiveChat = ({avatar, name, last}) => {
     return (
         <>
+            {/* Each active chat shows the avatar, recipient name, and last message */}
             <ChatPersonContainer>
                 <UserAvatar src={avatar}/>
                 <DetailsContainer>

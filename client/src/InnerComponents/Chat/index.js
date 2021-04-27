@@ -45,12 +45,14 @@ const activeChats = [
 const Chat = () => {
     return (
         <>
+        {/* Is the left sidebar on the Chats page, where users can see mother members they are chatting, and also find other mentors */}
             <SidebarWrapper>
-
+                {/* Allows CUtopians to see the people they are chatting */}
                 <ActiveChatsSidebar>
                     <ActiveChatsSidebarHeader>
                         <h3>CHATS</h3>
                     </ActiveChatsSidebarHeader>
+                    {/* Maps all the current active chats */}
                     <ActiveChats>
                         {activeChats.map((data)=>{
                             return <ActiveChat
@@ -61,7 +63,7 @@ const Chat = () => {
                         })}
                     </ActiveChats>
                 </ActiveChatsSidebar>
-
+                {/* Button for users to find more mentors */}
                 <FindMentorButtonWrapper>
                     <FindMentorButton>
                         FIND MENTORS

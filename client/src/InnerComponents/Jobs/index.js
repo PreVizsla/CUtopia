@@ -41,6 +41,7 @@ const jobListings = [
 
 const Jobs = () => {
 
+    // for use of form when adding new job
     const [openPopup, setOpenPopup] = useState(false);
 
     const [isSubmittedProfileForm, JobIsSubmitted] = useState(false);
@@ -49,6 +50,8 @@ const Jobs = () => {
       setOpenPopup(!openPopup);
       JobIsSubmitted(false);
     }
+
+    // allows searching of jobs
     const [searchQuery, setSearchQuery] = useState("")
     const [searchResults, setSearchResults] = useState([])
 
@@ -65,7 +68,7 @@ const Jobs = () => {
 
     return (
         <>
-            {/* Left side of the Jobs Page, showing the events in a grid fashion */}
+            {/* Left side of the Jobs Page, showing the jobs in a list fashion */}
             <JobsWrapper>
                 {/* Allow searching */}
                 <Search>
@@ -86,7 +89,7 @@ const Jobs = () => {
                 <SubheadingWrapper>
                     <SubheadingText><h3>JOBS FOR YOU</h3></SubheadingText>
                 </SubheadingWrapper>
-                {/* Individual Available Jobs */}
+                {/* Maps Individual Available Jobs */}
                 {searchResults.map((data)=>{
                     return <JobPost
                         logo={data.logo}
@@ -105,7 +108,6 @@ const Jobs = () => {
                     </NewJobButton>
                 </NewJobButtonWrapper>
                 <ProfileSidebar />
-                {/* Create Events Sidebar Here */}
                 <EventsSidebar />
             </SidebarWrapper>
             

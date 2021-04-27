@@ -6,22 +6,27 @@ import { Card, CardImageWrapper, EventDetailsWrapper, EventInfoWrapper, EventDes
 const EventCard = ({logo, name, date, location, description}) => {
     return (
         <>
+            {/* A card to display each individual event consisting of event image, event header, details, and a "FIND OUT MORE" Button */}
             <Card>
+                {/* Event Image */}
                 <CardImageWrapper>
                     <img src={image} alt='' />
                 </CardImageWrapper>
                 <EventDetailsWrapper>
                     <EventInfoWrapper>
+                            {/* Logo of event organizer */}
                             <EventAvatar src={logo}/>
-                            {/* Name and Position of author */}
+                            {/* Event header */}
                             <EventName>
                                 <div className="name"><h4>{name}</h4></div>
                                 <div className="details"><h1>{date}</h1><p>{location}</p></div>
                             </EventName>
                     </EventInfoWrapper>
+                    {/* Event details */}
                     <EventDescriptionWrapper>
                         {description}
                     </EventDescriptionWrapper>
+                    {/* Find Out More Button */}
                     <ButtonContainer>
                         <KnowMore>FIND OUT MORE</KnowMore>
                     </ButtonContainer>

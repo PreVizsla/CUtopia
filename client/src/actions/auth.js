@@ -1,6 +1,7 @@
 import * as api from '../api/index.js';
 import { AUTH } from '../constants/actionTypes';
 
+// for sign in
 export const signIn = (formData, router) => async (dispatch) => {
     try {
       const { data } = await api.signIn(formData);
@@ -12,6 +13,8 @@ export const signIn = (formData, router) => async (dispatch) => {
     }
   };
   
+
+// for sign up
 export const signUp = (formData, router) => async (dispatch) => {
     try {
         const { data } = await api.signUp(formData);
@@ -23,6 +26,7 @@ export const signUp = (formData, router) => async (dispatch) => {
     }
 };
 
+// for frther sign up details
 export const signUpDetail = (formData, router) => async (dispatch) => {
     try {
         const { data } = await api.signUpDetail(formData);
@@ -33,7 +37,7 @@ export const signUpDetail = (formData, router) => async (dispatch) => {
     }
 };
     
-
+// forgot password
 export const forgotPassword = (formData, router) => async (dispatch) => {
     try {
         const { data } = await api.forgotPassword(formData);
@@ -44,6 +48,7 @@ export const forgotPassword = (formData, router) => async (dispatch) => {
     }
 }
 
+// reset password
 export const resetPassword = (code, formData, router) => async (dispatch) => {
     try {
         const { data } = await api.resetPassword(formData);
@@ -53,6 +58,7 @@ export const resetPassword = (code, formData, router) => async (dispatch) => {
     }
 }
 
+// user verification
 export const verifyUser = (code, router) => async (dispatch) => {
     try {
         const { data } = await api.verifyUser(code);
@@ -62,13 +68,4 @@ export const verifyUser = (code, router) => async (dispatch) => {
     }
 }
 
-// export const createPost = (formData) => async (dispatch) => {
-//     try {
-//       const { data } = await api.createPost(formData);
-  
-//       dispatch({ type: CREATE, payload: data });
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
   
