@@ -8,15 +8,18 @@ const config = require("../config/auth")
 
 const secret = config.SECRET;
 
+// Login 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // find User from the database
     User.findOne({ email: email }).then(user => {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
       else {
+        // compare the hash with the selected password
         const isPasswordCorrect = bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
           return res.status(400).json({ message: "Invalid credentials"});
@@ -53,6 +56,7 @@ exports.login = async (req, res) => {
 //   }
 // }
 
+// Register
 exports.register = async (req, res) => {
   const { name, username, email, password, firstname, lastname, major, end_year, mentor_mentee } = req.body;
 
@@ -63,6 +67,7 @@ exports.register = async (req, res) => {
       }
       else {
         const token = jwt.sign( { email: email }, secret, { expiresIn: "1h" } );
+        // Hash the password with 16 rounds of bcrypt hashing
         const hashedPassword = bcrypt.hashSync(password, 16);
 
         const newUser = new User({
@@ -84,6 +89,7 @@ exports.register = async (req, res) => {
           }
           res.status(201).send({ message: "User was registered successfully" })
         });
+        // send the confirmation email (based from the inserted information)
         confirmationEmail(
           newUser.username,
           newUser.email, 
@@ -110,16 +116,16 @@ exports.register = async (req, res) => {
 };
 
 // here
-exports.details = async (req, res, next) => {
-  const { firstname, lastname, major, gradYear, isMentor  } = req.body;
+// exports.details = async (req, res, next) => {
+//   const { firstname, lastname, major, gradYear, isMentor  } = req.body;
 
-  try{
-    const result = User.findOneandUpdate({ _id: req.session.user._id },  { firstname: firstname, lastname: lastname,  major: major, gradYear: gradYear, isMentor: isMentor });
-    res.status(200).json({ result });
-  } catch (err) {
-    res.status(500).json({ message: err.message});
-  }
-}
+//   try{
+//     const result = User.findOneandUpdate({ _id: req.session.user._id },  { firstname: firstname, lastname: lastname,  major: major, gradYear: gradYear, isMentor: isMentor });
+//     res.status(200).json({ result });
+//   } catch (err) {
+//     res.status(500).json({ message: err.message});
+//   }
+// }
 
 // @desc Send confirmation email
 const confirmationEmail = (name, email, confirmationCode) => {
@@ -129,9 +135,8 @@ const confirmationEmail = (name, email, confirmationCode) => {
     const message = `
     <h1> Hello ${name} </h1>
     <h2>You have requested an account opening on CUtopia</h1>
-      <p>Please click </p>
-      <a href=${resetUrl} clicktracking=off>at the following link</a>
-
+      <p>Please click <a href=${resetUrl} clicktracking=off>at the following link</a></p>
+      
       <b>Do not reply to this email</b>
    `;
     try {
@@ -147,6 +152,7 @@ const confirmationEmail = (name, email, confirmationCode) => {
     
   }
 
+// verify user (after they clicked the confirmation email)
 exports.verifyUser = (req, res, next) => {
   User.findOne({ 
     where: { confirmationCode: req.query.confirmationCode },

@@ -3,7 +3,7 @@ const User = require('../models/User');
 const Message = require('../models/Message');
 const ErrorResponse = require('../utils/errorResponse');
 
-// line 12 - 38
+// create chat room 
 exports.createChatRoom = async (req, res, next) => {
     if (!req.body.users) {
         return next(new ErrorResponse("Users param not sent with request", 400));
@@ -14,7 +14,7 @@ exports.createChatRoom = async (req, res, next) => {
     if(users.length === 0) {
         return next(new ErrorResponse("Users array is empty", 400));
     }
-    
+    // If there are user in the chat room
     users.push(req.session.user);
 
     var chatData = {
@@ -29,7 +29,7 @@ exports.createChatRoom = async (req, res, next) => {
     });
 }
 
-// line 40 - 58
+// find Chat room
 exports.findChatRoom = async (req, res, next) => {
     Chat.find({ users: { $elemMatch: { $eq: req.session.user._id } }})
     .populate("users")
@@ -48,7 +48,7 @@ exports.findChatRoom = async (req, res, next) => {
     });
 }
 
-// 60
+// Find Chat ID and the existing user inside the chat room
 exports.getChatID = async (req, res, next) => {
     Chat.findOne({ _id: req.params.chatId, users: { $elemMatch: { $eq: req.session.user._id } }})
     .populate("users")
@@ -58,7 +58,7 @@ exports.getChatID = async (req, res, next) => {
     });
 }
 
-// 70
+// Update the chat once a message is sent
 exports.updateChat = async (req,res,next) => {
     Chat.findByIdAndUpdate(req.params.chatId, req.body)
     .then(() => res.sendStatus(204))
@@ -67,6 +67,7 @@ exports.updateChat = async (req,res,next) => {
     });
 }
 
+// get Messages based from the chatID
 exports.getMessages = async (req,res,next) => {
     Message.find({ chat: req.params.chatId })
     .populate("sender")
