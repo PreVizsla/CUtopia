@@ -1,6 +1,6 @@
-const Event = require('../models/Event');
+const Event = require('../modelss/Event')
 
-// Show all the events 
+//Add the ability to show events
 exports.showEvents = async (req, res) => {
     try{
         const eventList = await Event.find();
@@ -10,12 +10,10 @@ exports.showEvents = async (req, res) => {
     }
 }
 
-// Create new event
+//Add the ability to create events
 exports.createEvent = async (req, res) => {
     const { event } = req.body;
-
     const newEvent =  new Event({ event });
-
     try {
         await newEvent.save();
         res.status(201).json(newEvent);
