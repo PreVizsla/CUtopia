@@ -27,7 +27,7 @@ const ForgetPasswordForm = ({submitFormForget}) => {
         //this is for the forget password form
         <Form>
             <form onSubmit={handleSubmit} noValidate>
-                <Heading>Forget Password</Heading>
+                <Heading>Forgot Password</Heading>
                 <Content>Enter your Email Address</Content>
                 <Content>(xxxxxxxxxx@link.cuhk.edu.hk)</Content>
                 <br></br>
@@ -46,7 +46,7 @@ const ForgetPasswordForm = ({submitFormForget}) => {
                 </div>
                
                 <BtnWrapper>
-                    <NextBtn to='./auth' >back</NextBtn>
+                    <NextBtn to='./auth' >Back</NextBtn>
                     <SubmitBtn type="submit" >
                     Next
                     </SubmitBtn>          
