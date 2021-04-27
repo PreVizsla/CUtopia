@@ -5,9 +5,7 @@ const auth = require("../middleware/auth");
 
 // Controllers
 const { register,
-    
         login,
-        details,
         forgotPassword,
         verifyUser,
         resetPassword } = require("../controllers/auth")

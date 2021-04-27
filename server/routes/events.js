@@ -4,9 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 //Route for showing events
-router.get('/', showEvents)
+router.get('/', showEvents);
 
 //Route for creating events
-router.post('/', createEvent)
+router.post('/', createEvent);
 
-module.exports = router
+module.exports = router;
