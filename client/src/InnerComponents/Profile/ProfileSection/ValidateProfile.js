@@ -12,7 +12,5 @@ export default function validate(variables) {
     errors.major = 'Please enter a valid major code/name';
   }
 
-
-
   return errors;
 }

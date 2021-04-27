@@ -4,7 +4,6 @@ import styled from 'styled-components'
 export const Button = styled(Link)`
 
     //options for dark mode edit here
-
     border-radius: 50px;
     background: ${({ primary }) => (primary ? 'rgba(235, 152, 52)' : '#010606')};
     white-space: nowrap;

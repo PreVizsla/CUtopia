@@ -24,6 +24,7 @@ const ForgetPasswordForm = ({submitFormForget}) => {
 	);
     
     return (
+        //this is for the forget password form
         <Form>
             <form onSubmit={handleSubmit} noValidate>
                 <Heading>Forget Password</Heading>
@@ -46,13 +47,8 @@ const ForgetPasswordForm = ({submitFormForget}) => {
                
                 <BtnWrapper>
                     <NextBtn to='./auth' >back</NextBtn>
-                    {/* <Submit_btn type="submit" >
-                        <Link_text to='./next' >
-                            next
-                        </Link_text>
-                    </Submit_btn> */}
                     <SubmitBtn type="submit" >
-                    Login
+                    Next
                     </SubmitBtn>          
                 </BtnWrapper> 
             </form>

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-
-
 export const Heading = styled.h1`
     margin-top: 18px;
     font-weight: bold;

@@ -9,10 +9,8 @@ import ProfileForm from "./ProfileForm"
 
 
 import Popup from  './popup'
-//for the material ui styling
 
-
-
+//this is for the material UI styling
 const useStyles = makeStyles((theme) => ({
   upload: {
     fontSize: "45px",
@@ -22,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   }, 
 }));
 
+//this is for the initial profile data of the user
 export const Intro = {
     picture: clement,
     name:'Clement Mihaiescu (克莱门特)',
@@ -36,22 +35,13 @@ const ProfileSection = () => {
     const [openPopup, setOpenPopup] = useState(false);
     const classes = useStyles();
 
-    //check if it is submitted or not
+    //check if it the edit profile is submitted or not
     const [isSubmittedProfileForm, LoginIsSubmitted] = useState(false);
     function setSubmitTrue() {
       LoginIsSubmitted(true);
       setOpenPopup(!openPopup);
       LoginIsSubmitted(false);
     }
-
-    // useEffect(
-    //   ()=>{
-        
-        
-    //     //submitFormLogin()
-    //   },
-    //   [isSubmittedProfileForm]
-    // );
 
     return (
         <>
@@ -62,9 +52,9 @@ const ProfileSection = () => {
                     <IconContainers>
                         {/* button to upload background picture */}
                         <UploadButton><PublishIcon className={classes.upload}/></UploadButton>
+                        {/* the edit profile button that will trigger the popup */}
                         <EditButton onClick = {() => setOpenPopup(true)}>
                             <EditIcon className={classes.edit}/>
-
                             <EditButtonText>Edit Profile </EditButtonText>
                         </EditButton>
                     </IconContainers>
@@ -78,11 +68,8 @@ const ProfileSection = () => {
                     <ProfileInfo>
                         <h2>{Intro.name}</h2>
                         <h4 style={{marginBottom:"5px", fontWeight:"600"}}>{Intro.major} major</h4>
-                        
                         <h4>{Intro.info}</h4>
-                        
-                        
-      
+
                     <ContactButton >
                         CONTACT ME
                     </ContactButton>
@@ -93,6 +80,7 @@ const ProfileSection = () => {
                 </InformationContainer>
 
             </MainProfile>
+            {/* the popup component ready to be triggered */}
             <Popup 
                 openPopup = {openPopup}
                 setOpenPopup = {setOpenPopup}
@@ -101,8 +89,6 @@ const ProfileSection = () => {
                 <ProfileForm submitFormLogin={setSubmitTrue}/>
               ):(
                 <></>
-                //<ProfileForm submitFormLogin={submitFormLogin}/>
-              
               )}
             </Popup>
         </>

@@ -1,8 +1,4 @@
 import React from 'react'
-
-//import { animateScroll as scroll } from 'react-scroll'
-
-
 import CUTOPIA from "../../assets/images/CUTOPIA.png"
 import logo from '../../assets/images/logo_cropped.png'
 import { ElementContainer, FooterColor, Item, LogoContainer, MainContainer, SectionContainer } from './FooterElements'

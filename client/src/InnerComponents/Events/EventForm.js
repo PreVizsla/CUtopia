@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import handleForm from './handleFormEvent';
 import validate from './ValidateEvent';
 
+//for the material UI design
 const useStyles = makeStyles((theme) => ({
     upload: {
       fontSize: "45px",
@@ -36,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
 const AddEventForm = ({ submitFormEvent }) => {
 
     const classes = useStyles();
-
+    
+    //this if for handling changes in the form
     const { variables, errors, handleChange, handleSubmit } = handleForm(
         submitFormEvent,
         validate

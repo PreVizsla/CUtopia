@@ -3,6 +3,7 @@ import {  Form, Content, Heading } from './VerificationSendElement';
 
 function VerificationSendForm() {
     return (
+        //this is just the inside of the purple container
         <form>
             <Form>
             <Heading>Check your Email!</Heading>
