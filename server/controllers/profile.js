@@ -14,17 +14,7 @@ exports.showInfo = (req, res, next) => {
     })
 }
 
-//Checking whether the user can edit the profile or not
-//exports.checkUser = (req, res, next) => {
-    //const authorized = req.profile && req.auth && req.profile._id == req.auth._id
-    //if (!(authorized)) {
-      //return res.status('403').json({
-        //error: "User is not authorized"
-      //})
-    //}
-    //next() 
-//}
-
+//Add the ability to get profileID
 exports.getProfileID = async (req, res, next) => {
     User.findOne( { _id: req.params.profileId } )
     .then(results => res.status(200).send(results))
@@ -44,8 +34,9 @@ exports.editProfile = (req, res, next) => {
   )
 }
 
+//Add the ability to edit Profile Picture
 exports.editPhoto = (req, res, next) => {
-    var form = Formidable.incomingForm()
+    var form = formidable.incomingForm()
     form.parse(req, (error, fields, files))
     .then(
         User.photo.data = fs.readFileSync(files.photo.path),

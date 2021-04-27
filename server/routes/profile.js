@@ -1,11 +1,9 @@
 const { showInfo, 
-    checkUser, 
     editProfile, 
     addEducation, 
     deleteEducation,
     addExperience,
     deleteExperience,
-    getProfileID,
     editPhoto
     } = require("../controllers/profile")
 
@@ -15,29 +13,31 @@ const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-// router.route('/profile/:profileId').get(showInfo)
+//Route for show information of a user's profile
 router.get('/profile/:profileId', auth, showInfo)
 
-// router.route('/profile/:profileId/edit').post(editProfile)
+//Route for edit profile
 router.post('/profile/:profileId/edit', auth, editProfile)
 
-// router.route('/profile/:editPhoto').post(editPhoto)
+//Route for edit profile picture
 router.post('/profile/:editPhoto', auth, editPhoto)
 
-// router.route('/profile/:profileId/addeducation').put(addEducation)
+//Route for add education
 router.put('/profile/:profileId/addeducation', auth, addEducation)
 
+//Route for edit education
 router.post('/profile/:profileId/editeducation', auth, editEducation)
 
-// router.route('/profile/:profileId/:educationId').delete(deleteEducation)
+//Route for delete education
 router.delete('/profile/:profileId/:educationId', auth, deleteEducation)
 
-// router.route('/profile/:profileId/addexperience').put(addExperience)
+//Route for add experience
 router.put('/profile/:profileId/addexperience', auth, addExperience)
 
+//Route for editing experience
 router.post('/profile/:profileId/editexperience', auth, editExperience)
 
-// router.route('/profile/:profileId/deleteexperience').delete(deleteExperience)
+//Route for delete experience
 router.delete('/profile/:profileId/:experienceId', auth, deleteExperience)
 
 module.exports = router
