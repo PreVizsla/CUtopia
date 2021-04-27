@@ -54,7 +54,7 @@ exports.editPhoto = (req, res, next) => {
         res.status(202).send("Your photo has changed")
     )
     .catch(error => {
-        return next(new ErrorResponse(error, 400))
+        return next(new ErrorResponse("The image couldn't be uploaded", 400))
     })
 }
 
