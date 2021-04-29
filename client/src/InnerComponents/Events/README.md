@@ -1,4 +1,4 @@
-# Chat
+# Events
 This folder includes the components for CUtopia's Events section
 </br>
 <p align="center">
