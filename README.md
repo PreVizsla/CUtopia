@@ -1,6 +1,6 @@
 # About CUtopia :rocket:
 
-Updated as of March 19 2021
+Updated as of April 30 2021
 
 In this fast changing world, mentorship has been proven to be of vital
 importance at every stage of our unpredictable lives. At present, there is no
@@ -35,33 +35,16 @@ Back-end:
 * [argon2](https://www.npmjs.com/package/argon2)
 
 
-### Current Progress as of March 19 2021 (Initial Code Phase) :technologist:
+### Current Progress as of April 30 2021 (Completed Code Phase) :technologist:
 
-As of now, we have begun work on both the front-end and the back-end of our application. :smile:
+We have successfully demonstrated our final progress to the the Professor and TAs on April 15. :smile:
 
-For the front-end, we have finished the landing page, sign-up/log-in page and also clicking on the login button will direct you to a sneak peek of what the inside of CUtopia will look like. For the back-end, we have started work on the components for user authentication and also have started to play around with the video call feature for the platform. Images of our progress are shown below:
-
-#### Landing Page:
+#### And hence CUtopia is born!
 <p align="center">
   <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/landingPage.png" alt="landingpage" width="700" >
 </p>
 
-#### SignUp or LogIn:
-<p align="center">
-  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/login_signup.PNG" alt="loginsingup" width="700" >
-</p>
-
-#### Feed Page:
-<p align="center">
-  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/feedinside.png" alt="feedinside" width="700" >
-</p>
-
-#### Video Call Feature:
-<p align="center">
-  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/videocall.png" alt="videocall" width="700" >
-</p>
-
-## Try Out CUtopia :alien:
+## Try Out and See What's Inside CUtopia? :alien:
 
 Curious to try out our progress? Follow the given instructions and you will be here in CUtopia in no time!
 
@@ -95,12 +78,13 @@ Please make sure you have Node.js installed. If you have not, you can easily dow
 ```
 
 ## What's Next :world_map:	
-In this coming month, we will focus on completing the entirety of the project. Hence from here onwards, we will focus on implementing all the other functionailities of our app, fully integrated with the back-end, and not only that, we also aim to create a fully responsive front-end that will display perfectly on mobile screens. This is because we aim to deliver not just a project, but an actual product that can actually be of real-use to The Chinese University of Hong Kong. Wish us luck! :wink:
+In the coming future, we plan to add in even more functionalities and features to our project. This includes ideas like a portable chat bar on every page, the ability to host online events on CUtopia itself, or even an AI powered smart mentor recommendaiton. This is because we aim to deliver not just a project, but an actual product that can actually be of real-use to The Chinese University of Hong Kong. Other than that, we have learned alot in the span of these few months and would like to thank Prof. Michael and all the wonderful TAs for their guidance. It has been a fun ride! :wink:
 
 ## Acknowledgements :pray:
 * [Google Fonts: Montserrat](https://fonts.google.com/)
 * [React Styled Components](https://styled-components.com/)
 * [React Router](https://reactrouter.com/)
+* [React Flip Move](https://www.npmjs.com/package/react-flip-move)
 * [React Scroll](https://www.npmjs.com/package/react-scroll)
 * [React Icons](https://react-icons.github.io/react-icons/)
 * [Material UI Icons](https://material-ui.com/)
