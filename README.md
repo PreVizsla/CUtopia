@@ -25,6 +25,8 @@ CUtopia will make use of a wide range of major frameworks on both the client-sid
 Front-end:
 * [React.js](https://reactjs.org/)
 * [Redux.js](https://redux.js.org/)
+* [MaterialUI](https://material-ui.com/)
+* [Axios](https://axios-http.com/)
 
 Back-end:
 
@@ -44,9 +46,9 @@ We have successfully demonstrated our final progress to the the Professor and TA
   <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/landingPage.png" alt="landingpage" width="700" >
 </p>
 
-## Try Out and See What's Inside CUtopia? :alien:
+## Try Out and See What's Inside CUtopia! :alien:
 
-Curious to try out our progress? Follow the given instructions and you will be here in CUtopia in no time!
+Curious to try out what we have made? Follow the given instructions and you will be here in CUtopia in no time!
 
 ### Prerequisites :triumph:
 
