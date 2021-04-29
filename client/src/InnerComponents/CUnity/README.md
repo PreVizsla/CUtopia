@@ -1,4 +1,4 @@
-# Feed
+# CUnity
 This folder includes the components for CUtopia's CUnity section
 </br>
 <p align="center">
