@@ -80,7 +80,7 @@ Please make sure you have Node.js installed. If you have not, you can easily dow
 ```
 
 ## What's Next :world_map:	
-In the coming future, we plan to add in even more functionalities and features to our project. This includes ideas like a portable chat bar on every page, the ability to host online events on CUtopia itself, or even an AI powered smart mentor recommendaiton. This is because we aim to deliver not just a project, but an actual product that can actually be of real-use to The Chinese University of Hong Kong. Other than that, we have learned alot in the span of these few months and would like to thank Prof. Michael and all the wonderful TAs for their guidance. It has been a fun ride! :wink:
+In the coming future, we plan to add in even more functionalities and features to our project. This includes ideas like a portable chat bar on every page, the ability to host online events on CUtopia itself, or even an AI powered smart mentor recommendation. This is because we aim to deliver not just a project, but an actual product that can actually be of real-use to The Chinese University of Hong Kong. Other than that, we have learned alot in the span of these few months and would like to thank Prof. Michael and all the wonderful TAs for their guidance. It has been a fun ride! :wink:
 
 ## Acknowledgements :pray:
 * [Google Fonts: Montserrat](https://fonts.google.com/)
