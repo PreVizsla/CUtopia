@@ -58,7 +58,7 @@ Please make sure you have Node.js installed. If you have not, you can easily dow
 
 1. Clone our Repository
 ```
-   git clone https://github.com/FlyingTwigs/CUtopia.git
+   git clone https://github.com/PreVizsla/CUtopia.git
 ```
 
 2. Go to the Client directory
