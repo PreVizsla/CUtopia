@@ -11,7 +11,7 @@ another, have conversations using our in-built smart chat assistant, host
 video calls and be able to share ideas and opportunities with one another.
 
 <p align="center">
-  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/logo.png" alt="cutopia_logo" >
+  <img src="https://github.com/PreVizsla/CUtopia/blob/main/imagesforREADME/logo.png" alt="cutopia_logo" >
 </p>
 
 CUtopia is a web application that will address the issue of mentorship by
@@ -43,7 +43,7 @@ We have successfully demonstrated our final progress to the the Professor and TA
 
 #### And hence CUtopia is born!
 <p align="center">
-  <img src="https://github.com/FlyingTwigs/CUtopia/blob/main/imagesforREADME/landingPage.png" alt="landingpage" width="700" >
+  <img src="https://github.com/PreVizsla/CUtopia/blob/main/imagesforREADME/landingPage.png" alt="landingpage" width="700" >
 </p>
 
 ## Try Out and See What's Inside CUtopia! :alien:
